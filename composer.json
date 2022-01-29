@@ -1,9 +1,9 @@
 {
-    "name": "codeigniter4/appstarter",
+    "name": "codeigniter4/bison",
     "type": "project",
-    "description": "CodeIgniter4 starter app",
-    "homepage": "https://codeigniter.com",
-    "license": "MIT",
+    "description": "A CMS By CodeIgniter4",
+    "homepage": "https://www.zhyea.com",
+    "license": "GPG",
     "require": {
         "php": "^7.3 || ^8.0",
         "codeigniter4/framework": "^4.0"
