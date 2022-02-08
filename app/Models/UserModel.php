@@ -19,7 +19,7 @@ class UserModel extends BaseModel
      */
     public function checkAndGet(string $username, string $password)
     {
-        return $this->getFirstByParams(array('username' => $username, 'password' => $password));
+        return $this->getLatestByParams(array('username' => $username, 'password' => $password));
     }
 
 
@@ -30,7 +30,7 @@ class UserModel extends BaseModel
      */
     public function getByUsername(string $username)
     {
-        return $this->getFirst('username', $username);
+        return $this->getLatest('username', $username);
     }
 
 

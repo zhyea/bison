@@ -24,7 +24,7 @@ class SettingModel extends BaseModel
      */
     public function getByKey(string $key, string $defaultValue = '')
     {
-        $r = $this->getFirst('name', $key);
+        $r = $this->getLatest('name', $key);
         return $this->takeValue($r, $defaultValue);
     }
 
@@ -61,6 +61,6 @@ class SettingModel extends BaseModel
      */
     public function deleteSetting(string $settingName)
     {
-        return $this->delete($settingName);
+        return $this->delete(array('name' => $settingName));
     }
 }
