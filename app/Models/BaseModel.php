@@ -119,4 +119,15 @@ class BaseModel extends Model
     }
 
 
+    /**
+     * 根据ID查询记录
+     * @param int $id 记录ID
+     * @return array 记录信息
+     */
+    public function getById(int $id)
+    {
+        return $this->getLatestByParams(array('id' => $id));
+    }
+
+
 }
