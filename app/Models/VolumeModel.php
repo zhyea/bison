@@ -15,7 +15,7 @@ class VolumeModel extends BaseModel
      * @param int $workId 作品ID
      * @return array 分卷集合
      */
-    public function getByWorkId(int $workId)
+    public function findByWorkId(int $workId)
     {
         if ($workId <= 0) {
             return array();

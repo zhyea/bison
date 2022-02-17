@@ -4,7 +4,9 @@
 namespace App\Models;
 
 
+use CodeIgniter\Database\BaseResult;
 use CodeIgniter\Model;
+use ReflectionException;
 
 class BaseModel extends Model
 {
@@ -130,4 +132,67 @@ class BaseModel extends Model
     }
 
 
+    /**
+     * 根据ID更新记录
+     * @param array $arr 记录对应的数组
+     * @return bool 是否更新成功
+     */
+    public function updateById(array $arr)
+    {
+        if (!empty($arr['id'])) {
+            try {
+                return $this->update($arr['id'], $arr);
+            } catch (ReflectionException $e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 写入数据到数据库，不抛出异常
+     * @param array $arr 记录对应的数据
+     * @return BaseResult|false|int|object|string 写入结果
+     */
+    public function insertSilent(array $arr)
+    {
+        if (!empty($arr)) {
+            try {
+                return $this->insert($arr);
+            } catch (ReflectionException $e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 写入或更新数据
+     * @param array $arr 记录对应的数据
+     * @return bool|BaseResult|int|object|string 处理结果
+     */
+    public function insertOrUpdate(array $arr)
+    {
+        if (empty($arr)) {
+            return false;
+        }
+        if (!empty($arr['id'])) {
+            return $this->updateById($arr);
+        } else {
+            return $this->insertSilent($arr);
+        }
+    }
+
+
+    /**
+     * 根据ID执行删除
+     * @param int $id 记录ID
+     * @return bool|string 是否删除成功
+     */
+    public function deleteById(int $id)
+    {
+        return $this->delete(array('id' => $id));
+    }
 }

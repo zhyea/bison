@@ -1,5 +1,4 @@
 <?php
-defined('_APP_PATH_') or exit('You shall not pass!');
 /**
  * PHP 汉字转拼音 [包含20902个基本汉字+5059生僻字]
  * @author 楼教主(cik520@qq.com)

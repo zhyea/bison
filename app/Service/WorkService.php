@@ -183,7 +183,7 @@ class WorkService extends BaseService
      * @param int $page 页数
      * @return array 作者作品信息
      */
-    public function find_with_author(int $authorId, int $page)
+    public function findWithAuthor(int $authorId, int $page)
     {
         $author = $this->authorModel->getById($authorId);
         if (empty($author)) {
@@ -230,7 +230,7 @@ class WorkService extends BaseService
      * @param array $con 条件集合
      * @return array 作者作品信息
      */
-    public function find_with_feature_con(string $featureAlias, array $con)
+    public function findWithFeatureCon(string $featureAlias, array $con)
     {
         $sort = $con['sort'];
         $order = $con['order'];

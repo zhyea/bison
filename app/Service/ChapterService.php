@@ -48,14 +48,14 @@ class ChapterService extends BaseService
         }
 
         foreach ($chapters as $c) {
-            $vol_id = $c['volume_id'];
-            if (empty($vol_id)) {
-                $vol_id = 0;
+            $volId = $c['volume_id'];
+            if (empty($volId)) {
+                $volId = 0;
             }
-            if (!array_key_exists($vol_id, $map)) {
-                $map[$vol_id] = array('id' => $vol_id, 'name' => '待定');
+            if (!array_key_exists($volId, $map)) {
+                $map[$volId] = array('id' => $volId, 'name' => '待定');
             }
-            $vol = &$map[$vol_id];
+            $vol = &$map[$volId];
             if (!array_key_exists('chapters', $vol)) {
                 $vol['chapters'] = array();
             }
@@ -116,95 +116,95 @@ class ChapterService extends BaseService
 
     /**
      * 获取分卷ID
-     * @param int $workId  作品ID
-     * @param string $volName  分卷名称
+     * @param int $workId 作品ID
+     * @param string $volName 分卷名称
      * @return int 分卷ID
      */
-    public function get_volume_id(int $workId, string $volName)
+    public function getVolumeId(int $workId, string $volName)
     {
         $vol = $this->volumeModel->getByWorkAndName($workId, $volName);
         if (!empty($vol)) {
             if ($volName != $vol['name']) {
                 $vol['name'] = $volName;
-                $this->volumeModel->update($vol);
+                $this->volumeModel->updateById($vol);
             }
             return $vol['id'];
         }
         $vol = array('work_id' => $workId, 'name' => $volName);
-        $this->volumeModel->insert($vol);
-        $vol = $this->volumeModel->get_by_work_and_name($workId, $volName);
+        $this->volumeModel->insertSilent($vol);
+        $vol = $this->volumeModel->getByWorkAndName($workId, $volName);
         return $vol['id'];
     }
 
 
     /**
      * 维护章节信息
-     * @param $data array 章节信息
+     * @param array $data 章节信息
      */
-    public function maintain($data)
+    public function maintain(array $data)
     {
         $work_id = $data['work_id'];
         $vol_id = empty($data['volume_id']) ? 0 : $data['volume_id'];
         if (!empty($data['new_volume'])) {
-            $vol_id = $this->get_volume_id($work_id, $data['new_volume']);
+            $vol_id = $this->getVolumeId($work_id, $data['new_volume']);
             $data['volume_id'] = $vol_id;
         }
         if (0 == $vol_id && !empty($data['volume'])) {
-            $vol_id = $this->get_volume_id($work_id, $data['volume']);
+            $vol_id = $this->getVolumeId($work_id, $data['volume']);
             $data['volume_id'] = $vol_id;
         } else if (0 != $vol_id && empty($data['new_volume']) && !empty($data['volume'])) {
-            $vol = $this->volumeModel->get_by_id($vol_id);
+            $vol = $this->volumeModel->getById($vol_id);
             if ($vol['name'] != $data['volume']) {
                 $vol['name'] = $data['volume'];
-                $this->volumeModel->update($vol);
+                $this->volumeModel->updateById($vol);
             }
         }
 
         $data = array_key_rm('volume', $data);
         $data = array_key_rm('new_volume', $data);
-        $this->chapterModel->insert_or_update($data);
+        $this->chapterModel->insertOrUpdate($data);
     }
 
 
     /**
      * 新增章节
-     * @param $work_id int 作品ID
-     * @param $vol_name string 分卷名称
-     * @param $chapter_name string 章节名称
-     * @param $content string 章节内容
+     * @param int $workId 作品ID
+     * @param string $volName 分卷名称
+     * @param string $chapterName 章节名称
+     * @param string $content 章节内容
      */
-    public function add_chapter($work_id, $vol_name, $chapter_name, $content)
+    public function addChapter(int $workId, string $volName, string $chapterName, string $content)
     {
         $vol = array();
-        if (empty($vol_name) || $vol_name == $chapter_name) {
-            $vol = $this->volumeModel->get_latest_by_work_id($work_id);
+        if (empty($volName) || $volName == $chapterName) {
+            $vol = $this->volumeModel->getLatestByWorkId($workId);
             if (empty($vol)) {
-                $vol_name = '正文';
+                $volName = '正文';
             }
         }
 
-        if (empty($chapter_name)) {
-            $chapter_name = '引子';
-            $vol_name = '引子';
+        if (empty($chapterName)) {
+            $chapterName = '引子';
+            $volName = '引子';
         }
         if (empty($vol)) {
-            $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
+            $vol = $this->volumeModel->getByWorkAndName($workId, $volName);
         }
         if (empty($vol)) {
-            $this->volumeModel->add($work_id, $vol_name);
-            $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
+            $this->volumeModel->add($workId, $volName);
+            $vol = $this->volumeModel->getByWorkAndName($workId, $volName);
         }
-        $this->chapterModel->add($work_id, $vol['id'], $chapter_name, $content);
+        $this->chapterModel->add($workId, $vol['id'], $chapterName, $content);
 
     }
 
 
     /**
      * 上传作品
-     * @param $work_id int 作品ID
-     * @param $file string 上传的文件地址
+     * @param int $workId 作品ID
+     * @param string $file 上传的文件地址
      */
-    public function upload($work_id, $file)
+    public function upload(int $workId, string $file)
     {
         $pattern = '/^第?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$/iu';
         $arr = array("楔子", "引子", "引言", "前言", "序章", "序言", "序曲", "尾声", "终章", "后记", "序", "序幕", "跋", "附", "附言", "简介");
@@ -226,7 +226,7 @@ class ChapterService extends BaseService
                     //处理存在两级章节的情形
                     $chapter_name = $line;
                 } elseif (!empty($content)) {
-                    $this->add_chapter($work_id, $vol_name, $chapter_name, $content);
+                    $this->addChapter($workId, $vol_name, $chapter_name, $content);
                     $content = '';
                     $vol_name = $line;
                     $chapter_name = $line;
@@ -238,45 +238,45 @@ class ChapterService extends BaseService
                 $content = $content . '<p>' . $line . '</p>';
             }
         }
-        $this->add_chapter($work_id, $vol_name, $chapter_name, $content);
+        $this->addChapter($workId, $vol_name, $chapter_name, $content);
         del_file($file_path);
     }
 
 
     /**
      * 删除分卷信息
-     * @param $vol_id int 分卷ID
+     * @param int $volId 分卷ID
      */
-    public function delete_vol($vol_id)
+    public function deleteVol(int $volId)
     {
-        $this->volumeModel->delete_by_id($vol_id);
-        $this->chapterModel->delete_by_vol($vol_id);
+        $this->volumeModel->deleteById($volId);
+        $this->chapterModel->deleteByVol($volId);
     }
 
 
     /**
      * 删除章节
-     * @param $vol_id int 分卷ID
-     * @param $chapter_id int 章节ID
+     * @param int $volId 分卷ID
+     * @param int $chapterId 章节ID
      */
-    public function delete_chapter($vol_id, $chapter_id)
+    public function deleteChapter(int $volId, int $chapterId)
     {
-        $this->chapterModel->delete_by_id($chapter_id);
-        $count = $this->chapterModel->count_by_vol($vol_id);
+        $this->chapterModel->deleteById($chapterId);
+        $count = $this->chapterModel->countByVol($volId);
         if ($count <= 0) {
-            $this->volumeModel->delete_by_id($vol_id);
+            $this->volumeModel->deleteById($volId);
         }
     }
 
 
     /**
      * 删除作品下的全部分卷及章节信息
-     * @param $work_id int 作品ID
+     * @param int $workId 作品ID
      */
-    public function delete_all($work_id)
+    public function deleteAll(int $workId)
     {
-        $this->volumeModel->delete_by_work($work_id);
-        $this->chapterModel->delete_by_work($work_id);
+        $this->volumeModel->deleteByWork($workId);
+        $this->chapterModel->deleteByWork($workId);
     }
 
 }
