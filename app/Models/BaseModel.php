@@ -195,4 +195,28 @@ class BaseModel extends Model
     {
         return $this->delete(array('id' => $id));
     }
+
+
+    /**
+     * 根据ID执行删除
+     * @param array $ids id集合
+     * @return bool|string 是否删除成功
+     */
+    public function deleteByIds(array $ids)
+    {
+        $this->whereIn('id', $ids);
+        return $this->delete();
+    }
+
+
+    /**
+     * 查询数据库中的全部记录
+     * @return array 全部记录
+     */
+    public function findFull()
+    {
+        return $this->asArray()
+            ->orderBy('id', 'desc')
+            ->findAll();
+    }
 }
