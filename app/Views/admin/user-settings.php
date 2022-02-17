@@ -1,6 +1,4 @@
 <?php
-defined('_APP_PATH_') or exit('You shall not pass!');
-
 include_once 'common/header.php';
 include_once 'common/navigator.php';
 ?>

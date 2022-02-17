@@ -9,7 +9,8 @@
     "codeigniter4/framework": "^4.0",
     "ext-mbstring": "*",
     "ext-iconv": "*",
-    "ext-simplexml": "*"
+    "ext-simplexml": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9",

@@ -7,7 +7,7 @@ if (!function_exists('println')) {
      *
      * @param $str string
      */
-    function println($str)
+    function println(string $str)
     {
         echo "$str <BR/>";
     }
