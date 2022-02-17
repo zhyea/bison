@@ -6,7 +6,7 @@ use App\Controllers\AbstractController;
 use App\Models\AuthorModel;
 use App\Models\WorkModel;
 
-class AuthorController extends AbstractController
+class Author extends AbstractController
 {
 
 
@@ -41,7 +41,7 @@ class AuthorController extends AbstractController
             $cnt = $this->workModel->count_with_author($id);
             $a['work_count'] = $cnt;
         }
-        $this->render_json($all);
+        $this->renderJson($all);
     }
 
 
@@ -91,7 +91,7 @@ class AuthorController extends AbstractController
         $keywords = $_GET['key'];
         $keywords = empty($keywords) ? '' : $keywords;
         $data = $this->authorModel->suggest($keywords);
-        $this->render_json(array('key' => $keywords, 'value' => $data));
+        $this->renderJson(array('key' => $keywords, 'value' => $data));
     }
 
 

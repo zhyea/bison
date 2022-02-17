@@ -1,8 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
-
 
 <div class="container notice">
 	<ol class="breadcrumb">
@@ -36,5 +31,3 @@ include_once 'common/navigator.php';
         <?php } ?>
 	</div>
 </div>
-
-<?php include_once 'common/footer.php'; ?>

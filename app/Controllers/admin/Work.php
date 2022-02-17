@@ -7,7 +7,7 @@ use App\Models\WorkModel;
 use App\Service\WorkService;
 
 
-class WorkController extends AbstractController
+class Work extends AbstractController
 {
 
 
@@ -16,7 +16,7 @@ class WorkController extends AbstractController
 
 
     /**
-     * WorkController constructor.
+     * Work constructor.
      */
     public function __construct()
     {
@@ -42,7 +42,7 @@ class WorkController extends AbstractController
     {
         $params = $this->_post_array();
         $works = $this->workService->find_works($params);
-        $this->render_json($works);
+        $this->renderJson($works);
     }
 
     /**
@@ -141,7 +141,7 @@ class WorkController extends AbstractController
     {
         $params = $this->_post_array();
         $works = $this->workService->find_with_author_con($author_id, $params);
-        $this->render_json($works);
+        $this->renderJson($works);
     }
 
 
@@ -153,7 +153,7 @@ class WorkController extends AbstractController
     {
         $params = $this->_post_array();
         $works = $this->workService->find_with_feature_con($feature_alias, $params);
-        $this->render_json($works);
+        $this->renderJson($works);
     }
 
     /**
@@ -164,7 +164,7 @@ class WorkController extends AbstractController
         $keywords = $_GET['key'];
         $keywords = empty($keywords) ? '' : $keywords;
         $data = $this->workService->find_with_keywords($keywords);
-        $this->render_json(array('key' => $keywords, 'value' => $data));
+        $this->renderJson(array('key' => $keywords, 'value' => $data));
     }
 
 

@@ -5,7 +5,7 @@ namespace App\Controllers\admin;
 use App\Controllers\AbstractController;
 use App\Models\UserModel;
 
-class UserController extends AbstractController
+class User extends AbstractController
 {
 
     private $model;
@@ -77,6 +77,6 @@ class UserController extends AbstractController
     public function data()
     {
         $r = $this->model->find_all();
-        $this->render_json($r);
+        $this->renderJson($r);
     }
 }

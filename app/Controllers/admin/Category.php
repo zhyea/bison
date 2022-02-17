@@ -6,7 +6,7 @@ use App\Controllers\AbstractController;
 use App\Models\CategoryModel;
 use App\Service\CategoryService;
 
-class CategoryController extends AbstractController
+class Category extends AbstractController
 {
 
     private $model;
@@ -48,7 +48,7 @@ class CategoryController extends AbstractController
     public function data($parent = 0)
     {
         $data = $this->service->list_data($parent);
-        $this->render_json($data);
+        $this->renderJson($data);
     }
 
 
@@ -115,6 +115,6 @@ class CategoryController extends AbstractController
         $keywords = $_GET['key'];
         $keywords = empty($keywords) ? '' : $keywords;
         $data = $this->model->suggest($keywords);
-        $this->render_json(array('key' => $keywords, 'value' => $data));
+        $this->renderJson(array('key' => $keywords, 'value' => $data));
     }
 }

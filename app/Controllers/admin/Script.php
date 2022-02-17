@@ -6,7 +6,7 @@ use App\Controllers\AbstractController;
 use App\Models\ScriptModel;
 
 
-class ScriptController extends AbstractController
+class Script extends AbstractController
 {
 
     private $model;
@@ -33,7 +33,7 @@ class ScriptController extends AbstractController
     public function data()
     {
         $all = $this->model->find_all();
-        $this->render_json($all);
+        $this->renderJson($all);
     }
 
 

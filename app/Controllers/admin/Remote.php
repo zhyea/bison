@@ -7,7 +7,7 @@ use App\Service\ChapterService;
 use App\Service\RemoteCodeService;
 use App\Service\WorkService;
 
-class RemoteController extends AbstractController
+class Remote extends AbstractController
 {
 
     private $rcService;

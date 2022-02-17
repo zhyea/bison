@@ -5,7 +5,7 @@ namespace App\Controllers\admin;
 use App\Controllers\AbstractController;
 use App\Models\SettingModel;
 
-class SettingsController extends AbstractController
+class Settings extends AbstractController
 {
 
     private $model;

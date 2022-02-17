@@ -6,7 +6,7 @@ use App\Controllers\AbstractController;
 use App\Service\ChapterService;
 use App\Service\WorkService;
 
-class ChapterController extends AbstractController
+class Chapter extends AbstractController
 {
 
     private $chapterService;

@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 
 use App\Controllers\AbstractController;
 
-class CacheController extends AbstractController
+class Cache extends AbstractController
 {
     /**
      * 进入缓存管理页

@@ -6,7 +6,7 @@ namespace App\Controllers\admin;
 use App\Controllers\AbstractController;
 use App\Service\UserService;
 
-class AdminController extends AbstractController
+class Admin extends AbstractController
 {
 
     private $userService;

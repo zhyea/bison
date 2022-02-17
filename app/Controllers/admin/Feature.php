@@ -7,7 +7,7 @@ use App\Models\FeatureModel;
 use App\Models\FeatureRecordModel;
 
 
-class FeatureController extends AbstractController
+class Feature extends AbstractController
 {
 
     private $featureModel;
@@ -43,7 +43,7 @@ class FeatureController extends AbstractController
             $cnt = $this->recordModel->count_with_feature($f['id']);
             $f['count'] = $cnt;
         }
-        $this->render_json($all);
+        $this->renderJson($all);
     }
 
 

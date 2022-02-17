@@ -6,7 +6,7 @@ use App\Controllers\AbstractController;
 use App\Service\SitemapService;
 
 
-class SitemapController extends AbstractController
+class Sitemap extends AbstractController
 {
 
 

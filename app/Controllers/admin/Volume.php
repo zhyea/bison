@@ -5,7 +5,7 @@ namespace App\Controllers\admin;
 use App\Controllers\AbstractController;
 use App\Models\VolumeModel;
 
-class VolumeController extends AbstractController
+class Volume extends AbstractController
 {
 
     private $model;
@@ -26,7 +26,7 @@ class VolumeController extends AbstractController
         $keywords = $_GET['key'];
         $keywords = empty($keywords) ? '' : $keywords;
         $data = $this->model->suggest($work_id, $keywords);
-        $this->render_json(array('key' => $keywords, 'value' => $data));
+        $this->renderJson(array('key' => $keywords, 'value' => $data));
     }
 
 

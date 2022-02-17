@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Service\NavigatorService;
 use App\Service\SettingService;
+use function PHPUnit\Framework\isEmpty;
 
 class AbstractController extends BaseController
 {
@@ -11,25 +12,17 @@ class AbstractController extends BaseController
     private $settingService;
     private $navService;
     private $siteCfg;
+    private $session;
 
     /**
      * constructor.
      */
     public function __construct()
     {
-        if (!defined('_ADMIN_URI_')) {
-            define('_ADMIN_URI_', _VIEW_CONTEXT_ . '/admin');
-
-        }
-        if (!defined('_THEME_URI_')) {
-            define('_THEME_URI_', _VIEW_CONTEXT_ . '/themes/' . _CFG_['theme']);
-        }
-        if (!defined('_UPLOAD_URI_')) {
-            define('_UPLOAD_URI_', _VIEW_CONTEXT_ . '/upload');
-        }
         $this->settingService = new SettingService();
         $this->siteCfg = $this->settingService->findAll();
         $this->navService = new NavigatorService();
+        $this->session = session();
     }
 
 
@@ -42,19 +35,15 @@ class AbstractController extends BaseController
      */
     protected function adminView(string $page, array $params, string $title)
     {
-        $params['uri_admin'] = _ADMIN_URI_;
-        $params['uri_theme'] = _THEME_URI_;
-        $params['uri_upload'] = _UPLOAD_URI_;
-        $params['ctx'] = _APP_CONTEXT_ . '/';
-
-        if (isset($_SESSION['alert'])) {
-            $params['alert'] = $_SESSION['alert'];
-            unset($_SESSION['alert']);
+        $alertMsg = session('alert');
+        if (isEmpty($alertMsg)) {
+            $params['alert'] = $alertMsg;
+            $this->session->remove('alert');
         }
 
         $params = $params + $this->siteCfg;
 
-        $this->_render_view('admin', $page, $params, $title);
+        $this->renderView('admin', $page, $params, $title);
     }
 
 
@@ -69,7 +58,6 @@ class AbstractController extends BaseController
     {
         $params['uri_theme'] = _THEME_URI_;
         $params['uri_upload'] = _UPLOAD_URI_;
-        $params['ctx'] = _APP_CONTEXT_;
         $params['site_url'] = site_url();
         $params = $params + $this->siteCfg;
 
@@ -77,7 +65,7 @@ class AbstractController extends BaseController
         $params['navigator'] = $nav['children'];
 
         $title = $title . '-' . $this->siteCfg['site_name'];
-        $this->_render_view('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
+        $this->renderView('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
     }
 
 
@@ -85,11 +73,11 @@ class AbstractController extends BaseController
      * 渲染视图
      *
      * @param $dir string 主题目录
-     * @param $_page string 页面地址
+     * @param $page string 页面地址
      * @param $params array 页面变量
      * @param $title string 页面title
      */
-    private function _render_view($dir, $_page, $params, $title)
+    private function renderView(string $dir, string $page, array $params, string $title)
     {
         if (NULL == $params) {
             $params = array();
@@ -97,8 +85,8 @@ class AbstractController extends BaseController
         if (!array_key_exists('title', $params)) {
             $params['title'] = $title;
         }
-        $_page = $dir . DIRECTORY_SEPARATOR . $_page;
-        parent::render_view($_page, $params);
+        $page = $dir . DIRECTORY_SEPARATOR . $page;
+        echo view($page, $params);
         //exit();
     }
 
@@ -165,8 +153,9 @@ class AbstractController extends BaseController
      *
      * @param mixed $obj 对象
      */
-    protected function render_json($obj)
+    protected function renderJson($obj)
     {
         echo json_encode($obj);
     }
+
 }

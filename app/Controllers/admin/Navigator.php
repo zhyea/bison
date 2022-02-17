@@ -7,7 +7,7 @@ use App\Models\NavigatorModel;
 use App\Service\NavigatorService;
 
 
-class NavigatorController extends AbstractController
+class Navigator extends AbstractController
 {
     private $model;
 
@@ -50,7 +50,7 @@ class NavigatorController extends AbstractController
     public function data($parent = 0)
     {
         $data = $this->navService->list_data($parent);
-        $this->render_json($data);
+        $this->renderJson($data);
     }
 
 
@@ -118,7 +118,7 @@ class NavigatorController extends AbstractController
     public function candidates()
     {
         $data = $this->navService->candidate_tree();
-        $this->render_json($data);
+        $this->renderJson($data);
     }
 
 }

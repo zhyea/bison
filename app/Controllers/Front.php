@@ -2,16 +2,18 @@
 
 namespace App\Controllers;
 
-class FrontController extends AbstractController
+use App\Service\AuthorService;
+use App\Service\ChapterService;
+use App\Service\SettingService;
+use App\Service\WorkService;
+
+class Front extends AbstractController
 {
 
 
     private $workService;
-
     private $chapterService;
-
     private $authorService;
-
     private $settingService;
 
 
@@ -33,10 +35,10 @@ class FrontController extends AbstractController
      */
     public function index()
     {
-        $home_title = $this->settingService->home_title();
-        $home_title = empty($home_title) ? "首页" : $home_title;
-        $data = $this->workService->home_works();
-        $this->themeView('index', $data, $home_title);
+        $homeTitle = $this->settingService->homeTitle();
+        $homeTitle = empty($homeTitle) ? "首页" : $homeTitle;
+        $data = $this->workService->homeWorks();
+        $this->themeView('index', $data, $homeTitle);
     }
 
 
@@ -45,9 +47,9 @@ class FrontController extends AbstractController
      * @param $alias string 分类别名
      * @param $page int 页码数
      */
-    public function category($alias, $page = 1)
+    public function category(string $alias, $page = 1)
     {
-        $data = $this->workService->find_with_cat($alias, $page);
+        $data = $this->workService->findWithCat($alias, $page);
         if (empty($data)) {
             error_404_page();
         }
@@ -60,9 +62,9 @@ class FrontController extends AbstractController
      * @param $alias string 专题别名
      * @param $page int 页码数
      */
-    public function feature($alias, $page = 1)
+    public function feature(string $alias, $page = 1)
     {
-        $data = $this->workService->find_with_feature($alias, $page);
+        $data = $this->workService->findWithFeature($alias, $page);
         if (empty($data)) {
             error_404_page();
         }
@@ -75,9 +77,9 @@ class FrontController extends AbstractController
      * @param $id int 作家id
      * @param $page int 页码数
      */
-    public function author($id, $page = 1)
+    public function author(int $id, $page = 1)
     {
-        $data = $this->workService->find_with_author($id, $page);
+        $data = $this->workService->findWithAuthor($id, $page);
         if (empty($data)) {
             error_404_page();
         }
@@ -87,17 +89,17 @@ class FrontController extends AbstractController
 
     /**
      * 获取作品信息
-     * @param $work_id int 作品ID
+     * @param $workId int 作品ID
      */
-    public function work($work_id)
+    public function work(int $workId)
     {
-        $work = $this->workService->get_work($work_id);
+        $work = $this->workService->getWork($workId);
         if (empty($work)) {
             error_404_page();
         }
-        $this->workService->add_sn($work_id);
-        $vols = $this->chapterService->volumes($work_id);
-        $relates = $this->workService->relate($work_id, $work['author_id']);
+        $this->workService->addSn($workId);
+        $vols = $this->chapterService->volumes($workId);
+        $relates = $this->workService->relate($workId, $work['author_id']);
         $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];
         $this->themeView('work', array('w' => $work,
             'vols' => $vols, 'relates' => $relates,
@@ -108,11 +110,11 @@ class FrontController extends AbstractController
 
     /**
      * 获取章节信息
-     * @param $chapter_id int 章节ID
+     * @param $chapterId int 章节ID
      */
-    public function chapter($chapter_id)
+    public function chapter(int $chapterId)
     {
-        $chapter = $this->chapterService->get_chapter($chapter_id);
+        $chapter = $this->chapterService->getChapter($chapterId);
         if (empty($chapter)) {
             error_404_page();
         }
