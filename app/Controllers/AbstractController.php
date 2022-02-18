@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Config\Custom;
 use App\Service\NavigatorService;
 use App\Service\SettingService;
-use Config\Custom;
 use function PHPUnit\Framework\isEmpty;
 
 class AbstractController extends BaseController
@@ -23,12 +22,12 @@ class AbstractController extends BaseController
      */
     public function __construct()
     {
-        $customCfg = new Custom()
+        $customCfg = new Custom();
         $this->settingService = new SettingService();
         $this->siteCfg = $this->settingService->findAll();
         $this->navService = new NavigatorService();
         $this->session = session();
-        $this->uriTheme=  '/themes/'.
+        $this->uriTheme=  '/themes/';
     }
 
 
