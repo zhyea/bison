@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Config\Custom;
 use App\Service\NavigatorService;
 use App\Service\SettingService;
+use Config\Custom;
 use function PHPUnit\Framework\isEmpty;
 
 class AbstractController extends BaseController
@@ -13,16 +15,20 @@ class AbstractController extends BaseController
     private $navService;
     private $siteCfg;
     private $session;
+    private $uriTheme;
+    private $uriUpload;
 
     /**
      * constructor.
      */
     public function __construct()
     {
+        $customCfg = new Custom()
         $this->settingService = new SettingService();
         $this->siteCfg = $this->settingService->findAll();
         $this->navService = new NavigatorService();
         $this->session = session();
+        $this->uriTheme=  '/themes/'.
     }
 
 
@@ -56,10 +62,12 @@ class AbstractController extends BaseController
      */
     protected function themeView(string $page, array $params, string $title)
     {
-        $params['uri_theme'] = _THEME_URI_;
-        $params['uri_upload'] = _UPLOAD_URI_;
-        $params['site_url'] = site_url();
+        $params['uriTheme'] = _THEME_URI_;
+        $params['uriUpload'] = _UPLOAD_URI_;
+        $params['siteUrl'] = site_url();
         $params = $params + $this->siteCfg;
+
+        echo site_url();
 
         $nav = $this->navService->navigator();
         $params['navigator'] = $nav['children'];

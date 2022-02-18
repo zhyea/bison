@@ -37,3 +37,6 @@
 </head>
 <body>
 <div class="wrapper">
+
+
+<?php include_once './navigator.php'; ?>

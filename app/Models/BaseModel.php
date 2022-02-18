@@ -24,7 +24,8 @@ class BaseModel extends Model
         if (!empty($table)) {
             $this->table = $table;
         } else {
-            $tmp = str_ireplace('model', '', get_called_class());
+            $arr = explode('\\', get_called_class());
+            $tmp = str_ireplace('model', '', end($arr));
             $this->table = strtolower(preg_replace('/(?<=[a-z])([A-Z])/', '_$1', $tmp));
         }
         parent::__construct($validation);

@@ -30,14 +30,14 @@ class SettingService extends BaseService
     public function findAll()
     {
         $result = array();
-        $arr = $this->settingModel->findAll();
+        $arr = $this->settingModel->findFull();
         foreach ($arr as $ele) {
             if (!empty($ele['name'])) {
                 $result[$ele['name']] = $ele['value'];
             }
         }
 
-        $arr = $this->scriptModel->findAll();
+        $arr = $this->scriptModel->findFull();
         foreach ($arr as $ele) {
             if (!empty($ele['code'])) {
                 $result[$ele['code']] = $ele['script'];
