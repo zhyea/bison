@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Service\AuthorService;
-use App\Service\ChapterService;
-use App\Service\SettingService;
-use App\Service\WorkService;
+use App\Services\AuthorService;
+use App\Services\ChapterService;
+use App\Services\SettingService;
+use App\Services\WorkService;
 
 class Front extends AbstractController
 {
@@ -47,7 +47,7 @@ class Front extends AbstractController
      * @param $alias string 分类别名
      * @param $page int 页码数
      */
-    public function category(string $alias, $page = 1)
+    public function category(string $alias, int $page = 1)
     {
         $data = $this->workService->findWithCat($alias, $page);
         if (empty($data)) {
@@ -62,7 +62,7 @@ class Front extends AbstractController
      * @param $alias string 专题别名
      * @param $page int 页码数
      */
-    public function feature(string $alias, $page = 1)
+    public function feature(string $alias, int $page = 1)
     {
         $data = $this->workService->findWithFeature($alias, $page);
         if (empty($data)) {
@@ -77,7 +77,7 @@ class Front extends AbstractController
      * @param $id int 作家id
      * @param $page int 页码数
      */
-    public function author(int $id, $page = 1)
+    public function author(int $id, int $page = 1)
     {
         $data = $this->workService->findWithAuthor($id, $page);
         if (empty($data)) {

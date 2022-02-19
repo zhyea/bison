@@ -3,9 +3,9 @@ namespace App\Controllers\admin;
 
 
 use App\Controllers\AbstractController;
-use App\Service\ChapterService;
-use App\Service\RemoteCodeService;
-use App\Service\WorkService;
+use App\Services\ChapterService;
+use App\Services\RemoteCodeService;
+use App\Services\WorkService;
 
 class Remote extends AbstractController
 {

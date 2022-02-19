@@ -14,8 +14,8 @@ function nav_of($item, $ctx)
     <?php if (empty($logo)) { ?>
 		<a>&nbsp;</a>
     <?php } else { ?>
-		<a href="<?= $site_url ?>">
-			<img src="<?= $uri_upload . '/' . $logo ?>" width="100%" height="100%"/></a>
+		<a href="<?= $siteUrl ?>">
+			<img src="<?= $uriUpload . '/' . $logo ?>" width="100%" height="100%"/></a>
     <?php } ?>
 </div>
 <div class="container navigator">
@@ -32,7 +32,7 @@ function nav_of($item, $ctx)
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?= $site_url ?>">
+			<a class="navbar-brand" href="<?= $siteUrl ?>">
 				<i class="glyphicon glyphicon-home"></i> <?= $site_name ?>
 				<span class="sr-only">(current)</span>
 			</a>
@@ -54,7 +54,7 @@ function nav_of($item, $ctx)
                                     <?php $children = $n['children'];
                                     foreach ($children as $c) { ?>
 										<li>
-											<a href="<?= nav_of($c, $site_url) ?>"><?= $c['name'] ?></a>
+											<a href="<?= nav_of($c, $siteUrl) ?>"><?= $c['name'] ?></a>
 										</li>
                                     <?php } ?>
 								</ul>
@@ -63,7 +63,7 @@ function nav_of($item, $ctx)
                         } else {
                             ?>
 							<li>
-								<a href="<?= nav_of($n, $site_url) ?>"><?= $n['name'] ?></a>
+								<a href="<?= nav_of($n, $siteUrl) ?>"><?= $n['name'] ?></a>
 							</li>
                         <?php }
                     }

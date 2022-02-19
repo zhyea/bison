@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 
 use App\Controllers\AbstractController;
 use App\Models\CategoryModel;
-use App\Service\CategoryService;
+use App\Services\CategoryService;
 
 class Category extends AbstractController
 {

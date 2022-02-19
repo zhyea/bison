@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Config\Custom;
-use App\Service\NavigatorService;
-use App\Service\SettingService;
+use App\Services\NavigatorService;
+use App\Services\SettingService;
+use Config\App;
+use Config\Custom;
 use function PHPUnit\Framework\isEmpty;
 
 class AbstractController extends BaseController
@@ -12,10 +13,11 @@ class AbstractController extends BaseController
 
     private $settingService;
     private $navService;
-    private $siteCfg;
+    private $settings;
     private $session;
-    private $uriTheme;
-    private $uriUpload;
+
+    private $theme;
+    private $siteUrl;
 
     /**
      * constructor.
@@ -23,11 +25,15 @@ class AbstractController extends BaseController
     public function __construct()
     {
         $customCfg = new Custom();
+        $appConfig = new App();
         $this->settingService = new SettingService();
-        $this->siteCfg = $this->settingService->findAll();
         $this->navService = new NavigatorService();
         $this->session = session();
-        $this->uriTheme=  '/themes/';
+
+
+        $this->settings = $this->settingService->findAll();
+        $this->theme = $customCfg->theme;
+        $this->siteUrl = $appConfig->baseURL;
     }
 
 
@@ -45,10 +51,10 @@ class AbstractController extends BaseController
             $params['alert'] = $alertMsg;
             $this->session->remove('alert');
         }
+        $params['title'] = $title;
+        $params = $params + $this->settings;
 
-        $params = $params + $this->siteCfg;
-
-        $this->renderView('admin', $page, $params, $title);
+        $this->renderView('admin', $page, $params);
     }
 
 
@@ -61,18 +67,24 @@ class AbstractController extends BaseController
      */
     protected function themeView(string $page, array $params, string $title)
     {
-        $params['uriTheme'] = _THEME_URI_;
-        $params['uriUpload'] = _UPLOAD_URI_;
-        $params['siteUrl'] = site_url();
-        $params = $params + $this->siteCfg;
+        $params['uriTheme'] = '/themes/' . $this->theme;
+        $params['uriUpload'] = '/upload';
+        $params['siteUrl'] = $this->siteUrl;
 
-        echo site_url();
+        $params = $params + $this->settings;
 
         $nav = $this->navService->navigator();
         $params['navigator'] = $nav['children'];
 
-        $title = $title . '-' . $this->siteCfg['site_name'];
-        $this->renderView('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
+        $title = $title . '-' . $this->settings['site_name'];
+        if (!array_key_exists('title', $params)) {
+            $params['title'] = $title;
+        }
+        $dir = 'themes' . DIRECTORY_SEPARATOR . $this->theme;
+
+        $this->renderView($dir, 'header', $params);
+        $this->renderView($dir, $page, $params);
+        $this->renderView($dir, 'footer', $params);
     }
 
 
@@ -82,16 +94,9 @@ class AbstractController extends BaseController
      * @param $dir string 主题目录
      * @param $page string 页面地址
      * @param $params array 页面变量
-     * @param $title string 页面title
      */
-    private function renderView(string $dir, string $page, array $params, string $title)
+    private function renderView(string $dir, string $page, array $params)
     {
-        if (NULL == $params) {
-            $params = array();
-        }
-        if (!array_key_exists('title', $params)) {
-            $params['title'] = $title;
-        }
         $page = $dir . DIRECTORY_SEPARATOR . $page;
         echo view($page, $params);
         //exit();

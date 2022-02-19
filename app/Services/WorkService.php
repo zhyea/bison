@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Service;
+namespace App\Services;
 
 
 use App\Models\AuthorModel;
@@ -35,7 +35,7 @@ class WorkService extends BaseService
     /**
      * 首页作品列表
      */
-    public function homeWorks()
+    public function homeWorks(): array
     {
         $all = array();
         $cats = $this->catModel->all();

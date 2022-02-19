@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 
 use App\Models\CategoryModel;
@@ -19,6 +19,8 @@ class NavigatorService
         $this->navModel = new NavigatorModel();
         $this->catModel = new CategoryModel();
         $this->featureModel = new FeatureModel();
+
+        helper('arr');
     }
 
 

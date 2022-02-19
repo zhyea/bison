@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 
 
 use App\Controllers\AbstractController;
-use App\Service\UserService;
+use App\Services\UserService;
 
 class Admin extends AbstractController
 {

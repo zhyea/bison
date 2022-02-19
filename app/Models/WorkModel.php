@@ -147,7 +147,7 @@ class WorkModel extends BaseModel
                                     string $sort = 'w.id',
                                     string $order = 'DESC',
                                     int $offset = 0,
-                                    int $limit = 18)
+                                    int $limit = 18): array
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'r.id as record_id'))
@@ -174,7 +174,7 @@ class WorkModel extends BaseModel
                                 string $sort = 'w.id',
                                 string $order = 'DESC',
                                 int $offset = 0,
-                                int $limit = 18)
+                                int $limit = 18): array
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat'))

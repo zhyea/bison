@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 
 use App\Controllers\AbstractController;
 use App\Models\NavigatorModel;
-use App\Service\NavigatorService;
+use App\Services\NavigatorService;
 
 
 class Navigator extends AbstractController

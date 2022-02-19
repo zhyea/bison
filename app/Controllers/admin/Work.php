@@ -4,7 +4,7 @@ namespace App\Controllers\admin;
 
 use App\Controllers\AbstractController;
 use App\Models\WorkModel;
-use App\Service\WorkService;
+use App\Services\WorkService;
 
 
 class Work extends AbstractController
