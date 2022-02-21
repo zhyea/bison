@@ -22,24 +22,24 @@ class Settings extends AbstractController
 
     public function index()
     {
-        $name = $this->model->get_by_key('site_name');
-        $home_title = $this->model->get_by_key('home_title');
-        $desc = $this->model->get_by_key('description');
-        $notice = $this->model->get_by_key('notice');
-        $keywords = $this->model->get_by_key('keywords');
-        $bg_repeat = $this->model->get_by_key('bg_repeat', 1);
-        $bg_color = $this->model->get_by_key('bg_color', '');
-        $logo = $this->model->get_by_key('logo', '');
-        $background = $this->model->get_by_key('background', '');
+        $name = $this->model->getByKey('siteName');
+        $homeTitle = $this->model->getByKey('homeTitle');
+        $desc = $this->model->getByKey('description');
+        $notice = $this->model->getByKey('notice');
+        $keywords = $this->model->getByKey('keywords');
+        $bgRepeat = $this->model->getByKey('bgRepeat', 1);
+        $bgColor = $this->model->getByKey('bgColor', '');
+        $logo = $this->model->getByKey('logo', '');
+        $background = $this->model->getByKey('background', '');
 
         $this->adminView('settings',
-            array('site_name' => $name,
-                'home_title' => $home_title,
+            array('siteName' => $name,
+                'homeTitle' => $homeTitle,
                 'notice' => $notice,
                 'description' => $desc,
                 'keywords' => $keywords,
-                'bg_repeat' => $bg_repeat,
-                'bg_color' => $bg_color,
+                'bgRepeat' => $bgRepeat,
+                'bgColor' => $bgColor,
                 'logo' => $logo,
                 'background' => $background), "网站配置");
     }
@@ -47,18 +47,18 @@ class Settings extends AbstractController
 
     public function maintain()
     {
-        $name = $_POST['site_name'];
-        $home_title = $_POST['home_title'];
+        $name = $_POST['siteName'];
+        $home_title = $_POST['homeTitle'];
         $desc = $_POST['description'];
         $keywords = $_POST['keywords'];
         $notice = $_POST['notice'];
         $logo = $this->_upload('logo');
         $background = $this->_upload('background');
-        $bg_repeat = $_POST['bg_repeat'];
-        $bg_color = $_POST['bg_color'];
+        $bgRepeat = $_POST['bgRepeat'];
+        $bgColor = $_POST['bgColor'];
 
-        $this->model->change('site_name', $name);
-        $this->model->change('home_title', $home_title);
+        $this->model->change('siteName', $name);
+        $this->model->change('homeTitle', $home_title);
         $this->model->change('description', $desc);
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);
@@ -70,8 +70,8 @@ class Settings extends AbstractController
             $this->_delete('background');
             $this->model->change('background', $background[1]);
         }
-        $this->model->change('bg_repeat', $bg_repeat);
-        $this->model->change('bg_color', $bg_color);
+        $this->model->change('bgRepeat', $bgRepeat);
+        $this->model->change('bgColor', $bgColor);
 
         $this->alertSuccess('更新网站设置成功');
 

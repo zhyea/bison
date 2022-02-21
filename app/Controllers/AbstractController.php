@@ -30,7 +30,6 @@ class AbstractController extends BaseController
         $this->navService = new NavigatorService();
         $this->session = session();
 
-
         $this->settings = $this->settingService->findAll();
         $this->theme = $customCfg->theme;
         $this->siteUrl = $appConfig->baseURL;
@@ -51,10 +50,18 @@ class AbstractController extends BaseController
             $params['alert'] = $alertMsg;
             $this->session->remove('alert');
         }
+        $params['siteUrl'] = $this->siteUrl;
+        $params['uriAdmin'] = '/admin';
         $params['title'] = $title;
         $params = $params + $this->settings;
 
-        $this->renderView('admin', $page, $params);
+        if ($page == 'login') {
+            $this->renderView('admin', $page, $params);
+        } else {
+            $this->renderView('admin', 'common/header', $params);
+            $this->renderView('admin', $page, $params);
+            $this->renderView('admin', 'common/footer', $params);
+        }
     }
 
 
@@ -76,7 +83,7 @@ class AbstractController extends BaseController
         $nav = $this->navService->navigator();
         $params['navigator'] = $nav['children'];
 
-        $title = $title . '-' . $this->settings['site_name'];
+        $title = $title . '-' . $this->settings['siteName'];
         if (!array_key_exists('title', $params)) {
             $params['title'] = $title;
         }
@@ -122,52 +129,11 @@ class AbstractController extends BaseController
      *
      * @param $uri string 跳转目标路径
      */
-    protected function redirect($uri)
+    protected function redirect(string $uri)
     {
-        redirect_in_site($uri);
+        redirect($uri);
     }
 
 
-    /**
-     * 添加提示信息
-     *
-     * @param $msg string 提示内容
-     * @param $type string 提示类型，对应bootstrap alert类
-     */
-    protected function addAlert(string $msg, string $type)
-    {
-        $_SESSION['alert'] = array('type' => $type, 'msg' => $msg);
-    }
-
-
-    /**
-     * 提示成功信息
-     * @param $msg string 提示信息
-     */
-    protected function alertSuccess(string $msg)
-    {
-        $this->addAlert($msg, 'success');
-    }
-
-
-    /**
-     * 提示错误信息
-     * @param $msg string 提示信息
-     */
-    protected function alertDanger(string $msg)
-    {
-        $this->addAlert($msg, 'danger');
-    }
-
-
-    /**
-     * 展示json
-     *
-     * @param mixed $obj 对象
-     */
-    protected function renderJson($obj)
-    {
-        echo json_encode($obj);
-    }
 
 }

@@ -15,7 +15,7 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">站点名称</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<input type="text" class="form-control" name="site_name" value="<?= $site_name ?>" required autofocus/>
+				<input type="text" class="form-control" name="siteName" value="<?= $siteName ?>" required autofocus/>
 			</div>
 		</div>
 

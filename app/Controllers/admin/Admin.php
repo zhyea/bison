@@ -6,7 +6,7 @@ namespace App\Controllers\admin;
 use App\Controllers\AbstractController;
 use App\Services\UserService;
 
-class Admin extends AbstractController
+class Admin extends AbstractAdmin
 {
 
     private $userService;
@@ -27,14 +27,18 @@ class Admin extends AbstractController
     }
 
 
-    public function login_check()
+    public function loginCheck()
     {
-        $first_login_time = from_session('first_log', 0);
-        if (0 === $first_login_time) {
-            $_SESSION['first_log'] = time();
+        $err = $this->req->getGet('err');
+        if (empty($err)) {
+            $this->rmSession('alert');
         }
-        $count = from_session('log_count', 0);
-        $_SESSION['log_count'] = ($count + 1);
+        $first_login_time = $this->sessionOf('firstLog', 0);
+        if (0 === $first_login_time) {
+            $this->setSession('firstLog', time());
+        }
+        $count = $this->sessionOf('logCount', 0);
+        $this->setSession('logCount', $count + 1);
 
         $diff = (time() - $first_login_time) / 60;
 
@@ -43,28 +47,28 @@ class Admin extends AbstractController
             $this->redirect('/');
             return;
         } elseif ($diff > 5) {
-            $_SESSION['first_log'] = time();
-            $_SESSION['log_count'] = 0;
+            $this->setSession('firstLog', time());
+            $this->setSession('logCount', 0);
         }
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = $this->req->getPost('username');
+        $password = $this->req->getPost('password');
 
-        $user = $this->userService->check_login($username, $password);
+        $user = $this->userService->checkLogin($username, $password);
         if (!empty($user)) {
-            $_SESSION['last_log'] = time();
-            $_SESSION['user'] = $user;
+            $this->setSession('lastLog', time());
+            $this->setSession('user', $user);
             $this->redirect('/admin');
         } else {
             $this->alertDanger('用户名或密码错误');
-            $this->redirect('/login');
+            redirect()->to('/login?error');
         }
     }
 
 
     public function logout()
     {
-        unset($_SESSION['user']);
+        $this->rmSession('user');
         $this->redirect('/login');
     }
 

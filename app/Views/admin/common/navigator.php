@@ -14,7 +14,7 @@
 
             <div class="navbar-header">
                 <a class="navbar-brand" href="<?= $ctx ?>admin">
-                    <img alt="Calf Console" src="<?= $uri_admin ?>/static/img/logo-white.png" height="100%"/>
+                    <img alt="Calf Console" src="<?= $uriAdmin ?>/static/img/logo-white.png" height="100%"/>
                 </a>
             </div>
 
@@ -70,7 +70,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<?= $ctx ?>">
-                        <i class="glyphicon glyphicon-home"></i> <?= empty($site_name) ? 'Test' : $site_name ?></a>
+                        <i class="glyphicon glyphicon-home"></i> <?= empty($siteName) ? 'Test' : $siteName ?></a>
                 </li>
                 <li><a href="<?= $ctx ?>logout"><span class="glyphicon glyphicon-off"></span> 登出</a>
                 </li>

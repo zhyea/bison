@@ -236,7 +236,7 @@ input[type="file"] {
     left: 50%;
     margin-top: -160px;
     margin-left: -120px;
-    max-width: 240px;
+    max-width: 360px;
     max-height: 420px;
     background-color: #fff;
     padding: 15px;
@@ -259,11 +259,20 @@ input[type="file"] {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .form-login .form-control:focus {
     z-index: 2;
+}
+
+.form-login .logo {
+    margin-top: -6px;
+    margin-bottom: 45px;
+}
+
+.form-login input {
+    width: 240px;
 }
 
 .form-login input[type="email"] {
