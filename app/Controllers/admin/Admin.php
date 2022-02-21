@@ -44,7 +44,7 @@ class Admin extends AbstractAdmin
 
         if ($diff < 5 && $count >= 5) {
             $this->alertDanger('您在短时间内多次尝试登录，请稍后再试');
-            $this->redirect('/');
+            $this->redirect('/login?err=2');
             return;
         } elseif ($diff > 5) {
             $this->setSession('firstLog', time());
@@ -61,7 +61,8 @@ class Admin extends AbstractAdmin
             $this->redirect('/admin');
         } else {
             $this->alertDanger('用户名或密码错误');
-            redirect()->to('/login?error');
+            redirect()->back()->with('aa', '123');
+            //$this->redirect('/login?err=1');
         }
     }
 

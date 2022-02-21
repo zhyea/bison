@@ -129,10 +129,10 @@ class AbstractController extends BaseController
      *
      * @param $uri string 跳转目标路径
      */
-    protected function redirect(string $uri)
+    /*protected function redirect(string $uri)
     {
         redirect($uri);
-    }
+    }*/
 
 
 
