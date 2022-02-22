@@ -1,6 +1,3 @@
-<?php
-?>
-
 <?php if (!empty($alert)) { ?>
 	<div role="alert" class="alert alert-<?= $alert['type'] ?> alert-dismissible fade in">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">

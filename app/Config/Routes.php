@@ -34,7 +34,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Front::index');
 $routes->get('login', 'admin/Admin::login');
 $routes->post('login/check', 'admin/Admin::loginCheck');
-$routes->post('admin', 'admin/Admin::index');
+$routes->get('/admin/console', 'admin/Admin::index');
+$routes->get('/admin/settings', 'admin/Settings::index');
 
 /*
  * --------------------------------------------------------------------

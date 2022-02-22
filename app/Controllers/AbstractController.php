@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Services\NavigatorService;
 use App\Services\SettingService;
+use CodeIgniter\HTTP\RedirectResponse;
 use Config\App;
 use Config\Custom;
 use function PHPUnit\Framework\isEmpty;
@@ -45,6 +46,7 @@ class AbstractController extends BaseController
      */
     protected function adminView(string $page, array $params, string $title)
     {
+        $params = empty($params) ? array() : $params;
         $alertMsg = session('alert');
         if (isEmpty($alertMsg)) {
             $params['alert'] = $alertMsg;
@@ -74,6 +76,8 @@ class AbstractController extends BaseController
      */
     protected function themeView(string $page, array $params, string $title)
     {
+        $params = empty($params) ? array() : $params;
+
         $params['uriTheme'] = '/themes/' . $this->theme;
         $params['uriUpload'] = '/upload';
         $params['siteUrl'] = $this->siteUrl;
@@ -128,12 +132,12 @@ class AbstractController extends BaseController
      * 执行跳转
      *
      * @param $uri string 跳转目标路径
+     * @return RedirectResponse 返回响应信息
      */
-    /*protected function redirect(string $uri)
+    protected function redirect(string $uri)
     {
-        redirect($uri);
-    }*/
-
+        return redirect()->to($uri);
+    }
 
 
 }

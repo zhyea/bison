@@ -1,7 +1,4 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
+
 <div class="container main">
 
 	<div class="page-header">
@@ -10,7 +7,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<?= $ctx ?>admin/category/maintain">
+	<form method="post" action="<?= $siteUrl ?>/admin/category/maintain">
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">名称</div>
 			<div class="form-input col-md-10 col-xs-12">
@@ -51,7 +48,7 @@ include_once 'common/navigator.php';
 
 		<div class="row">
 			<div class="btn-left col-md-6 col-xs-12">
-				<a class="btn btn-info" href="<?= $ctx ?>admin/category/list/<?= $parent ?>">返回列表</a>
+				<a class="btn btn-info" href="<?= $siteUrl ?>/admin/category/list/<?= $parent ?>">返回列表</a>
 			</div>
 			<div class="btn-right col-md-6 col-xs-12">
 				<button type="submit" class="btn btn-success">保存分类</button>
@@ -60,5 +57,4 @@ include_once 'common/navigator.php';
 	</form>
 </div>
 
-<?php include_once 'common/footer.php'; ?>
 

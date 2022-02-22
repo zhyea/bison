@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\SettingModel;
 
-class Settings extends AbstractController
+
+class Settings extends AbstractAdmin
 {
 
     private $model;
@@ -47,18 +48,18 @@ class Settings extends AbstractController
 
     public function maintain()
     {
-        $name = $_POST['siteName'];
-        $home_title = $_POST['homeTitle'];
-        $desc = $_POST['description'];
-        $keywords = $_POST['keywords'];
-        $notice = $_POST['notice'];
+        $name = $this->postParam('siteName');
+        $homeTitle = $this->postParam('homeTitle');
+        $desc = $this->postParam('description');
+        $keywords = $this->postParam('keywords');
+        $notice = $this->postParam('notice');
         $logo = $this->_upload('logo');
         $background = $this->_upload('background');
-        $bgRepeat = $_POST['bgRepeat'];
-        $bgColor = $_POST['bgColor'];
+        $bgRepeat = $this->postParam('bgRepeat');
+        $bgColor = $this->postParam('bgColor');
 
         $this->model->change('siteName', $name);
-        $this->model->change('homeTitle', $home_title);
+        $this->model->change('homeTitle', $homeTitle);
         $this->model->change('description', $desc);
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);

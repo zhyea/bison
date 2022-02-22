@@ -1,7 +1,4 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
+
 <div class="container main">
 
 	<div class="page-header">
@@ -10,8 +7,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<h3><a href="<?= $ctx ?>admin/cache/clean">一键清空</a></h3>
+	<h3><a href="<?= $siteUrl ?>admin/cache/clean">一键清空</a></h3>
 </div>
 
-<?php include_once 'common/footer.php'; ?>
 

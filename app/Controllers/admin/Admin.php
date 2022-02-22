@@ -5,6 +5,7 @@ namespace App\Controllers\admin;
 
 use App\Controllers\AbstractController;
 use App\Services\UserService;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Admin extends AbstractAdmin
 {
@@ -21,15 +22,31 @@ class Admin extends AbstractAdmin
     }
 
 
+    /**
+     * 打开后台首页
+     */
+    public function index()
+    {
+        $this->adminView('index', array(), '后台首页');
+    }
+
+
+    /**
+     * 打开登录页
+     */
     public function login()
     {
         $this->adminView('login', array(), '请登录');
     }
 
 
+    /**
+     * 登录信息检查
+     * @return RedirectResponse
+     */
     public function loginCheck()
     {
-        $err = $this->req->getGet('err');
+        $err = $this->getParam('err');
         if (empty($err)) {
             $this->rmSession('alert');
         }
@@ -44,39 +61,34 @@ class Admin extends AbstractAdmin
 
         if ($diff < 5 && $count >= 5) {
             $this->alertDanger('您在短时间内多次尝试登录，请稍后再试');
-            $this->redirect('/login?err=2');
-            return;
+            return $this->redirect('/login?err=2');
         } elseif ($diff > 5) {
             $this->setSession('firstLog', time());
             $this->setSession('logCount', 0);
         }
 
-        $username = $this->req->getPost('username');
-        $password = $this->req->getPost('password');
+        $username = $this->postParam('username');
+        $password = $this->postParam('password');
 
         $user = $this->userService->checkLogin($username, $password);
         if (!empty($user)) {
             $this->setSession('lastLog', time());
             $this->setSession('user', $user);
-            $this->redirect('/admin');
+            return $this->redirect('/admin/console');
         } else {
             $this->alertDanger('用户名或密码错误');
-            redirect()->back()->with('aa', '123');
-            //$this->redirect('/login?err=1');
+            return $this->redirect('/login?err=1');
         }
     }
 
 
+    /**
+     * 登出系统
+     */
     public function logout()
     {
         $this->rmSession('user');
         $this->redirect('/login');
-    }
-
-
-    public function index()
-    {
-        $this->adminView('index', array(), '后台首页');
     }
 
 

@@ -1,8 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
-
 
 <div class="container main">
 	<div class="page-header">
@@ -11,7 +6,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<?= $ctx ?>admin/settings/maintain" enctype="multipart/form-data">
+	<form method="post" action="<?= $siteUrl ?>/admin/settings/maintain" enctype="multipart/form-data">
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">站点名称</div>
 			<div class="form-input col-md-10 col-xs-12">
@@ -29,7 +24,7 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">首页标题</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<input type="text" class="form-control" name="home_title" value="<?= $home_title ?>" required autofocus/>
+				<input type="text" class="form-control" name="homeTitle" value="<?= $homeTitle ?>" required autofocus/>
 			</div>
 		</div>
 
@@ -54,8 +49,8 @@ include_once 'common/navigator.php';
                 <?php if (!empty($logo)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
 						<br/>
-						<p class="lmt"><img src="<?= $uri_upload . '/' . $logo ?>" alt="LOGO"/></p>
-						<a href="<?= $ctx ?>admin/settings/delete/logo" target="_self">移除LOGO</a>
+						<p class="lmt"><img src="<?= $uriUpload . '/' . $logo ?>" alt="LOGO"/></p>
+						<a href="<?= $siteUrl ?>/admin/settings/delete/logo" target="_self">移除LOGO</a>
 						<br/>
 					</div>
                 <?php } ?>
@@ -69,8 +64,8 @@ include_once 'common/navigator.php';
                 <?php if (!empty($background)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
 						<br/>
-						<p class="lmt"><img src="<?= $uri_upload . '/' . $background ?>" alt="BG_IMG"/></p>
-						<a href="<?= $ctx ?>admin/settings/delete/background" target="_self">移除背景图</a>
+						<p class="lmt"><img src="<?= $uriUpload . '/' . $background ?>" alt="BG_IMG"/></p>
+						<a href="<?= $siteUrl ?>/admin/settings/delete/background" target="_self">移除背景图</a>
 						<br/>
 					</div>
                 <?php } ?>
@@ -81,10 +76,10 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">背景重复</div>
 			<div class="form-input col-md-10 col-xs-12" style="padding-top:6px;">
 				<label class="radio-inline">
-					<input type="radio" name="bg_repeat" value="1" <?= $bg_repeat == "1" ? 'checked' : '' ?> > 重复
+					<input type="radio" name="bgRepeat" value="1" <?= $bgRepeat == "1" ? 'checked' : '' ?> > 重复
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="bg_repeat" value="2" <?= $bg_repeat == "2" ? 'checked' : '' ?>> 不重复
+					<input type="radio" name="bgRepeat" value="2" <?= $bgRepeat == "2" ? 'checked' : '' ?>> 不重复
 				</label>
 			</div>
 		</div>
@@ -92,7 +87,7 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">背景色</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<input type="text" class="form-control" name="bg_color" value="<?= $bg_color ?>"/>
+				<input type="text" class="form-control" name="bgColor" value="<?= $bgColor ?>"/>
 			</div>
 		</div>
 
@@ -104,6 +99,3 @@ include_once 'common/navigator.php';
 		</div>
 	</form>
 </div>
-
-
-<?php include_once 'common/footer.php'; ?>

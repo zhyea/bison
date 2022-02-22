@@ -1,23 +1,19 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
 
 <div class="container main">
 	
 	<div class="page-header">
-		<h3><i class="glyphicon glyphicon-list-alt"></i> <?= $header_title ?></h3>
+		<h3><i class="glyphicon glyphicon-list-alt"></i> <?= $headerTitle ?></h3>
 	</div>
 
     <?php include_once 'common/alert.php'; ?>
 	
 	<div id="categoryTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx ?>admin/category/settings/0/<?= $id ?>">
+			<a class="btn btn-default" href="<?= $siteUrl ?>/admin/category/settings/0/<?= $id ?>">
 				<i class="glyphicon glyphicon-plus"></i>新增</a>
 			<a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> 删除</a>
             <?php if ($id > 0) { ?>
-				<a class="btn btn-default" href="<?= $ctx ?>admin/category/list/<?= $parent ?>">
+				<a class="btn btn-default" href="<?= $siteUrl ?>/admin/category/list/<?= $parent ?>">
 					<i class="glyphicon glyphicon-chevron-left"></i> 上一级
 				</a>
             <?php } ?>
@@ -42,7 +38,6 @@ include_once 'common/navigator.php';
 	</table>
 </div>
 
-<?php include_once 'common/footer.php'; ?>
 
 
 <script>
@@ -50,7 +45,7 @@ include_once 'common/navigator.php';
     let $table = $('#categoryTable');
 
     $table.bootstrapTable({
-        url: "<?= $ctx?>admin/category/data/<?= $id?>"
+        url: "<?= $siteUrl?>/admin/category/data/<?= $id?>"
     });
 
     // 删除按钮事件
@@ -63,7 +58,7 @@ include_once 'common/navigator.php';
             });
 
             if (ids.length > 0) {
-                sendBootstrapTableRequest($table, 'post', '<?= $ctx?>admin/category/delete', ids);
+                sendBootstrapTableRequest($table, 'post', '<?= $siteUrl?>/admin/category/delete', ids);
             }
         }
     });
@@ -77,15 +72,15 @@ include_once 'common/navigator.php';
     }
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx?>admin/category/settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $siteUrl?>/admin/category/settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 
     function childFormatter(value, row, index) {
         let arr = ['<span class="badge">' + row.sub_count + '</span>'];
         if (row.sub_count > 0) {
-            arr.push('<a href="<?= $ctx?>admin/category/list/' + row.id + '/' + row.parent + '" target="_self">查看</a>');
+            arr.push('<a href="<?= $siteUrl?>/admin/category/list/' + row.id + '/' + row.parent + '" target="_self">查看</a>');
         } else {
-            arr.push('<a href="<?= $ctx?>admin/category/settings/0/' + row.id + '" target="_self">新增</a>');
+            arr.push('<a href="<?= $siteUrl?>/admin/category/settings/0/' + row.id + '" target="_self">新增</a>');
         }
         return arr.join('&nbsp;');
     }
@@ -100,7 +95,7 @@ include_once 'common/navigator.php';
 
     function changeOrder(id, step) {
         $table.bootstrapTable('showLoading');
-        sendBootstrapTableRequest($table, 'post', '<?= $ctx?>admin/category/change-order/' + id, step);
+        sendBootstrapTableRequest($table, 'post', '<?= $siteUrl?>/admin/category/change-order/' + id, step);
     }
 </script>
 

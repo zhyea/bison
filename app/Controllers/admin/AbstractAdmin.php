@@ -22,6 +22,39 @@ class AbstractAdmin extends AbstractController
 
 
     /**
+     * 从get请求中获取参数
+     * @param string $key 请求key
+     * @return mixed 参数值
+     */
+    protected function getParam(string $key)
+    {
+        return $this->req->getGet($key);
+    }
+
+
+    /**
+     * 从post请求中获取参数
+     * @param string $key 请求key
+     * @return mixed 参数值
+     */
+    protected function postParam(string $key)
+    {
+        return $this->req->getPost($key);
+    }
+
+
+    /**
+     * 读取上传的文件
+     * @param string $key 请求key
+     * @return mixed 文件信息
+     */
+    protected function getFile(string $key)
+    {
+        return $this->req->getFile($key);
+    }
+
+
+    /**
      * 从session中取值
      * @param string $key session key
      * @param mixed $defaultVal 默认值

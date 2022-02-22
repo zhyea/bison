@@ -13,7 +13,7 @@ include_once 'common/navigator.php';
 
 	<div id="authorTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx ?>admin/author/settings">
+			<a class="btn btn-default" href="<?= $siteUrl ?>/admin/author/settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 		</div>
@@ -24,7 +24,7 @@ include_once 'common/navigator.php';
 	       data-show-refresh=true
 	       data-classes="table table-hover table-borderless"
 	       data-toolbar="#authorTableToolbar"
-	       data-url="<?= $ctx ?>admin/author/data"
+	       data-url="<?= $siteUrl ?>/admin/author/data"
 	       data-id-field="id"
 	       data-sort-name="id"
 	       data-sort-order="desc"
@@ -48,16 +48,16 @@ include_once 'common/navigator.php';
 
 <script>
     function nameFormatter(value, row, index) {
-        return '<a href="<?=$ctx?>admin/author/settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?=$siteUrl?>/admin/author/settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 
     function worksFormatter(value, row, index) {
-        return '<a href="<?=$ctx?>admin/author/works/' + row.id + '" target="_self"><span class="badge">' + row.work_count + '</span></a>';
+        return '<a href="<?=$siteUrl?>/admin/author/works/' + row.id + '" target="_self"><span class="badge">' + row.work_count + '</span></a>';
     }
 
     function operateFormatter(value, row, index) {
         if (row.id > 1) {
-            return '<a href="<?=$ctx?>admin/author/delete/' + row.id + '" target="_self">删除</a>';
+            return '<a href="<?=$siteUrl?>/admin/author/delete/' + row.id + '" target="_self">删除</a>';
         }
     }
 </script>

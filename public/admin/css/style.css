@@ -235,7 +235,7 @@ input[type="file"] {
     top: 50%;
     left: 50%;
     margin-top: -160px;
-    margin-left: -120px;
+    margin-left: -135px;
     max-width: 360px;
     max-height: 420px;
     background-color: #fff;
@@ -267,8 +267,8 @@ input[type="file"] {
 }
 
 .form-login .logo {
-    margin-top: -6px;
-    margin-bottom: 45px;
+    margin-top: -9px;
+    margin-bottom: 32px;
 }
 
 .form-login input {
@@ -288,6 +288,8 @@ input[readonly], .form-control[readonly] {
 }
 
 .form-login .alert {
+    margin-top: 6px;
+    margin-bottom: -6px;
     padding: 10px 5px;
 }
 
