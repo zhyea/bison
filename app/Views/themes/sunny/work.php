@@ -1,7 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
 
 <div class="container notice">
 	<ol class="breadcrumb">
@@ -55,9 +51,6 @@ include_once 'common/navigator.php';
 		<div><?= $third_party_comments ?></div>
     <?php } ?>
 </div>
-
-
-<?php include_once 'common/footer.php'; ?>
 
 <script type="text/javascript">
     backToTop();

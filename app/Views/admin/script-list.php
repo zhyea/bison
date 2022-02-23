@@ -19,7 +19,7 @@
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#featureTableToolbar"
-	       data-url="<?= $siteUrl ?>admin/spt/data"
+	       data-url="<?= $siteUrl ?>/admin/spt/data"
 	       data-single-select="true"
 	       data-id-field="id"
 	       data-sort-name="id"

@@ -1,9 +1,4 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
-	
-	
+
 	<div class="container notice">
 		<ol class="breadcrumb">
 			<li><a href="<?= $site_url ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
@@ -34,5 +29,3 @@ include_once 'common/navigator.php';
 			</div>
         <?php } ?>
 	</div>
-
-<?php include_once 'common/footer.php'; ?>
