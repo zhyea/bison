@@ -5,6 +5,8 @@ namespace App\Controllers\admin;
 
 
 use App\Controllers\AbstractController;
+use CodeIgniter\Files\File;
+use CodeIgniter\HTTP\Files\UploadedFile;
 
 class AbstractAdmin extends AbstractController
 {
@@ -12,11 +14,15 @@ class AbstractAdmin extends AbstractController
 
     protected $req;
     protected $session;
+    private $pathUpload;
 
     public function __construct()
     {
+        helper('string');
         $this->req = service('request');
         $this->session = session();
+        $this->pathUpload = FCPATH . 'upload/';
+
         parent::__construct();
     }
 
@@ -46,7 +52,7 @@ class AbstractAdmin extends AbstractController
     /**
      * 读取上传的文件
      * @param string $key 请求key
-     * @return mixed 文件信息
+     * @return UploadedFile 上传的文件
      */
     protected function getFile(string $key)
     {
@@ -127,5 +133,69 @@ class AbstractAdmin extends AbstractController
     protected function renderJson($obj)
     {
         echo json_encode($obj);
+    }
+
+
+    /**
+     * 上传文件，文件将按日期保存，并提供随机ID作为名称
+     *
+     * @param string $fileName 文件表单名
+     * @return array 文件是否上传成功 / 失败原因 / 保存位置
+     */
+    protected function upload(string $fileName)
+    {
+        $file = $this->getFile($fileName);
+        $saveName = $file->getRandomName();
+        $subPath = date('Y/m/d');
+        return $this->doUpload($file, $saveName, $subPath);
+    }
+
+    /**
+     * 执行文件上传及存储
+     * @param UploadedFile $file
+     * @param string $saveName
+     * @param string $subPath
+     * @param array $allowedExt
+     * @return array 上传结果
+     */
+    protected function doUpload(UploadedFile $file,
+                                string $saveName,
+                                string $subPath = '',
+                                $allowedExt = array())
+    {
+        if (!$file->isValid()) {
+            return array(false, $file->getErrorString());
+        }
+        $ext = $file->getExtension();
+        if (!empty($allowedExt) && !in_array($ext, $allowedExt)) {
+            return array(false, '不支持上传该类型的文件');
+        }
+        $subPath = 'files' . DIRECTORY_SEPARATOR . $subPath;
+        $saveName = str_end_with($saveName, $ext) ? $saveName : $saveName . '.' . $ext;
+
+        $savePath = $this->pathUpload . DIRECTORY_SEPARATOR . $subPath;
+
+        if (!is_dir($savePath)) {
+            mkdir($savePath, 0777, true);
+        }
+
+        $file->move($savePath, $saveName);
+        return array(true, $subPath . DIRECTORY_SEPARATOR . $saveName);
+    }
+
+
+    /**
+     * 删除上传的文件
+     * @param string $filePath 文件路径
+     */
+    protected function deleteUploadedFile(string $filePath)
+    {
+        if (!empty($filePath)) {
+            $p = $this->pathUpload . $filePath;
+            $f = new File($p);
+            if ($f->isFile()) {
+                unlink($f->getRealPath());
+            }
+        }
     }
 }

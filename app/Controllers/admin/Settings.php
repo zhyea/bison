@@ -4,6 +4,7 @@ namespace App\Controllers\admin;
 
 
 use App\Models\SettingModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 
 class Settings extends AbstractAdmin
@@ -21,6 +22,9 @@ class Settings extends AbstractAdmin
     }
 
 
+    /**
+     * 进入系统配置页
+     */
     public function index()
     {
         $name = $this->model->getByKey('siteName');
@@ -46,6 +50,10 @@ class Settings extends AbstractAdmin
     }
 
 
+    /**
+     * 更新配置信息
+     * @return RedirectResponse
+     */
     public function maintain()
     {
         $name = $this->postParam('siteName');
@@ -53,8 +61,8 @@ class Settings extends AbstractAdmin
         $desc = $this->postParam('description');
         $keywords = $this->postParam('keywords');
         $notice = $this->postParam('notice');
-        $logo = $this->_upload('logo');
-        $background = $this->_upload('background');
+        $logo = $this->upload('logo');
+        $background = $this->upload('background');
         $bgRepeat = $this->postParam('bgRepeat');
         $bgColor = $this->postParam('bgColor');
 
@@ -64,11 +72,11 @@ class Settings extends AbstractAdmin
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);
         if ($logo[0]) {
-            $this->_delete('logo');
+            $this->cleanFile('logo');
             $this->model->change('logo', $logo[1]);
         }
         if ($background[0]) {
-            $this->_delete('background');
+            $this->cleanFile('background');
             $this->model->change('background', $background[1]);
         }
         $this->model->change('bgRepeat', $bgRepeat);
@@ -76,40 +84,42 @@ class Settings extends AbstractAdmin
 
         $this->alertSuccess('更新网站设置成功');
 
-        $this->redirect('admin/settings');
+        return $this->redirect('admin/settings');
     }
 
 
     /**
      * 删除Logo
      */
-    public function delete_logo()
+    public function deleteLogo()
     {
-        $this->_delete('logo');
+        $this->cleanFile('logo');
         $this->alertSuccess('删除LOGO成功');
-        $this->redirect('admin/settings');
+        return $this->redirect('admin/settings');
     }
 
     /**
      * 删除背景图
      */
-    public function delete_bg()
+    public function deleteBg()
     {
-        $this->_delete('background');
+        $this->cleanFile('background');
         $this->alertSuccess('删除背景图成功');
-        $this->redirect('admin/settings');
+        return $this->redirect('admin/settings');
     }
 
     /**
-     * 执行删除及跳转操作
+     * 删除文件
      *
      * @param $key string 文件配置项
      */
-    private function _delete($key)
+    private function cleanFile(string $key)
     {
-        $v = $this->model->get_by_key($key);
-        del_upload_file($v);
-        $this->model->delete_by_key($key);
+        $v = $this->model->getByKey($key);
+        if (!empty($v)) {
+            $this->deleteUploadedFile($v);
+        }
+        $this->model->deleteByKey($key);
     }
 
 

@@ -20,6 +20,8 @@ class AbstractController extends BaseController
     private $theme;
     private $siteUrl;
 
+    protected $uriUpload;
+
     /**
      * constructor.
      */
@@ -34,6 +36,8 @@ class AbstractController extends BaseController
         $this->settings = $this->settingService->findAll();
         $this->theme = $customCfg->theme;
         $this->siteUrl = $appConfig->baseURL;
+
+        $this->uriUpload = '/upload';
     }
 
 
@@ -48,12 +52,13 @@ class AbstractController extends BaseController
     {
         $params = empty($params) ? array() : $params;
         $alertMsg = session('alert');
-        if (isEmpty($alertMsg)) {
+        if (!empty($alertMsg)) {
             $params['alert'] = $alertMsg;
             $this->session->remove('alert');
         }
         $params['siteUrl'] = $this->siteUrl;
         $params['uriAdmin'] = '/admin';
+        $params['uriUpload'] = $this->uriUpload;
         $params['title'] = $title;
         $params = $params + $this->settings;
 
@@ -79,7 +84,7 @@ class AbstractController extends BaseController
         $params = empty($params) ? array() : $params;
 
         $params['uriTheme'] = '/themes/' . $this->theme;
-        $params['uriUpload'] = '/upload';
+        $params['uriUpload'] = $this->uriUpload;
         $params['siteUrl'] = $this->siteUrl;
 
         $params = $params + $this->settings;
@@ -111,20 +116,6 @@ class AbstractController extends BaseController
         $page = $dir . DIRECTORY_SEPARATOR . $page;
         echo view($page, $params);
         //exit();
-    }
-
-
-    /**
-     * 上传文件，文件将按日期保存，并提供随机ID作为名称
-     *
-     * @param $name string 文件表单名
-     * @return array 文件是否上传成功 / 失败原因 / 保存位置
-     */
-    protected function _upload(string $name)
-    {
-        $save_name = uniqid();
-        $sub_path = date('Y/m/d');
-        return parent::_do_upload($name, $save_name, $sub_path);
     }
 
 

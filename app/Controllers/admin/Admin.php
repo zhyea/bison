@@ -50,20 +50,20 @@ class Admin extends AbstractAdmin
         if (empty($err)) {
             $this->rmSession('alert');
         }
-        $first_login_time = $this->sessionOf('firstLog', 0);
-        if (0 === $first_login_time) {
-            $this->setSession('firstLog', time());
+        $firstLoginTime = $this->sessionOf('firstLogin', 0);
+        if (0 === $firstLoginTime) {
+            $this->setSession('firstLogin', time());
         }
         $count = $this->sessionOf('logCount', 0);
         $this->setSession('logCount', $count + 1);
 
-        $diff = (time() - $first_login_time) / 60;
+        $diff = (time() - $firstLoginTime) / 60;
 
-        if ($diff < 5 && $count >= 5) {
-            $this->alertDanger('您在短时间内多次尝试登录，请稍后再试');
+        if ($diff < 10 && $count >= 5) {
+            $this->alertDanger('失败次数过多，请稍后再试');
             return $this->redirect('/login?err=2');
         } elseif ($diff > 5) {
-            $this->setSession('firstLog', time());
+            $this->setSession('firstLogin', time());
             $this->setSession('logCount', 0);
         }
 
@@ -72,7 +72,7 @@ class Admin extends AbstractAdmin
 
         $user = $this->userService->checkLogin($username, $password);
         if (!empty($user)) {
-            $this->setSession('lastLog', time());
+            $this->setSession('lastLogin', time());
             $this->setSession('user', $user);
             return $this->redirect('/admin/console');
         } else {
