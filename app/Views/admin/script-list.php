@@ -1,8 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
-
 
 <div class="container main">
 
@@ -14,7 +9,7 @@ include_once 'common/navigator.php';
 
 	<div id="featureTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx ?>admin/spt/edit">
+			<a class="btn btn-default" href="<?= $siteUrl ?>/admin/spt/edit">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 		</div>
@@ -24,7 +19,7 @@ include_once 'common/navigator.php';
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#featureTableToolbar"
-	       data-url="<?= $ctx ?>admin/spt/data"
+	       data-url="<?= $siteUrl ?>admin/spt/data"
 	       data-single-select="true"
 	       data-id-field="id"
 	       data-sort-name="id"
@@ -41,17 +36,14 @@ include_once 'common/navigator.php';
 
 </div>
 
-
-<?php include_once 'common/footer.php'; ?>
-
 <script>
     function nameFormatter(value, row, index) {
-        return '<a href="<?=$ctx?>admin/spt/edit/' + row.id + '">' + value + '</a>';
+        return '<a href="<?=$siteUrl?>/admin/spt/edit/' + row.id + '">' + value + '</a>';
     }
 
     function operateFormatter(value, row, index) {
         if (row.id > 6) {
-            return '<a href="<?=$ctx?>admin/spt/delete/' + row.id + '">删除</a>';
+            return '<a href="<?=$siteUrl?>/admin/spt/delete/' + row.id + '">删除</a>';
         }
         return '';
     }

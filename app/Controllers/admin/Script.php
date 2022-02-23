@@ -4,9 +4,10 @@ namespace App\Controllers\admin;
 
 use App\Controllers\AbstractController;
 use App\Models\ScriptModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 
-class Script extends AbstractController
+class Script extends AbstractAdmin
 {
 
     private $model;
@@ -32,7 +33,7 @@ class Script extends AbstractController
      */
     public function data()
     {
-        $all = $this->model->find_all();
+        $all = $this->model->findAll();
         $this->renderJson($all);
     }
 
@@ -40,13 +41,14 @@ class Script extends AbstractController
     /**
      * 执行删除操作
      * @param $id int 记录ID
+     * @return RedirectResponse
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         if ($id > 6) {
-            $this->model->delete_by_id($id);
+            $this->model->deleteById($id);
         }
-        $this->redirect('admin/spt/list');
+       return  $this->redirect('admin/spt/list');
     }
 
 
@@ -58,7 +60,7 @@ class Script extends AbstractController
     {
         $s = array('id' => $id);
         if ($id > 0) {
-            $s = $this->model->get_by_id($id);
+            $s = $this->model->getById($id);
         }
         $this->adminView('script-settings', $s, empty($s) ? '新增脚本' : '编辑脚本');
     }
@@ -70,7 +72,7 @@ class Script extends AbstractController
     public function maintain()
     {
         $data = $this->_post();
-        $this->model->insert_or_update($data);
+        $this->model->insertOrUpdate($data);
         $this->redirect('admin/spt/list');
     }
 
