@@ -170,17 +170,17 @@ class AbstractAdmin extends AbstractController
         if (!empty($allowedExt) && !in_array($ext, $allowedExt)) {
             return array(false, '不支持上传该类型的文件');
         }
-        $subPath = 'files' . DIRECTORY_SEPARATOR . $subPath;
+        $subPath = 'files' . '/' . $subPath;
         $saveName = str_end_with($saveName, $ext) ? $saveName : $saveName . '.' . $ext;
 
-        $savePath = $this->pathUpload . DIRECTORY_SEPARATOR . $subPath;
+        $savePath = $this->pathUpload . '/' . $subPath;
 
         if (!is_dir($savePath)) {
             mkdir($savePath, 0777, true);
         }
 
         $file->move($savePath, $saveName);
-        return array(true, $subPath . DIRECTORY_SEPARATOR . $saveName);
+        return array(true, $subPath . '/' . $saveName);
     }
 
 

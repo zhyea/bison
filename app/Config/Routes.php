@@ -37,6 +37,9 @@ $routes->post('login/check', 'admin/Admin::loginCheck');
 $routes->get('admin/console', 'admin/Admin::index');
 $routes->get('admin/settings', 'admin/Settings::index');
 $routes->post('admin/settings/maintain', 'admin/Settings::maintain');
+$routes->get('admin/settings/delete/logo', 'admin/Settings::deleteLogo');
+$routes->get('admin/settings/delete/background', 'admin/Settings::deleteBg');
+$routes->get('admin/spt/list', 'admin/Script::list');
 
 /*
  * --------------------------------------------------------------------
