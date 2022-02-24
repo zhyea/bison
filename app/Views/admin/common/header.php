@@ -18,13 +18,14 @@
     <link rel="stylesheet" type="text/css" href="<?= $uriAdmin ?>/css/style.css"/>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="<?= $uriAdmin ?>/static/js/custom-script.js"></script>
+    <script src="<?= $uriAdmin ?>/js/custom-script.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body>
 

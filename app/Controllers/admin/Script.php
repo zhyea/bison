@@ -71,7 +71,7 @@ class Script extends AbstractAdmin
      */
     public function maintain()
     {
-        $data = $this->_post();
+        $data = $this->postData();
         $this->model->insertOrUpdate($data);
         $this->redirect('admin/spt/list');
     }

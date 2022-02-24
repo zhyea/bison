@@ -29,7 +29,7 @@ if (!function_exists('array_copy')) {
      * @param $array array source array
      * @return array new array with all elements from the source
      */
-    function array_copy($array)
+    function array_copy(array $array)
     {
         $result = array();
         foreach ($array as $key => $val) {
@@ -65,23 +65,27 @@ if (!function_exists('array_value_of')) {
 
 if (!function_exists('build_tree')) {
 
-    function add_children($array, &$root, $id_key = 'id', $parent_key = 'parent', $children_key = 'children')
+    function add_children($array,
+                          &$root,
+                          $idKey = 'id',
+                          $parentKey = 'parent',
+                          $childrenKey = 'children')
     {
         if (empty($root) || empty($array)) {
             return;
         }
-        $id = $root[$id_key];
+        $id = $root[$idKey];
         foreach ($array as $ele) {
-            $p = empty($ele[$parent_key]) ? 0 : $ele[$parent_key];
-            if (empty($root[$children_key])) {
-                $root[$children_key] = array();
+            $p = empty($ele[$parentKey]) ? 0 : $ele[$parentKey];
+            if (empty($root[$childrenKey])) {
+                $root[$childrenKey] = array();
             }
             if ($id == $p) {
-                add_children($array, $ele, $id_key, $parent_key, $children_key);
-                array_push($root[$children_key], $ele);
+                add_children($array, $ele, $idKey, $parentKey, $childrenKey);
+                array_push($root[$childrenKey], $ele);
             }
-            if (empty($root[$children_key])) {
-                unset($root[$children_key]);
+            if (empty($root[$childrenKey])) {
+                unset($root[$childrenKey]);
             }
         }
     }

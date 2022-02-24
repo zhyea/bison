@@ -61,6 +61,16 @@ class AbstractAdmin extends AbstractController
 
 
     /**
+     * 获取POST请求中的全部内容
+     * @return array 请求中的全部内容
+     */
+    protected function postData()
+    {
+        return array_copy($_POST);
+    }
+
+
+    /**
      * 从session中取值
      * @param string $key session key
      * @param mixed $defaultVal 默认值
