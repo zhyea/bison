@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\CategoryModel;
 use App\Services\CategoryService;
 
-class Category extends AbstractController
+class Category extends AbstractAdmin
 {
 
     private $model;
@@ -31,7 +31,7 @@ class Category extends AbstractController
      */
     public function list($id = 0, $parent = 0)
     {
-        $cat = $this->model->get_by_id($id);
+        $cat = $this->model->getById($id);
         $title = '分类列表';
         if (!empty($cat)) {
             $title = $title . '-' . $cat['name'];
@@ -47,7 +47,7 @@ class Category extends AbstractController
      */
     public function data($parent = 0)
     {
-        $data = $this->service->list_data($parent);
+        $data = $this->service->listData($parent);
         $this->renderJson($data);
     }
 
@@ -59,7 +59,7 @@ class Category extends AbstractController
      */
     public function settings($id = 0, $parent = 0)
     {
-        $cat = $this->model->get_by_id($id);
+        $cat = $this->model->getById($id);
         $parent = empty($cat) ? $parent : $cat['parent'];
         $cat = empty($cat) ? array() : $cat;
         $candidates = $this->service->candidates($id, $parent);
@@ -75,9 +75,9 @@ class Category extends AbstractController
      */
     public function maintain()
     {
-        $cat = $this->_post();
+        $cat = $this->postParams();
 
-        $this->model->insert_or_update($cat);
+        $this->model->insertOrUpdate($cat);
 
         $this->redirect('admin/category/list');
     }
@@ -88,9 +88,9 @@ class Category extends AbstractController
      */
     public function delete()
     {
-        $ids = $this->_post_array();
+        $ids = $this->postBody();
         foreach ($ids as $id) {
-            $this->service->delete_recursively($id);
+            $this->service->deleteRecursively($id);
         }
         echo true;
     }
@@ -100,13 +100,13 @@ class Category extends AbstractController
      * 调整排序
      * @param $id int 记录ID
      */
-    public function change_order($id)
+    public function changeOrder(int $id)
     {
-        $step = $this->_post_body();
-        echo $this->model->change_order($id, $step);
+        $step = $this->postBody();
+        echo $this->model->changeOrder($id, $step);
     }
 
-    
+
     /**
      * 查询推荐的分类信息
      */

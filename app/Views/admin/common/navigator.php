@@ -13,7 +13,7 @@
             </button>
 
             <div class="navbar-header">
-                <a class="navbar-brand" href="<?= $siteUrl ?>/admin">
+                <a class="navbar-brand" href="<?= $siteUrl ?>/admin/console">
                     <img alt="Calf Console" src="<?= $uriAdmin ?>/img/logo-white.png" height="100%"/>
                 </a>
             </div>

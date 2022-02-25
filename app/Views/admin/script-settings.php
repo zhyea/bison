@@ -42,7 +42,7 @@
 
         <div class="row">
             <div class="btn-left col-md-6 col-xs-12">
-                <a href="<?= $siteUrl ?>admin/spt/list" class="btn btn-info">返回脚本列表</a>
+                <a href="<?= $siteUrl ?>/admin/spt/list" class="btn btn-info">返回脚本列表</a>
             </div>
             <div class="btn-right col-md-6 col-xs-12">
                 <button type="submit" class="btn btn-success">保存脚本信息</button>

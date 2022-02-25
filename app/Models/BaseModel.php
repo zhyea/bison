@@ -142,7 +142,9 @@ class BaseModel extends Model
     {
         if (!empty($arr['id'])) {
             try {
-                return $this->update($arr['id'], $arr);
+                $id = $arr['id'];
+                $data = array_key_rm('id', $arr);
+                return $this->protect(false)->update($id, $data);
             } catch (ReflectionException $e) {
                 return false;
             }
@@ -160,7 +162,7 @@ class BaseModel extends Model
     {
         if (!empty($arr)) {
             try {
-                return $this->insert($arr);
+                return $this->protect(false)->insert($arr);
             } catch (ReflectionException $e) {
                 return false;
             }

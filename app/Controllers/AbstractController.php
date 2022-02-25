@@ -50,7 +50,6 @@ class AbstractController extends BaseController
      */
     protected function adminView(string $page, array $params, string $title)
     {
-        $params = empty($params) ? array() : $params;
         $alertMsg = session('alert');
         if (!empty($alertMsg)) {
             $params['alert'] = $alertMsg;

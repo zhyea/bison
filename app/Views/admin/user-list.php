@@ -1,7 +1,4 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
+
 <div class="container main">
 	<div class="page-header">
 		<h3><i class="glyphicon glyphicon-user"></i> 用户列表</h3>
@@ -11,7 +8,7 @@ include_once 'common/navigator.php';
 
 	<div id="userTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx ?>admin/user/settings"><i class="glyphicon glyphicon-plus"></i>新增</a>
+			<a class="btn btn-default" href="<?= $siteUrl ?>/admin/user/settings"><i class="glyphicon glyphicon-plus"></i>新增</a>
 			<a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i>删除</a>
 		</div>
 	</div>
@@ -21,7 +18,7 @@ include_once 'common/navigator.php';
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#userTableToolbar"
-	       data-url="<?= $ctx ?>admin/user/data"
+	       data-url="<?= $siteUrl ?>/admin/user/data"
 	       data-side-pagination='client'
 	       data-pagination=true
 	       data-page-size=30
@@ -49,15 +46,14 @@ include_once 'common/navigator.php';
                 ids.push(this.id);// cid为获得到的整条数据中的一列
             });
 
-            sendBootstrapTableRequest($("#userTable"), 'post', '<?= $ctx ?>admin/user/delete', ids);
+            sendBootstrapTableRequest($("#userTable"), 'post', '<?= $siteUrl ?>/admin/user/delete', ids);
         }
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx ?>admin/user/settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $siteUrl ?>/admin/user/settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>
 
-<?php include_once 'common/footer.php'; ?>
 
 

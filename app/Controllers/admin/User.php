@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\UserModel;
 
-class User extends AbstractController
+class User extends AbstractAdmin
 {
 
     private $model;
@@ -27,7 +27,8 @@ class User extends AbstractController
      */
     public function settings($id = 0)
     {
-        $user = $this->model->get_by_id($id);
+        $user = $this->model->getById($id);
+        $user = empty($user) ? array() : $user;
         $this->adminView('user-settings', $user, $id > 0 ? '编辑用户信息' : '新增用户');
     }
 
@@ -37,28 +38,27 @@ class User extends AbstractController
      */
     public function delete()
     {
-        $ids = $this->_post_array();
-        echo $this->model->delete_by_ids($ids);
+        $ids = $this->postBody();
+        echo $this->model->deleteByIds($ids);
     }
 
 
     /**
      * 用户信息维护
-     * TODO 新增时需要完成对密码的MD5加密
      */
     public function maintain()
     {
-        $data = $this->_post();
+        $data = $this->postParams();
         $username = $data['username'];
-        $user = $this->model->get_by_username($username);
+        $user = $this->model->getByUsername($username);
         if (!empty($data['id']) && !empty($user) && ($data['id'] != $user['id'])) {
             $this->alertDanger('用户名已存在');
-            $this->redirect('admin/user/settings');
+            return $this->redirect('admin/user/settings');
         } else {
             $data['password'] = md5($data['password'] . '#_淦x7');
-            $this->model->insert_or_update($data);
-            $this->alertSuccess('新增用户成功');
-            $this->redirect('admin/user/list');
+            $this->model->insertOrUpdate($data);
+            $this->alertSuccess('用户信息保存成功');
+            return $this->redirect('admin/user/list');
         }
     }
 
@@ -76,7 +76,7 @@ class User extends AbstractController
      */
     public function data()
     {
-        $r = $this->model->find_all();
+        $r = $this->model->findAll();
         $this->renderJson($r);
     }
 }

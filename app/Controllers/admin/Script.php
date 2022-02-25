@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\ScriptModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
@@ -48,7 +48,7 @@ class Script extends AbstractAdmin
         if ($id > 6) {
             $this->model->deleteById($id);
         }
-       return  $this->redirect('admin/spt/list');
+        return $this->redirect('admin/spt/list');
     }
 
 
@@ -56,11 +56,14 @@ class Script extends AbstractAdmin
      * 进入编辑页
      * @param $id int 记录ID
      */
-    public function edit($id = 0)
+    public function edit(int $id = 0)
     {
         $s = array('id' => $id);
         if ($id > 0) {
             $s = $this->model->getById($id);
+        }
+        if (empty($s)) {
+            return $this->redirect('admin/spt/list');
         }
         $this->adminView('script-settings', $s, empty($s) ? '新增脚本' : '编辑脚本');
     }
@@ -71,9 +74,9 @@ class Script extends AbstractAdmin
      */
     public function maintain()
     {
-        $data = $this->postData();
+        $data = $this->postParams();
         $this->model->insertOrUpdate($data);
-        $this->redirect('admin/spt/list');
+        return $this->redirect('admin/spt/list');
     }
 
 }

@@ -64,9 +64,31 @@ class AbstractAdmin extends AbstractController
      * 获取POST请求中的全部内容
      * @return array 请求中的全部内容
      */
-    protected function postData()
+    protected function postParams()
     {
-        return array_copy($_POST);
+        return $this->req->getRawInput();
+    }
+
+
+    /**
+     * 获取请求体
+     * @return mixed 请求体
+     */
+    protected function postBody()
+    {
+        return $this->req->getJSON();
+    }
+
+
+    /**
+     * 获取请求体,将请求体以数组形式返回
+     *
+     * @return array 请求体反序列化后的数组
+     */
+    protected function postArray()
+    {
+        $json = $this->postBody();
+        return json_decode($json, true);
     }
 
 

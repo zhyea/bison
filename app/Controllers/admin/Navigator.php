@@ -1,18 +1,17 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\NavigatorModel;
 use App\Services\NavigatorService;
 
 
-class Navigator extends AbstractController
+class Navigator extends AbstractAdmin
 {
+
     private $model;
-
     private $navService;
-
     private $cacheService;
 
     /**
@@ -33,13 +32,13 @@ class Navigator extends AbstractController
      */
     public function list($id = 0, $parent = 0)
     {
-        $nav = $this->model->get_by_id($id);
+        $nav = $this->model->getById($id);
         $title = '导航列表';
         if (!empty($nav)) {
             $title = $title . '-' . $nav['name'];
             $parent = $nav['parent'];
         }
-        $this->adminView('nav-list', array('id' => $id, 'parent' => $parent, 'header_title' => $title), $title);
+        $this->adminView('nav-list', array('id' => $id, 'parent' => $parent, 'headerTitle' => $title), $title);
     }
 
 
@@ -49,7 +48,7 @@ class Navigator extends AbstractController
      */
     public function data($parent = 0)
     {
-        $data = $this->navService->list_data($parent);
+        $data = $this->navService->listData($parent);
         $this->renderJson($data);
     }
 
@@ -61,9 +60,10 @@ class Navigator extends AbstractController
      */
     public function settings($parent = 0, $id = 0)
     {
-        $nav = $this->model->get_by_id($id);
+        $nav = $this->model->getById($id);
+        $nav = empty($nav) ? array() : $nav;
         $parent = array_value_of('parent', $nav, $parent);
-        $candidates = $this->navService->candidate_parent($id, $parent);
+        $candidates = $this->navService->candidateParent($id, $parent);
         $nav['candidates'] = $candidates;
         $nav['id'] = $id;
         $nav['parent'] = $parent;
@@ -77,9 +77,9 @@ class Navigator extends AbstractController
      */
     public function maintain()
     {
-        $cat = $this->_post();
+        $cat = $this->postParams();
 
-        $this->model->insert_or_update($cat);
+        $this->model->insertOrUpdate($cat);
         $this->cacheService->clean();
 
         $this->redirect('admin/nav/list');
@@ -91,9 +91,9 @@ class Navigator extends AbstractController
      */
     public function delete()
     {
-        $ids = $this->_post_array();
+        $ids = $this->postBody();
         foreach ($ids as $id) {
-            $this->model->delete_recursively($id);
+            $this->model->deleteRecursively($id);
         }
         $this->cacheService->clean();
         echo true;
@@ -104,11 +104,11 @@ class Navigator extends AbstractController
      * 调整排序
      * @param $id int 记录ID
      */
-    public function change_order($id)
+    public function changeOrder(int $id)
     {
-        $step = $this->_post_body();
+        $step = $this->postBody();
         $this->cacheService->clean();
-        echo $this->model->change_order($id, $step);
+        echo $this->model->changeOrder($id, $step);
     }
 
 
@@ -117,7 +117,7 @@ class Navigator extends AbstractController
      */
     public function candidates()
     {
-        $data = $this->navService->candidate_tree();
+        $data = $this->navService->candidateTree();
         $this->renderJson($data);
     }
 

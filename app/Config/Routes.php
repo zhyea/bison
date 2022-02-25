@@ -16,7 +16,6 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * Router Setup
  * --------------------------------------------------------------------
  */
-$routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Front/index');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
@@ -31,17 +30,37 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('', 'Front::index');
-$routes->get('login', 'admin/Admin::login');
-$routes->post('login/check', 'admin/Admin::loginCheck');
-$routes->get('admin/console', 'admin/Admin::index');
-$routes->get('admin/settings', 'admin/Settings::index');
-$routes->post('admin/settings/maintain', 'admin/Settings::maintain');
-$routes->get('admin/settings/delete/logo', 'admin/Settings::deleteLogo');
-$routes->get('admin/settings/delete/background', 'admin/Settings::deleteBg');
-$routes->get('admin/spt/list', 'admin/Script::list');
-$routes->get('admin/spt/data', 'admin/Script::data');
-$routes->add('admin/spt/edit/(:num)', 'admin/Script::edit/$1');
+
+$routes->setDefaultNamespace('App\Controllers\admin');
+// 前端
+$routes->get('/', 'Front::index', ['namespace' => 'App\Controllers']);
+// 登录
+$routes->get('login', 'Admin::login');
+$routes->post('login/check', 'Admin::loginCheck');
+// 系统设置
+$routes->get('admin/console', 'Admin::index');
+$routes->get('admin/settings', 'Settings::index');
+$routes->post('admin/settings/maintain', 'Settings::maintain');
+$routes->get('admin/settings/delete/logo', 'Settings::deleteLogo');
+$routes->get('admin/settings/delete/background', 'Settings::deleteBg');
+$routes->get('admin/spt/list', 'Script::list');
+$routes->get('admin/spt/data', 'Script::data');
+$routes->get('admin/spt/edit/(:num)', 'Script::edit/$1');
+$routes->post('admin/spt/maintain', 'Script::maintain');
+$routes->get('admin/spt/delete/(:num)', 'Script::delete/$1');
+$routes->get('admin/nav/list', 'Navigator::list/0/0');
+$routes->get('admin/nav/list/(:num)', 'Navigator::list/$1/0');
+$routes->get('admin/nav/list/(:num)/(:num)', 'Navigator::list/$1/$2');
+$routes->get('admin/nav/settings/(:num)', 'Navigator::settings/$1');
+$routes->get('admin/nav/settings/(:num)/(:num)', 'Navigator::settings/$1/$2');
+$routes->post('admin/nav/candidates', 'Navigator::candidates');
+// 内容管理
+$routes->get('admin/user/list', 'User::list');
+$routes->get('admin/user/data', 'User::data');
+$routes->get('admin/user/settings/(:num)', 'User::settings/$1');
+$routes->get('admin/user/settings', 'User::settings/0');
+$routes->post('admin/user/maintain', 'User::maintain');
+$routes->post('admin/user/delete', 'User::delete');
 
 /*
  * --------------------------------------------------------------------
