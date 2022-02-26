@@ -35,6 +35,7 @@
 
 </div>
 
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
     // 删除按钮事件

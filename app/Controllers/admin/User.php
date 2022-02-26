@@ -4,6 +4,7 @@ namespace App\Controllers\admin;
 
 
 use App\Models\UserModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class User extends AbstractAdmin
 {
@@ -25,7 +26,7 @@ class User extends AbstractAdmin
      *
      * @param $id int 用户ID
      */
-    public function settings($id = 0)
+    public function settings(int $id = 0)
     {
         $user = $this->model->getById($id);
         $user = empty($user) ? array() : $user;
@@ -46,7 +47,7 @@ class User extends AbstractAdmin
     /**
      * 用户信息维护
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
         $data = $this->postParams();
         $username = $data['username'];

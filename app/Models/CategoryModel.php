@@ -20,7 +20,7 @@ class CategoryModel extends BaseModel
      * @param int $parent 父ID
      * @return array 分类数据
      */
-    public function findByParent(int $parent)
+    public function findByParent(int $parent): array
     {
         return $this->asArray()
             ->where('parent', $parent)
@@ -34,7 +34,7 @@ class CategoryModel extends BaseModel
      * @param int $parent 父ID
      * @return int 统计结果
      */
-    public function countByParent(int $parent)
+    public function countByParent(int $parent): int
     {
         return $this->countBy(array('parent' => $parent));
     }
@@ -47,7 +47,7 @@ class CategoryModel extends BaseModel
      *
      * @return bool 更新是否成功
      */
-    public function changeOrder(int $id, int $step)
+    public function changeOrder(int $id, int $step): bool
     {
         try {
             return $this->update($id, array('sn' => 'sn+' . $step));
@@ -62,7 +62,7 @@ class CategoryModel extends BaseModel
      * @param string $keyword 关键字
      * @return array 查询结果
      */
-    public function suggest(string $keyword)
+    public function suggest(string $keyword): array
     {
         return $this->asArray()
             ->select(array('id', 'name', 'slug'))
@@ -87,7 +87,7 @@ class CategoryModel extends BaseModel
     /**
      * 查询全部分类信息
      */
-    public function all()
+    public function all(): array
     {
         return $this->asArray()
             ->orderBy('sn', 'desc')

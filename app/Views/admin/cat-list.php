@@ -1,4 +1,3 @@
-
 <div class="container main">
 	
 	<div class="page-header">
@@ -39,6 +38,7 @@
 </div>
 
 
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
 

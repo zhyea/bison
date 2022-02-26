@@ -1,7 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
 
 
 <script charset="utf-8" src="https://cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
@@ -66,7 +62,6 @@ include_once 'common/navigator.php';
 </div>
 
 
-<?php include_once 'common/footer.php'; ?>
 
 <script charset="utf-8" src="<?= $uri_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>

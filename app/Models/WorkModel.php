@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+use ReflectionException;
+
 class WorkModel extends BaseModel
 {
 
@@ -12,12 +14,18 @@ class WorkModel extends BaseModel
      * 修改分类
      * @param int $oldCat 原分类ID
      * @param int $newCat 新分类ID
-     * @return false|int|string[] 更新数量
+     * @return bool 更新数量
      */
-    public function changeCategory(int $oldCat, int $newCat)
+    public function changeCategory(int $oldCat, int $newCat): bool
     {
-        return $this->where('category_id', $oldCat)
-            ->updateBatch(array('category_id', $newCat));
+        try {
+            return $this->protect(false)
+                ->where('category_id', $oldCat)
+                ->set('category_id', $newCat)
+                ->update();
+        } catch (ReflectionException $e) {
+            return false;
+        }
     }
 
 
@@ -53,7 +61,7 @@ class WorkModel extends BaseModel
                               string $sort = 'w.id',
                               string $order = 'DESC',
                               int $offset = 0,
-                              int $limit = 18)
+                              int $limit = 18): array
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat', 'c.slug as cat_slug'))
@@ -74,7 +82,7 @@ class WorkModel extends BaseModel
      * @param string $search 关键词
      * @return int 作品总数
      */
-    public function countWorks(string $search)
+    public function countWorks(string $search): int
     {
         $obj = $this->asObject()
             ->selectCount('count(w.id) as cnt')
@@ -103,7 +111,7 @@ class WorkModel extends BaseModel
                                    string $sort = 'w.id',
                                    string $order = 'DESC',
                                    int $offset = 0,
-                                   int $limit = 18)
+                                   int $limit = 18): array
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat', 'c.slug as cat_slug'))
@@ -121,7 +129,7 @@ class WorkModel extends BaseModel
      * @param int $authorId 作者ID
      * @return int 作品总数
      */
-    public function countWithAuthor(int $authorId)
+    public function countWithAuthor(int $authorId): int
     {
         $obj = $this->asObject()
             ->selectCount('count(w.id) as cnt')
@@ -192,7 +200,7 @@ class WorkModel extends BaseModel
      * @param int $catId 分类ID
      * @return int 分类下的作品总数
      */
-    public function countWithCat(int $catId)
+    public function countWithCat(int $catId): int
     {
         return $this->countBy(array('category_id' => $catId));
     }
@@ -214,11 +222,11 @@ class WorkModel extends BaseModel
      * @param int $workId 作品ID
      * @return bool 是否更新成功
      */
-    public function addSn(int $workId)
+    public function addSn(int $workId): bool
     {
         try {
             return $this->update($workId, array('sn' => 'sn+1'));
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             return false;
         }
     }

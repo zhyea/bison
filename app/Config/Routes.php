@@ -38,6 +38,7 @@ $routes->get('/', 'Front::index', ['namespace' => 'App\Controllers']);
 $routes->get('login', 'Admin::login');
 $routes->post('login/check', 'Admin::loginCheck');
 // 系统设置
+$routes->get('adm', 'Admin::index');
 $routes->get('admin/console', 'Admin::index');
 $routes->get('admin/settings', 'Settings::index');
 $routes->post('admin/settings/maintain', 'Settings::maintain');
@@ -61,6 +62,13 @@ $routes->get('admin/user/settings/(:num)', 'User::settings/$1');
 $routes->get('admin/user/settings', 'User::settings/0');
 $routes->post('admin/user/maintain', 'User::maintain');
 $routes->post('admin/user/delete', 'User::delete');
+$routes->get('admin/category/list', 'Category::list/0/0');
+$routes->get('admin/category/list/(:num)', 'Category::list/$1/0');
+$routes->get('admin/category/list/(:num)/(:num)', 'Category::list/$1/$2');
+$routes->get('admin/category/data/(:num)', 'Category::data/$1');
+$routes->get('admin/category/settings/(:num)/(:num)', 'category::settings/$1/$2');
+$routes->post('admin/category/maintain', 'Category::maintain');
+$routes->post('admin/category/delete', 'Category::delete');
 
 /*
  * --------------------------------------------------------------------

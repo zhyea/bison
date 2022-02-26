@@ -5,6 +5,7 @@ namespace App\Controllers\admin;
 
 use App\Models\CategoryModel;
 use App\Services\CategoryService;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Category extends AbstractAdmin
 {
@@ -29,7 +30,7 @@ class Category extends AbstractAdmin
      * @param $id int 分类ID
      * @param $parent int 父分类ID
      */
-    public function list($id = 0, $parent = 0)
+    public function list(int $id = 0, int $parent = 0)
     {
         $cat = $this->model->getById($id);
         $title = '分类列表';
@@ -37,7 +38,7 @@ class Category extends AbstractAdmin
             $title = $title . '-' . $cat['name'];
             $parent = $cat['parent'];
         }
-        $this->adminView('cat-list', array('id' => $id, 'parent' => $parent, 'header_title' => $title), $title);
+        $this->adminView('cat-list', array('id' => $id, 'parent' => $parent, 'headerTitle' => $title), $title);
     }
 
 
@@ -45,7 +46,7 @@ class Category extends AbstractAdmin
      * 获取父分类数据
      * @param $parent int 分父类ID
      */
-    public function data($parent = 0)
+    public function data(int $parent = 0)
     {
         $data = $this->service->listData($parent);
         $this->renderJson($data);
@@ -57,7 +58,7 @@ class Category extends AbstractAdmin
      * @param $id int 分类ID
      * @param $parent int 分类父ID
      */
-    public function settings($id = 0, $parent = 0)
+    public function settings(int $id = 0, int $parent = 0)
     {
         $cat = $this->model->getById($id);
         $parent = empty($cat) ? $parent : $cat['parent'];
@@ -73,13 +74,13 @@ class Category extends AbstractAdmin
     /**
      * 分类信息维护
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
         $cat = $this->postParams();
 
         $this->model->insertOrUpdate($cat);
 
-        $this->redirect('admin/category/list');
+        return $this->redirect('admin/category/list');
     }
 
 

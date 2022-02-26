@@ -26,7 +26,7 @@ class CategoryService
      * @param int $parent 父ID
      * @return array 子元素数据
      */
-    public function listData(int $parent)
+    public function listData(int $parent): array
     {
         $children = $this->catModel->findByParent($parent);
         if (empty($children)) {
@@ -47,7 +47,7 @@ class CategoryService
      * @param int $parent 分类父ID
      * @return array 获取备选父分类集合
      */
-    public function candidates(int $id, int $parent = 0)
+    public function candidates(int $id, int $parent = 0): array
     {
         $all = $this->catModel->findAll();
         $result = array();
@@ -69,7 +69,7 @@ class CategoryService
      * @param int $rootId 分类ID
      * @return bool 是否删除成功
      */
-    public function deleteRecursively(int $rootId)
+    public function deleteRecursively(int $rootId): bool
     {
 
         $ids = $this->catModel->offspringIds($rootId);

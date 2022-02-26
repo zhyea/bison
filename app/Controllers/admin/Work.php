@@ -69,7 +69,7 @@ class Work extends AbstractController
 
         if (!empty($w) && !empty($w['cover'])) {
             $path = $w['cover'];
-            if (!empty($path) && !(strstr($path, 'nocover.png'))) {
+            if (!empty($path) && !(strstr($path, 'default/nocover.png'))) {
                 del_upload_file($path);
             }
             $w['cover'] = '';
@@ -107,14 +107,14 @@ class Work extends AbstractController
         if ($cover[0]) {
             if (!empty($data['former_cover'])) {
                 $former_cover = $data['former_cover'];
-                if (strcmp($former_cover, 'nocover.png') != 0) {
+                if (strcmp($former_cover, 'default/nocover.png') != 0) {
                     del_upload_file($data['former_cover']);
                 }
             }
             $data['cover'] = $cover[1];
         }
         if (empty($data['cover']) && empty($data['former_cover'])) {
-            $data['cover'] = 'nocover.png';
+            $data['cover'] = 'default/nocover.png';
         }
         $data = array_key_rm('cat', $data);
         $data = array_key_rm('author', $data);

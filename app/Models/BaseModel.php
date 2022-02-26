@@ -83,7 +83,7 @@ class BaseModel extends Model
      * @param array $params 查询参数
      * @return int 统计结果
      */
-    function countBy(array $params)
+    function countBy(array $params): int
     {
         $db = $this->asObject()
             ->selectCount('id', 'cnt');
@@ -102,7 +102,7 @@ class BaseModel extends Model
      * @param string $parentColumn 父ID字段
      * @return array ID及后代ID集合
      */
-    function offspringIds($rootId, string $idColumn = 'id', string $parentColumn = 'parent')
+    function offspringIds($rootId, string $idColumn = 'id', string $parentColumn = 'parent'): array
     {
         $result = array($rootId);
         $r = $this->asArray()
@@ -138,7 +138,7 @@ class BaseModel extends Model
      * @param array $arr 记录对应的数组
      * @return bool 是否更新成功
      */
-    public function updateById(array $arr)
+    public function updateById(array $arr): bool
     {
         if (!empty($arr['id'])) {
             try {
@@ -192,9 +192,9 @@ class BaseModel extends Model
     /**
      * 根据ID执行删除
      * @param int $id 记录ID
-     * @return bool|string 是否删除成功
+     * @return bool 是否删除成功
      */
-    public function deleteById(int $id)
+    public function deleteById(int $id): bool
     {
         return $this->delete(array('id' => $id));
     }
@@ -203,12 +203,12 @@ class BaseModel extends Model
     /**
      * 根据ID执行删除
      * @param array $ids id集合
-     * @return bool|string 是否删除成功
+     * @return bool 是否删除成功
      */
-    public function deleteByIds(array $ids)
+    public function deleteByIds(array $ids): bool
     {
         $this->whereIn('id', $ids);
-        return $this->delete();
+        return $this->protect(false)->delete();
     }
 
 
@@ -216,7 +216,7 @@ class BaseModel extends Model
      * 查询数据库中的全部记录
      * @return array 全部记录
      */
-    public function findFull()
+    public function findFull(): array
     {
         return $this->asArray()
             ->orderBy('id', 'desc')
