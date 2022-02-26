@@ -1,12 +1,13 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\AuthorModel;
 use App\Models\WorkModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
-class Author extends AbstractController
+class Author extends AbstractAdmin
 {
 
 
@@ -35,10 +36,10 @@ class Author extends AbstractController
      */
     public function data()
     {
-        $all = $this->authorModel->find_all();
+        $all = $this->authorModel->findAll();
         foreach ($all as &$a) {
             $id = $a['id'];
-            $cnt = $this->workModel->count_with_author($id);
+            $cnt = $this->workModel->countWithAuthor($id);
             $a['work_count'] = $cnt;
         }
         $this->renderJson($all);
@@ -49,12 +50,12 @@ class Author extends AbstractController
      * 执行删除操作
      * @param $id int 记录ID
      */
-    public function delete($id)
+    public function delete(int $id): RedirectResponse
     {
         if ($id > 1) {
-            $this->authorModel->delete_by_id($id);
+            $this->authorModel->deleteById($id);
         }
-        $this->redirect('admin/author/list');
+        return $this->redirect('admin/author/list');
     }
 
 
@@ -62,11 +63,11 @@ class Author extends AbstractController
      * 进入编辑页
      * @param $id int 记录ID
      */
-    public function settings($id = 0)
+    public function settings(int $id = 0)
     {
         $s = array('id' => $id);
         if ($id > 0) {
-            $s = $this->authorModel->get_by_id($id);
+            $s = $this->authorModel->getById($id);
         }
         $this->adminView('author-settings', $s, empty($s) ? '新增作者' : '编辑作者信息');
     }
@@ -75,11 +76,11 @@ class Author extends AbstractController
     /**
      * 维护脚本信息
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
-        $data = $this->_post();
-        $this->authorModel->insert_or_update($data);
-        $this->redirect('admin/author/list');
+        $data = $this->postParams();
+        $this->authorModel->insertOrUpdate($data);
+        return $this->redirect('admin/author/list');
     }
 
 
@@ -97,13 +98,13 @@ class Author extends AbstractController
 
     /**
      * 根据作者ID查询作品信息
-     * @param $author_id int 作者ID
+     * @param $authorId int 作者ID
      */
-    public function works($author_id)
+    public function works(int $authorId): RedirectResponse
     {
-        $author = $this->authorModel->get_by_id($author_id);
+        $author = $this->authorModel->getById($authorId);
         if (empty($author)) {
-            $this->redirect('admin/author/list');
+            return $this->redirect('admin/author/list');
         }
         $this->adminView('author-works', $author, $author['name'] . '作品列表');
     }

@@ -112,7 +112,7 @@ class BaseModel extends Model
         foreach ($r as $i) {
             $id = $i[$idColumn];
             array_push($result, $id);
-            $childrenIds = $this->offspringIds($id, $parentColumn);
+            $childrenIds = $this->offspringIds($id, $idColumn, $parentColumn);
             if (empty($childrenIds)) {
                 continue;
             }

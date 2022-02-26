@@ -67,8 +67,10 @@ $routes->get('admin/category/list/(:num)', 'Category::list/$1/0');
 $routes->get('admin/category/list/(:num)/(:num)', 'Category::list/$1/$2');
 $routes->get('admin/category/data/(:num)', 'Category::data/$1');
 $routes->get('admin/category/settings/(:num)/(:num)', 'category::settings/$1/$2');
+$routes->get('admin/category/settings/(:num)', 'category::settings/$1/0');
 $routes->post('admin/category/maintain', 'Category::maintain');
 $routes->post('admin/category/delete', 'Category::delete');
+$routes->post('admin/category/change-order/(:num)', 'Category::changeOrder/$1');
 
 /*
  * --------------------------------------------------------------------

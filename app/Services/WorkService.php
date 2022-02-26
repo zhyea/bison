@@ -56,7 +56,7 @@ class WorkService extends BaseService
      * @param array $con 查询条件
      * @return array 查询结果
      */
-    public function findWorks(array $con)
+    public function findWorks(array $con): array
     {
         $search = '%' . $con['search'] . '%';
         $sort = $con['sort'];
@@ -74,7 +74,7 @@ class WorkService extends BaseService
      * @param int $id 记录ID
      * @return array 记录信息
      */
-    public function get(int $id)
+    public function get(int $id): array
     {
         if ($id <= 0) {
             return array();
@@ -101,7 +101,7 @@ class WorkService extends BaseService
      * @param int $id 作品ID
      * @return array 作品信息
      */
-    public function getWork(int $id)
+    public function getWork(int $id): array
     {
         return $this->workModel->getWork($id);
     }
@@ -113,7 +113,7 @@ class WorkService extends BaseService
      * @param int $page 页码
      * @return array 结果
      */
-    public function findWithCat(string $catSlug, int $page)
+    public function findWithCat(string $catSlug, int $page): array
     {
         $cat = $this->catModel->getBySlug($catSlug);
         if (empty($cat)) {
@@ -144,7 +144,7 @@ class WorkService extends BaseService
      * @param int $page 页数
      * @return array 作者作品信息
      */
-    public function findWithFeature(string $featureAlias, int $page)
+    public function findWithFeature(string $featureAlias, int $page): array
     {
         $f = $this->featureModel->getByAlias($featureAlias);
         if (empty($f)) {
@@ -183,7 +183,7 @@ class WorkService extends BaseService
      * @param int $page 页数
      * @return array 作者作品信息
      */
-    public function findWithAuthor(int $authorId, int $page)
+    public function findWithAuthor(int $authorId, int $page): array
     {
         $author = $this->authorModel->getById($authorId);
         if (empty($author)) {
@@ -212,7 +212,7 @@ class WorkService extends BaseService
      * @param array $con 条件集合
      * @return array 作者作品信息
      */
-    public function findWithAuthorCon(int $authorId, array $con)
+    public function findWithAuthorCon(int $authorId, array $con): array
     {
         $sort = $con['sort'];
         $order = $con['order'];
@@ -230,7 +230,7 @@ class WorkService extends BaseService
      * @param array $con 条件集合
      * @return array 作者作品信息
      */
-    public function findWithFeatureCon(string $featureAlias, array $con)
+    public function findWithFeatureCon(string $featureAlias, array $con): array
     {
         $sort = $con['sort'];
         $order = $con['order'];
@@ -246,7 +246,7 @@ class WorkService extends BaseService
      * @param string $keywords 关键字
      * @return array 作品集合
      */
-    public function findWithKeywords(string $keywords)
+    public function findWithKeywords(string $keywords): array
     {
         $keywords = empty($keywords) ? '' : $keywords;
         return $this->workModel->findWorks($keywords);
@@ -259,7 +259,7 @@ class WorkService extends BaseService
      * @param int $authorId 作者ID
      * @return array 相关作品
      */
-    public function relate(int $workId, int $authorId)
+    public function relate(int $workId, int $authorId): array
     {
         $works = $this->workModel->findWithAuthor($authorId);
         $result = array();
@@ -278,7 +278,7 @@ class WorkService extends BaseService
      * @param string $name 作品名称
      * @return array|null 作品信息
      */
-    public function getByName(string $name)
+    public function getByName(string $name): ?array
     {
         if (empty($name)) {
             return null;

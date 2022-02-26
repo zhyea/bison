@@ -1,13 +1,15 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\WorkModel;
 use App\Services\WorkService;
+use CodeIgniter\HTTP\RedirectResponse;
+use ReflectionException;
 
 
-class Work extends AbstractController
+class Work extends AbstractAdmin
 {
 
 
@@ -40,8 +42,8 @@ class Work extends AbstractController
      */
     public function data()
     {
-        $params = $this->_post_array();
-        $works = $this->workService->find_works($params);
+        $params = $this->postParams();
+        $works = $this->workService->findWorks($params);
         $this->renderJson($works);
     }
 
@@ -49,7 +51,7 @@ class Work extends AbstractController
      * 进入编辑页
      * @param $id int 记录ID
      */
-    public function settings($id = 0)
+    public function settings(int $id = 0)
     {
         $work = array('id' => $id);
         if ($id > 0) {
@@ -62,15 +64,16 @@ class Work extends AbstractController
     /**
      * 删除封面
      * @param $id int 专题ID
+     * @throws ReflectionException
      */
-    public function delete_cover($id)
+    public function deleteCover(int $id)
     {
-        $w = $this->workModel->get_by_id($id);
+        $w = $this->workModel->getById($id);
 
         if (!empty($w) && !empty($w['cover'])) {
             $path = $w['cover'];
             if (!empty($path) && !(strstr($path, 'default/nocover.png'))) {
-                del_upload_file($path);
+                $this->deleteUploadedFile($path);
             }
             $w['cover'] = '';
         }
@@ -86,13 +89,13 @@ class Work extends AbstractController
      */
     public function delete()
     {
-        $ids = $this->_post_array();
+        $ids = $this->postArray();
         foreach ($ids as $id) {
-            $data = $this->workModel->get_by_id($id);
+            $data = $this->workModel->getById($id);
             if (!empty($data['cover'])) {
-                del_upload_file($data['cover']);
+                $this->deleteUploadedFile($data['cover']);
             }
-            $this->workModel->delete_by_id($id);
+            $this->workModel->deleteById($id);
         }
         echo true;
     }
@@ -100,15 +103,15 @@ class Work extends AbstractController
     /**
      * 作品数据维护
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
-        $data = $this->_post();
-        $cover = $this->_upload('cover');
+        $data = $this->postBody();
+        $cover = $this->upload('cover');
         if ($cover[0]) {
             if (!empty($data['former_cover'])) {
-                $former_cover = $data['former_cover'];
-                if (strcmp($former_cover, 'default/nocover.png') != 0) {
-                    del_upload_file($data['former_cover']);
+                $formerCover = $data['former_cover'];
+                if (strcmp($formerCover, 'default/nocover.png') != 0) {
+                    $this->deleteUploadedFile($data['former_cover']);
                 }
             }
             $data['cover'] = $cover[1];
@@ -121,38 +124,37 @@ class Work extends AbstractController
         $data = array_key_rm('country', $data);
         $data = array_key_rm('former_cover', $data);
 
-        $this->workModel->insert_or_update($data);
+        $this->workModel->insertOrUpdate($data);
         $this->alertSuccess('维护作品信息成功');
-        $this->cacheService->clean();
 
         if (empty($data['id'])) {
-            $this->redirect('admin/work/list');
+            return $this->redirect('admin/work/list');
         } else {
-            $this->redirect('admin/work/settings/' . $data['id']);
+            return $this->redirect('admin/work/settings/' . $data['id']);
         }
     }
 
 
     /**
      * 获取作者作品信息
-     * @param $author_id int 作者ID
+     * @param $authorId int 作者ID
      */
-    public function author($author_id)
+    public function author(int $authorId)
     {
-        $params = $this->_post_array();
-        $works = $this->workService->find_with_author_con($author_id, $params);
+        $params = $this->postParams();
+        $works = $this->workService->findWithAuthorCon($authorId, $params);
         $this->renderJson($works);
     }
 
 
     /**
      * 获专题作品信息
-     * @param $feature_alias string 专题别名
+     * @param $featureAlias string 专题别名
      */
-    public function feature($feature_alias)
+    public function feature(string $featureAlias)
     {
-        $params = $this->_post_array();
-        $works = $this->workService->find_with_feature_con($feature_alias, $params);
+        $params = $this->postParams();
+        $works = $this->workService->findWithFeatureCon($featureAlias, $params);
         $this->renderJson($works);
     }
 
@@ -161,9 +163,9 @@ class Work extends AbstractController
      */
     public function suggest()
     {
-        $keywords = $_GET['key'];
+        $keywords = $this->getParam('key');
         $keywords = empty($keywords) ? '' : $keywords;
-        $data = $this->workService->find_with_keywords($keywords);
+        $data = $this->workService->findWithKeywords($keywords);
         $this->renderJson(array('key' => $keywords, 'value' => $data));
     }
 

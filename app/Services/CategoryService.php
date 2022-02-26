@@ -75,11 +75,11 @@ class CategoryService
         $ids = $this->catModel->offspringIds($rootId);
         $r = array();
         foreach ($ids as $id) {
-            if ($id == 1) {
-                continue;
-            }
             $this->workModel->changeCategory($id, 1);
             array_push($r, $id);
+        }
+        if (empty($r)) {
+            return false;
         }
         return $this->catModel->deleteByIds($r);
     }

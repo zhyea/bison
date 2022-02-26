@@ -13,7 +13,7 @@ class AuthorModel extends BaseModel
      * @param string $keywords 关键字
      * @return array 查询结果
      */
-    public function suggest(string $keywords)
+    public function suggest(string $keywords): array
     {
         return $this->asArray()
             ->like('name', $keywords)

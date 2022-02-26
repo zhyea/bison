@@ -50,7 +50,16 @@ class CategoryModel extends BaseModel
     public function changeOrder(int $id, int $step): bool
     {
         try {
-            return $this->update($id, array('sn' => 'sn+' . $step));
+            if (!is_int($step)) {
+                die();
+            }
+            $frag = 'sn+' . $step;
+            if ($step < 0) {
+                $frag = 'sn' . $step;
+            }
+            return $this->protect(false)
+                ->set('sn', $frag, false)
+                ->update($id);
         } catch (ReflectionException $e) {
             return false;
         }

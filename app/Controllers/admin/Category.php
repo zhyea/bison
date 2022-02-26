@@ -79,8 +79,9 @@ class Category extends AbstractAdmin
         $cat = $this->postParams();
 
         $this->model->insertOrUpdate($cat);
+        $parent = $cat['parent'];
 
-        return $this->redirect('admin/category/list');
+        return $this->redirect('admin/category/list/' . $parent);
     }
 
 
@@ -91,6 +92,9 @@ class Category extends AbstractAdmin
     {
         $ids = $this->postBody();
         foreach ($ids as $id) {
+            if ($id == 1) {
+                continue;
+            }
             $this->service->deleteRecursively($id);
         }
         echo true;
