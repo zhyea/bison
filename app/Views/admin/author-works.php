@@ -1,42 +1,44 @@
 <div class="container main">
 
-    <div class="page-header">
-        <h3><i class="glyphicon glyphicon-pencil"></i> <strong><?= ($name) ?></strong>作品列表</h3>
-    </div>
+	<div class="page-header">
+		<h3><i class="glyphicon glyphicon-pencil"></i> <strong><?= ($name) ?></strong>作品列表</h3>
+	</div>
 
-    <div id="navigatorTableToolbar">
-        <div class="btn-group">
-            <a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> 删除</a>
-            <a class="btn btn-default" href="<?= $siteUrl ?>/admin/author/list">
-                <i class="glyphicon glyphicon-chevron-left"></i> 作者列表
-            </a>
-        </div>
-    </div>
-    <table id="authorWorkTable"
-           data-toggle="table"
-           data-show-search-clear-button="true"
-           data-search-align="left"
-           data-classes="table table-hover table-borderless"
-           data-toolbar="#navigatorTableToolbar"
-           data-click-to-select="true"
-           data-sort-name="id"
-           data-sort-order="desc"
-           data-url="<?= $siteUrl ?>/admin/work/author/<?= $id ?>"
-           data-method="post"
-           data-side-pagination='server'
-           data-pagination=true
-           data-page-size=30
-           data-page-list=[15,30,50,All]>
-        <thead>
-        <tr>
-            <th data-align="center" data-checkbox="true"></th>
-            <th data-align="left" data-sortable="true" data-field="name">作品</th>
-            <th data-align="left" data-sortable="false" data-field="cat">分类</th>
-            <th data-align="center" data-sortable="false" data-formatter="operateFormatter">章节</th>
-        </tr>
-        </thead>
-    </table>
+	<div id="navigatorTableToolbar">
+		<div class="btn-group">
+			<a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> 删除</a>
+			<a class="btn btn-default" href="<?= $siteUrl ?>/admin/author/list">
+				<i class="glyphicon glyphicon-chevron-left"></i> 作者列表
+			</a>
+		</div>
+	</div>
+	<table id="authorWorkTable"
+	       data-toggle="table"
+	       data-show-search-clear-button="true"
+	       data-search-align="left"
+	       data-classes="table table-hover table-borderless"
+	       data-toolbar="#navigatorTableToolbar"
+	       data-click-to-select="true"
+	       data-sort-name="id"
+	       data-sort-order="desc"
+	       data-url="<?= $siteUrl ?>/admin/work/author/<?= $id ?>"
+	       data-method="post"
+	       data-side-pagination='server'
+	       data-pagination=true
+	       data-page-size=30
+	       data-page-list=[15,30,50,All]>
+		<thead>
+		<tr>
+			<th data-align="center" data-checkbox="true"></th>
+			<th data-align="left" data-sortable="true" data-field="name">作品</th>
+			<th data-align="left" data-sortable="false" data-field="cat">分类</th>
+			<th data-align="center" data-sortable="false" data-formatter="operateFormatter">章节</th>
+		</tr>
+		</thead>
+	</table>
 </div>
+
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
     let $table = $('#authorWorkTable');

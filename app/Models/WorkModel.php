@@ -38,7 +38,7 @@ class WorkModel extends BaseModel
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat', 'c.slug as cat_slug'))
-            ->from('work as w')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('category as c', 'w.category_id=c.id', 'LEFT')
             ->where('w.id', $workId)
@@ -65,7 +65,7 @@ class WorkModel extends BaseModel
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat', 'c.slug as cat_slug'))
-            ->from('work as w')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('category as c', 'w.category_id=c.id', 'LEFT')
             ->like('w.name', $search)
@@ -85,8 +85,8 @@ class WorkModel extends BaseModel
     public function countWorks(string $search): int
     {
         $obj = $this->asObject()
-            ->selectCount('count(w.id) as cnt')
-            ->from('work as w')
+            ->selectCount('w.id', 'cnt')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('category as c', 'w.category_id=c.id', 'LEFT')
             ->like('w.name', $search)
@@ -115,7 +115,7 @@ class WorkModel extends BaseModel
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat', 'c.slug as cat_slug'))
-            ->from('work as w')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('category as c', 'w.category_id=c.id', 'LEFT')
             ->where('w.author_id', $authorId)
@@ -132,8 +132,8 @@ class WorkModel extends BaseModel
     public function countWithAuthor(int $authorId): int
     {
         $obj = $this->asObject()
-            ->selectCount('count(w.id) as cnt')
-            ->from('work as w')
+            ->selectCount('w.id', 'cnt')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('category as c', 'w.category_id=c.id', 'LEFT')
             ->where('w.author_id', $authorId)
@@ -159,7 +159,7 @@ class WorkModel extends BaseModel
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'r.id as record_id'))
-            ->from('work as w')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('feature_record as r', 'w.id=r.work_id', 'RIGHT')
             ->join('feature as f', 'r.feature_id=f.id', 'LEFT')
@@ -186,7 +186,7 @@ class WorkModel extends BaseModel
     {
         return $this->asArray()
             ->select(array('w.id', 'w.name', 'w.cover', 'w.brief', 'a.name as author', 'a.id as author_id', 'c.name as cat'))
-            ->from('work as w')
+            ->from('work as w', true)
             ->join('author as a', 'w.author_id=a.id', 'LEFT')
             ->join('category as c', 'w.category_id=c.id', 'LEFT')
             ->where('w.category_id', $catId)
@@ -225,7 +225,9 @@ class WorkModel extends BaseModel
     public function addSn(int $workId): bool
     {
         try {
-            return $this->update($workId, array('sn' => 'sn+1'));
+            return $this->protect(false)
+                ->set('sn', 'sn+1', false)
+                ->update($workId);
         } catch (ReflectionException $e) {
             return false;
         }

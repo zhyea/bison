@@ -141,7 +141,7 @@ class Work extends AbstractAdmin
      */
     public function author(int $authorId)
     {
-        $params = $this->postParams();
+        $params = $this->postBody();
         $works = $this->workService->findWithAuthorCon($authorId, $params);
         $this->renderJson($works);
     }

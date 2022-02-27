@@ -3,19 +3,16 @@
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\FeatureModel;
 use App\Models\FeatureRecordModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 
-class Feature extends AbstractController
+class Feature extends AbstractAdmin
 {
 
     private $featureModel;
-
     private $recordModel;
-
-    private $cacheService;
 
     public function __construct()
     {
@@ -52,13 +49,12 @@ class Feature extends AbstractController
      * 执行删除操作
      * @param $id int 记录ID
      */
-    public function delete(int $id)
+    public function delete(int $id): RedirectResponse
     {
         if ($id > 1) {
             $this->featureModel->deleteById($id);
         }
-        $this->cacheService->clean();
-        $this->redirect('admin/feature/list');
+        return $this->redirect('admin/feature/list');
     }
 
 
@@ -79,36 +75,35 @@ class Feature extends AbstractController
     /**
      * 维护脚本信息
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
-        $data = $this->_post();
+        $data = $this->postParams();
 
-        $cover = $this->_upload('cover');
+        $cover = $this->upload('cover');
         if ($cover[0]) {
-            if (!empty($data['former_cover'])) {
-                del_upload_file($data['former_cover']);
+            if (!empty($data['formerCover'])) {
+                $this->deleteUploadedFile($data['formerCover']);
             }
             $data['cover'] = $cover[1];
         }
-        $data = array_key_rm('former_cover', $data);
+        $data = array_key_rm('formerCover', $data);
 
-        $background = $this->_upload('background');
+        $background = $this->upload('background');
         if ($background[0]) {
-            if (!empty($data['former_background'])) {
-                del_upload_file($data['former_background']);
+            if (!empty($data['formerBackground'])) {
+                $this->deleteUploadedFile($data['formerBackground']);
             }
             $data['background'] = $background[1];
         }
-        $data = array_key_rm('former_background', $data);
+        $data = array_key_rm('formerBackground', $data);
 
         $this->featureModel->insertOrUpdate($data);
-        $this->cacheService->clean();
 
         $this->alertSuccess('维护专题信息成功');
         if (empty($data['id'])) {
-            $this->redirect('admin/feature/list');
+            return $this->redirect('admin/feature/list');
         } else {
-            $this->redirect('admin/feature/settings/' . $data['id']);
+            return $this->redirect('admin/feature/settings/' . $data['id']);
         }
     }
 
@@ -117,14 +112,13 @@ class Feature extends AbstractController
      * 删除封面
      * @param $id int 专题ID
      */
-    public function deleteCover(int $id)
+    public function deleteCover(int $id): RedirectResponse
     {
         $f = $this->featureModel->getById($id);
-        $this->_delete_file($f, 'cover');
+        $this->deleteFeatureFile($f, 'cover');
         $this->featureModel->updateById($f);
-        $this->cacheService->clean();
         $this->alertSuccess('删除封面成功');
-        $this->redirect('admin/feature/settings/' . $id);
+        return $this->redirect('admin/feature/settings/' . $id);
     }
 
 
@@ -132,14 +126,13 @@ class Feature extends AbstractController
      * 删除背景图
      * @param $id int 专题ID
      */
-    public function deleteBg(int $id)
+    public function deleteBg(int $id): RedirectResponse
     {
         $f = $this->featureModel->getById($id);
-        $this->_delete_file($f, 'background');
+        $this->deleteFeatureFile($f, 'background');
         $this->featureModel->updateById($f);
-        $this->cacheService->clean();
         $this->alertSuccess('删除背景图成功');
-        $this->redirect('admin/feature/settings/' . $id);
+        return $this->redirect('admin/feature/settings/' . $id);
     }
 
 
@@ -148,11 +141,11 @@ class Feature extends AbstractController
      * @param $f array 记录数组
      * @param $target string 上传文件字段
      */
-    private function _delete_file(array &$f, string $target)
+    private function deleteFeatureFile(array &$f, string $target)
     {
         if (!empty($f) && !empty($f[$target])) {
             $path = $f[$target];
-            del_upload_file($path);
+            $this->deleteUploadedFile($path);
             $f[$target] = '';
         }
     }
@@ -162,13 +155,14 @@ class Feature extends AbstractController
      * 专题作品列表页
      * @param $featureId int 专题ID
      */
-    public function records(int $featureId)
+    public function records(int $featureId): RedirectResponse
     {
         $f = $this->featureModel->getById($featureId);
         if (empty($f)) {
-            $this->redirect('admin/feature/list');
+            return $this->redirect('admin/feature/list');
         } else {
             $this->adminView('feature-records', $f, $f['name'] . '作品列表');
+            die();
         }
     }
 
@@ -189,7 +183,7 @@ class Feature extends AbstractController
      */
     public function deleteRecords()
     {
-        $ids = $this->_post_array();
+        $ids = $this->postBody();
         $this->recordModel->deleteByIds($ids);
         echo true;
     }
@@ -201,7 +195,7 @@ class Feature extends AbstractController
      */
     public function changeRecordOrder(int $id)
     {
-        $step = $this->_post_body();
+        $step = $this->postBody();
         echo $this->recordModel->changeOrder($id, $step);
     }
 }

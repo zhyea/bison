@@ -1,8 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
-
 
 <div class="container main">
 	<div class="page-header">
@@ -44,7 +39,7 @@ include_once 'common/navigator.php';
 	</table>
 </div>
 
-<?php include_once 'common/footer.php'; ?>
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
     function nameFormatter(value, row, index) {

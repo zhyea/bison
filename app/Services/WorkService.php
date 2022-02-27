@@ -219,7 +219,7 @@ class WorkService extends BaseService
         $offset = $con['offset'];
         $limit = $con['limit'];
         $rows = $this->workModel->findWithAuthor($authorId, $sort, $order, $offset, $limit);
-        $total = $this->workModel->countWorks($authorId);
+        $total = $this->workModel->countWithAuthor($authorId);
         return array('total' => $total, 'rows' => $rows);
     }
 

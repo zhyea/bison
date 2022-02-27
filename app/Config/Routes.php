@@ -66,11 +66,25 @@ $routes->get('admin/category/list', 'Category::list/0/0');
 $routes->get('admin/category/list/(:num)', 'Category::list/$1/0');
 $routes->get('admin/category/list/(:num)/(:num)', 'Category::list/$1/$2');
 $routes->get('admin/category/data/(:num)', 'Category::data/$1');
-$routes->get('admin/category/settings/(:num)/(:num)', 'category::settings/$1/$2');
-$routes->get('admin/category/settings/(:num)', 'category::settings/$1/0');
+$routes->get('admin/category/settings/(:num)/(:num)', 'Category::settings/$1/$2');
+$routes->get('admin/category/settings/(:num)', 'Category::settings/$1/0');
 $routes->post('admin/category/maintain', 'Category::maintain');
 $routes->post('admin/category/delete', 'Category::delete');
 $routes->post('admin/category/change-order/(:num)', 'Category::changeOrder/$1');
+$routes->get('admin/author/list', 'Author::list');
+$routes->post('admin/author/data', 'Author::data');
+$routes->get('admin/author/settings', 'Author::settings/0');
+$routes->get('admin/author/settings/(:num)', 'Author::settings/$1');
+$routes->post('admin/author/maintain', 'Author::maintain');
+$routes->get('admin/author/delete/(:num)', 'Author::delete/$1');
+$routes->get('admin/author/works/(:num)', 'Author::works/$1');
+$routes->post('admin/work/author/(:num)', 'Work::author/$1');
+$routes->get('admin/feature/list', 'Feature::list');
+$routes->get('admin/feature/data', 'Feature::data');
+$routes->get('admin/feature/settings/(:num)', 'Feature::settings/$1');
+$routes->get('admin/feature/delete/cover/(:num)', 'Feature::deleteCover/$1');
+$routes->get('admin/feature/delete/bg/(:num)', 'Feature::deleteBg/$1');
+$routes->post('admin/feature/maintain', 'Feature::maintain');
 
 /*
  * --------------------------------------------------------------------

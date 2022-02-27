@@ -15,7 +15,7 @@ class FeatureRecordModel extends BaseModel
      * @param int $featureId 专题ID
      * @return int 专题作品数量
      */
-    public function countWithFeature(int $featureId)
+    public function countWithFeature(int $featureId): int
     {
         return $this->countBy(array('feature_id' => $featureId));
     }
@@ -26,7 +26,7 @@ class FeatureRecordModel extends BaseModel
      * @param string $alias 专题别名
      * @return int 专题作品数量
      */
-    public function countWithAlias(string $alias)
+    public function countWithAlias(string $alias): int
     {
         $obj = $this->asObject()
             ->selectCount('feature_record.id', 'cnt')
@@ -44,7 +44,7 @@ class FeatureRecordModel extends BaseModel
      *
      * @return bool 是否修改成功
      */
-    public function changeOrder(int $id, int $step)
+    public function changeOrder(int $id, int $step): bool
     {
         try {
             return $this->update($id, array('sn' => 'sn+' . $step));

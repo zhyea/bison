@@ -107,6 +107,7 @@ class Author extends AbstractAdmin
             return $this->redirect('admin/author/list');
         }
         $this->adminView('author-works', $author, $author['name'] . '作品列表');
+        die();
     }
 
 }

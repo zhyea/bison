@@ -1,7 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
 
 <div class="container main">
 	<div class="page-header">
@@ -10,7 +6,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 	
-	<form method="post" action="<?= $ctx ?>admin/feature/maintain" enctype="multipart/form-data">
+	<form method="post" action="<?= $siteUrl ?>/admin/feature/maintain" enctype="multipart/form-data">
 		
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">专题名称</div>
@@ -48,13 +44,13 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">封面</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<input type="hidden" name="former_cover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
+				<input type="hidden" name="formerCover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
 				<input type="file" class="form-control" accept="image/png, image/jpeg" name="cover"/>
                 <?php if (!empty($cover)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
 						<br/>
-						<p class="lmt"><img src="<?= $uri_upload . '/' . $cover ?>" alt="专题封面"/></p>
-						<a href="<?= $ctx ?>admin/feature/delete/cover/<?= $id ?>" target="_self">移除封面</a>
+						<p class="lmt"><img src="<?= $uriUpload . '/' . $cover ?>" alt="专题封面"/></p>
+						<a href="<?= $siteUrl ?>/admin/feature/delete/cover/<?= $id ?>" target="_self">移除封面</a>
 						<br/>
 					</div>
                 <?php } ?>
@@ -64,13 +60,13 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">背景图片</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<input type="hidden" name="former_background" value="<?= (empty($background) ? '' : $background) ?>"/>
+				<input type="hidden" name="formerBackground" value="<?= (empty($background) ? '' : $background) ?>"/>
 				<input type="file" class="form-control" accept="image/png, image/jpeg" name="background"/>
                 <?php if (!empty($background)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
 						<br/>
-						<p class="lmt"><img src="<?= $uri_upload . '/' . $background ?>" alt="专题背景"/></p>
-						<a href="<?= $ctx ?>admin/feature/delete/bg/<?= $id ?>" target="_self">移除背景图</a>
+						<p class="lmt"><img src="<?= $uriUpload . '/' . $background ?>" alt="专题背景"/></p>
+						<a href="<?= $siteUrl ?>/admin/feature/delete/bg/<?= $id ?>" target="_self">移除背景图</a>
 						<br/>
 					</div>
                 <?php } ?>
@@ -81,27 +77,24 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">背景重复</div>
 			<div class="form-input col-md-10 col-xs-12" style="padding-top:6px;">
 				<label class="radio-inline">
-					<input type="radio" name="bg_repeat"
-					       value="1" <?= (!empty($bg_repeat) && $bg_repeat == "1" ? 'checked' : '') ?> > 重复
+					<input type="radio" name="bgRepeat"
+					       value="1" <?= (!empty($bgRepeat) && $bgRepeat == "1" ? 'checked' : '') ?> > 重复
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="bg_repeat"
-					       value="2" <?= (!empty($bg_repeat) && $bg_repeat == "2" ? 'checked' : '') ?>> 不重复
+					<input type="radio" name="bgRepeat"
+					       value="2" <?= (!empty($bgRepeat) && $bgRepeat == "2" ? 'checked' : '') ?>> 不重复
 				</label>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="btn-left col-md-6 col-xs-12">
-				<a href="<?= $ctx ?>admin/feature/list" class="btn btn-info">返回专题列表</a>
+				<a href="<?= $siteUrl ?>/admin/feature/list" class="btn btn-info">返回专题列表</a>
 			</div>
 			<div class="btn-right col-md-6 col-xs-12">
 				<button type="submit" class="btn btn-success">保存专题信息</button>
 			</div>
 		</div>
 	</form>
-
 </div>
-
-<?php include_once 'common/footer.php'; ?>
 

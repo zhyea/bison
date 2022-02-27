@@ -32,3 +32,9 @@ vendor/
 *.iml
 
 *.idea
+writable/cache
+writable/debugbar
+writable/logs
+writable/session
+writable/uploads
+tests/*
