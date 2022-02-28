@@ -2,10 +2,9 @@
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Models\VolumeModel;
 
-class Volume extends AbstractController
+class Volume extends AbstractAdmin
 {
 
     private $model;
@@ -19,13 +18,13 @@ class Volume extends AbstractController
 
     /**
      * 查询推荐的分类信息
-     * @param $work_id int 作品ID
+     * @param $workId int 作品ID
      */
-    public function suggest($work_id)
+    public function suggest(int $workId)
     {
-        $keywords = $_GET['key'];
+        $keywords = $this->getParam('key');
         $keywords = empty($keywords) ? '' : $keywords;
-        $data = $this->model->suggest($work_id, $keywords);
+        $data = $this->model->suggest($workId, $keywords);
         $this->renderJson(array('key' => $keywords, 'value' => $data));
     }
 

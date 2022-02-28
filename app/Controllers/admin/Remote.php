@@ -1,13 +1,13 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Services\ChapterService;
 use App\Services\RemoteCodeService;
 use App\Services\WorkService;
 
-class Remote extends AbstractController
+class Remote extends AbstractAdmin
 {
 
     private $rcService;
@@ -26,28 +26,28 @@ class Remote extends AbstractController
     public function gen()
     {
         $this->rcService->set();
-        $rc = $this->rcService->get_latest();
+        $rc = $this->rcService->getLatest();
         $this->adminView('remote-code', $rc, '远程交互');
     }
 
 
-    public function add_chapter()
+    public function addChapter()
     {
-        $arr = $this->_post_array();
+        $arr = $this->postBody();
 
-        $work_name = $arr['workName'];
+        $workName = $arr['workName'];
 
-        $work = $this->workService->get_by_name($work_name);
+        $work = $this->workService->getByName($workName);
         if (empty($work)) {
             error_code(500, '作品不存在');
         }
 
-        $work_id = $work['id'];
-        $vol_name = array_value_of('volName', $arr);
-        $chapter_name = $arr['chapterName'];
+        $workId = $work['id'];
+        $volName = array_value_of('volName', $arr);
+        $chapterName = $arr['chapterName'];
         $content = $arr['content'];
 
-        $this->chapterService->add_chapter($work_id, $vol_name, $chapter_name, $content);
+        $this->chapterService->addChapter($workId, $volName, $chapterName, $content);
 
         echo 'success';
     }

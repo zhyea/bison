@@ -1,12 +1,13 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Services\ChapterService;
 use App\Services\WorkService;
+use CodeIgniter\HTTP\RedirectResponse;
 
-class Chapter extends AbstractController
+class Chapter extends AbstractAdmin
 {
 
     private $chapterService;
@@ -24,12 +25,12 @@ class Chapter extends AbstractController
 
     /**
      * 进入作品章节列表页
-     * @param $work_id int 作品ID
+     * @param $workId int 作品ID
      */
-    public function all($work_id)
+    public function all(int $workId)
     {
-        $work = $this->workService->get($work_id);
-        $chapters = $this->chapterService->volumes($work_id);
+        $work = $this->workService->get($workId);
+        $chapters = $this->chapterService->volumes($workId);
         $title = (empty($work['name']) ? '' : $work['name'] . '-') . '章节列表';
         $this->adminView('chapters', array('work' => $work, 'vols' => $chapters), $title);
     }
@@ -37,26 +38,28 @@ class Chapter extends AbstractController
 
     /**
      * 进入作品章节编辑页
-     * @param $work_id int 作品ID
-     * @param $chapter_id int 章节ID
+     * @param $workId int 作品ID
+     * @param $chapterId int 章节ID
+     * @return RedirectResponse
      */
-    public function edit($work_id, $chapter_id = 0)
+    public function edit(int $workId, int $chapterId = 0)
     {
-        if (empty($work_id)) {
-            $this->redirect('admin/work/list');
+        if (empty($workId)) {
+            return $this->redirect('admin/work/list');
         }
-        $work = $this->workService->get($work_id);
+        $work = $this->workService->get($workId);
         if (empty($work)) {
-            $this->redirect('admin/work/list');
+            return $this->redirect('admin/work/list');
         }
         $chapter = array();
-        if ($chapter_id > 0) {
-            $chapter = $this->chapterService->chapter($chapter_id);
+        if ($chapterId > 0) {
+            $chapter = $this->chapterService->chapter($chapterId);
             $chapter = empty($chapter) ? array() : $chapter;
         }
         $chapter['work'] = $work;
         $title = (array_key_exists('name', $chapter) ? $chapter['name'] . '-' : '') . '编辑';
         $this->adminView('chapter-edit', $chapter, $title);
+        die();
     }
 
 
@@ -65,18 +68,18 @@ class Chapter extends AbstractController
      */
     public function maintain()
     {
-        $data = $this->_post();
+        $data = $this->postParams();
 
-        $work_id = $data['work_id'];
+        $workId = $data['work_id'];
         $id = $data['id'];
 
         $this->chapterService->maintain($data);
         $this->alertSuccess('保存章节信息成功');
 
         if (empty($id)) {
-            $this->redirect('admin/chapter/all/' . $work_id);
+            return $this->redirect('admin/chapter/all/' . $workId);
         } else {
-            $this->redirect('admin/chapter/all/' . $work_id . '/' . $id);
+            return $this->redirect('admin/chapter/all/' . $workId . '/' . $id);
         }
     }
 
@@ -84,59 +87,58 @@ class Chapter extends AbstractController
     /**
      * 上传作品
      */
-    public function upload()
+    public function uploadWork()
     {
-        $work_id = $_POST['work_id'];
-        $r = $this->_upload('myTxt');
+        $workId = $this->postParam('work_id');
+        $r = $this->upload('myTxt');
         if ($r[0]) {
             $file = $r[1];
-            try {
-                $this->chapterService->upload($work_id, $file);
-                $this->alertSuccess("上传成功");
-            } catch (Exception $e) {
-                $this->alertDanger('上传异常' . $e->getMessage());
-            }
+            $this->chapterService->upload($workId, $file);
+            $this->alertSuccess("上传成功");
         }
-        $this->redirect('admin/chapter/all/' . $work_id);
+        return $this->redirect('admin/chapter/all/' . $workId);
     }
 
 
     /**
      * 删除分卷及章节
-     * @param $work_id int 作品ID
-     * @param $vol_id int 分卷ID
+     * @param $workId int 作品ID
+     * @param $volId int 分卷ID
+     * @return RedirectResponse
      */
-    public function delete_vol($work_id, $vol_id)
+    public function deleteVol(int $workId, int $volId)
     {
-        $this->chapterService->delete_vol($vol_id);
+        $this->chapterService->deleteVol($volId);
         $this->alertSuccess('删除成功');
-        $this->redirect('admin/chapter/all/' . $work_id);
+        return $this->redirect('admin/chapter/all/' . $workId);
     }
 
 
     /**
      * 删除章节
-     * @param $work_id int 作品ID
-     * @param $vol_id int 分卷ID
-     * @param $chapter_id int 章节ID
+     * @param $workId int 作品ID
+     * @param $volId int 分卷ID
+     * @param $chapterId int 章节ID
+     * @return RedirectResponse
      */
-    public function delete($work_id, $vol_id, $chapter_id)
+    public function delete(int $workId, int $volId, int $chapterId)
     {
-        $this->chapterService->delete_chapter($vol_id, $chapter_id);
+        $this->chapterService->deleteChapter($volId, $chapterId);
         $this->alertSuccess('删除成功');
-        $this->redirect('admin/chapter/all/' . $work_id);
+        return $this->redirect('admin/chapter/all/' . $workId);
     }
 
 
     /**
      * 删除作品下的全部分卷及章节信息
-     * @param $work_id int 作品ID
+     * @param $workId int 作品ID
+     * @return RedirectResponse
      */
-    public function delete_all($work_id)
+    public function deleteAll(int $workId)
     {
-        $this->chapterService->delete_all($work_id);
+        $this->chapterService->deleteAll($workId);
         $this->alertSuccess('删除成功');
-        $this->redirect('admin/chapter/all/' . $work_id);
+        return $this->redirect('admin/chapter/all/' . $workId);
     }
 
 

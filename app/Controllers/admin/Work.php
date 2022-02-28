@@ -64,6 +64,7 @@ class Work extends AbstractAdmin
     /**
      * 删除封面
      * @param $id int 专题ID
+     * @return RedirectResponse
      * @throws ReflectionException
      */
     public function deleteCover(int $id)
@@ -80,7 +81,7 @@ class Work extends AbstractAdmin
 
         $this->workModel->update($w);
         $this->alertSuccess('删除封面成功');
-        $this->redirect('admin/work/settings/' . $id);
+        return $this->redirect('admin/work/settings/' . $id);
     }
 
 
@@ -89,7 +90,7 @@ class Work extends AbstractAdmin
      */
     public function delete()
     {
-        $ids = $this->postArray();
+        $ids = $this->postBody();
         foreach ($ids as $id) {
             $data = $this->workModel->getById($id);
             if (!empty($data['cover'])) {

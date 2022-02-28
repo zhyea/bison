@@ -49,6 +49,7 @@ class Author extends AbstractAdmin
     /**
      * 执行删除操作
      * @param $id int 记录ID
+     * @return RedirectResponse
      */
     public function delete(int $id): RedirectResponse
     {
@@ -99,6 +100,7 @@ class Author extends AbstractAdmin
     /**
      * 根据作者ID查询作品信息
      * @param $authorId int 作者ID
+     * @return RedirectResponse
      */
     public function works(int $authorId): RedirectResponse
     {

@@ -55,6 +55,7 @@ class Script extends AbstractAdmin
     /**
      * 进入编辑页
      * @param $id int 记录ID
+     * @return RedirectResponse
      */
     public function edit(int $id = 0)
     {
@@ -66,6 +67,7 @@ class Script extends AbstractAdmin
             return $this->redirect('admin/spt/list');
         }
         $this->adminView('script-settings', $s, empty($s) ? '新增脚本' : '编辑脚本');
+        die();
     }
 
 

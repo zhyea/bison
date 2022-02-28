@@ -48,6 +48,7 @@ class Feature extends AbstractAdmin
     /**
      * 执行删除操作
      * @param $id int 记录ID
+     * @return RedirectResponse
      */
     public function delete(int $id): RedirectResponse
     {
@@ -111,6 +112,7 @@ class Feature extends AbstractAdmin
     /**
      * 删除封面
      * @param $id int 专题ID
+     * @return RedirectResponse
      */
     public function deleteCover(int $id): RedirectResponse
     {
@@ -125,6 +127,7 @@ class Feature extends AbstractAdmin
     /**
      * 删除背景图
      * @param $id int 专题ID
+     * @return RedirectResponse
      */
     public function deleteBg(int $id): RedirectResponse
     {
@@ -154,6 +157,7 @@ class Feature extends AbstractAdmin
     /**
      * 专题作品列表页
      * @param $featureId int 专题ID
+     * @return RedirectResponse
      */
     public function records(int $featureId): RedirectResponse
     {

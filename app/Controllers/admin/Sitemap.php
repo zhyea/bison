@@ -2,11 +2,10 @@
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Services\SitemapService;
 
 
-class Sitemap extends AbstractController
+class Sitemap extends AbstractAdmin
 {
 
 
