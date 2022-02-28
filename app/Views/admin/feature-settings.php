@@ -77,12 +77,12 @@
 			<div class="form-label col-md-2 col-xs-12">背景重复</div>
 			<div class="form-input col-md-10 col-xs-12" style="padding-top:6px;">
 				<label class="radio-inline">
-					<input type="radio" name="bgRepeat"
-					       value="1" <?= (!empty($bgRepeat) && $bgRepeat == "1" ? 'checked' : '') ?> > 重复
+					<input type="radio" name="bg_repeat"
+					       value="1" <?= (!empty($bg_repeat) && $bg_repeat == "1" ? 'checked' : '') ?> > 重复
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="bgRepeat"
-					       value="2" <?= (!empty($bgRepeat) && $bgRepeat == "2" ? 'checked' : '') ?>> 不重复
+					<input type="radio" name="bg_repeat"
+					       value="2" <?= (!empty($bg_repeat) && $bg_repeat == "2" ? 'checked' : '') ?>> 不重复
 				</label>
 			</div>
 		</div>

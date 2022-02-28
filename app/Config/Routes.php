@@ -82,9 +82,11 @@ $routes->post('admin/work/author/(:num)', 'Work::author/$1');
 $routes->get('admin/feature/list', 'Feature::list');
 $routes->get('admin/feature/data', 'Feature::data');
 $routes->get('admin/feature/settings/(:num)', 'Feature::settings/$1');
+$routes->post('admin/feature/maintain', 'Feature::maintain');
 $routes->get('admin/feature/delete/cover/(:num)', 'Feature::deleteCover/$1');
 $routes->get('admin/feature/delete/bg/(:num)', 'Feature::deleteBg/$1');
-$routes->post('admin/feature/maintain', 'Feature::maintain');
+$routes->get('admin/feature/delete/(:num)', 'Feature::delete/$1');
+$routes->get('admin/feature/records/(:num)', 'Feature::records/$1');
 
 /*
  * --------------------------------------------------------------------

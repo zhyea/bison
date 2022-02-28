@@ -78,33 +78,46 @@ class Feature extends AbstractAdmin
      */
     public function maintain(): RedirectResponse
     {
-        $data = $this->postParams();
+        $id = $this->postParam('id');
+        $name = $this->postParam('name');
+        $alias = $this->postParam('alias');
+        $keywords = $this->postParam('keywords');
+        $brief = $this->postParam('brief');
+        $formerCover = $this->postParam('formerCover');
+        $formerBackground = $this->postParam('formerBackground');
+        $bgRepeat = $this->postParam('bg_repeat');
+
+        $data = array('id' => $id,
+            'name' => $name,
+            'alias' => $alias,
+            'keywords' => $keywords,
+            'brief' => $brief,
+            'bg_repeat' => $bgRepeat,
+        );
 
         $cover = $this->upload('cover');
         if ($cover[0]) {
-            if (!empty($data['formerCover'])) {
-                $this->deleteUploadedFile($data['formerCover']);
+            if (!empty($formerCover)) {
+                $this->deleteUploadedFile($formerCover);
             }
             $data['cover'] = $cover[1];
         }
-        $data = array_key_rm('formerCover', $data);
 
         $background = $this->upload('background');
         if ($background[0]) {
-            if (!empty($data['formerBackground'])) {
-                $this->deleteUploadedFile($data['formerBackground']);
+            if (!empty($formerBackground)) {
+                $this->deleteUploadedFile($formerBackground);
             }
             $data['background'] = $background[1];
         }
-        $data = array_key_rm('formerBackground', $data);
 
         $this->featureModel->insertOrUpdate($data);
 
         $this->alertSuccess('维护专题信息成功');
-        if (empty($data['id'])) {
+        if (empty($id)) {
             return $this->redirect('admin/feature/list');
         } else {
-            return $this->redirect('admin/feature/settings/' . $data['id']);
+            return $this->redirect('admin/feature/settings/' . $id);
         }
     }
 

@@ -1,7 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
 
 <div class="container main">
 	<div class="page-header">
@@ -10,16 +6,16 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<?= $ctx ?>admin/work/maintain" enctype="multipart/form-data">
+	<form method="post" action="<?= $siteUrl ?>/admin/work/maintain" enctype="multipart/form-data">
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">封面</div>
 			<div class="form-input col-md-10 col-xs-12">
 				<input type="hidden" name="former_cover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
                 <?php if (!empty($cover)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
-						<p class="lmt"><img src="<?= $uri_upload . '/' . $cover ?>"
+						<p class="lmt"><img src="<?= $uriUpload . '/' . $cover ?>"
 						                    alt="<?= (empty($name) ? 'COVER' : $name) ?>"/></p>
-						<a href="<?= $ctx ?>admin/work/delete/cover/<?= $id ?>" target="_self">移除封面</a>
+						<a href="<?= $siteUrl ?>/admin/work/delete/cover/<?= $id ?>" target="_self">移除封面</a>
 					</div>
                 <?php } ?>
 				<input type="file" class="form-control" accept="image/png, image/jpeg" name="cover"/>
@@ -88,7 +84,7 @@ include_once 'common/navigator.php';
 
 		<div class="row">
 			<div class="btn-left col-md-6 col-xs-12">
-				<a href="<?= $ctx ?>admin/work/list" class="btn btn-info">返回作品列表</a>
+				<a href="<?= $siteUrl ?>/admin/work/list" class="btn btn-info">返回作品列表</a>
 			</div>
 			<div class="btn-right col-md-6 col-xs-12">
 				<button type="submit" class="btn btn-success">保存作品信息</button>
@@ -100,12 +96,12 @@ include_once 'common/navigator.php';
 
 <?php include_once 'common/footer.php'; ?>
 
-<script charset="utf-8" src="<?= $uri_admin ?>/static/js/bootstrap-suggest.js"></script>
+<script charset="utf-8" src="<?= $uriAdmin ?>/js/bootstrap-suggest.js"></script>
 <script>
     $("#authorSelector").bsSuggest({
         allowNoKeyword: true,
         clearable: true,
-        url: "<?=$ctx?>admin/author/suggest?key=",
+        url: "<?=$siteUrl?>/admin/author/suggest?key=",
         getDataMethod: "url",
         showBtn: true,
         showHeader: false,
@@ -120,7 +116,7 @@ include_once 'common/navigator.php';
 
     $("#categorySelector").bsSuggest({
         clearable: true,
-        url: "<?=$ctx?>admin/category/suggest?key",
+        url: "<?=$siteUrl?>/admin/category/suggest?key",
         showHeader: false,
         showBtn: true,     //不显示下拉按钮
         idField: "id",

@@ -1,7 +1,3 @@
-<?php
-include_once 'common/header.php';
-include_once 'common/navigator.php';
-?>
 
 <div class="container main">
 	<div class="page-header">
@@ -12,7 +8,7 @@ include_once 'common/navigator.php';
 
 	<div id="workTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx ?>admin/work/settings">
+			<a class="btn btn-default" href="<?= $siteUrl ?>/admin/work/settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -26,7 +22,7 @@ include_once 'common/navigator.php';
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#workTableToolbar"
-	       data-url="<?= $ctx ?>admin/work/data"
+	       data-url="<?= $siteUrl ?>/admin/work/data"
 	       data-sort-name="id"
 	       data-sort-order="desc"
 	       data-method="post"
@@ -47,7 +43,7 @@ include_once 'common/navigator.php';
 </div>
 
 
-<?php include_once 'common/footer.php'; ?>
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
     // 删除按钮事件
@@ -60,15 +56,15 @@ include_once 'common/navigator.php';
                 ids.push(this.id);// cid为获得到的整条数据中的一列
             });
 
-            sendBootstrapTableRequest($("#workTable"), 'post', '<?=$ctx?>admin/work/delete', ids);
+            sendBootstrapTableRequest($("#workTable"), 'post', '<?=$siteUrl?>/admin/work/delete', ids);
         }
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?=$ctx?>admin/chapter/all/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?=$siteUrl?>/admin/chapter/all/' + row.id + '" target="_self">' + value + '</a>';
     }
 
     function operateFormatter(value, row, index) {
-        return '<a href="<?=$ctx?>admin/work/settings/' + row.id + '" target="_self">编辑</a>';
+        return '<a href="<?=$siteUrl?>/admin/work/settings/' + row.id + '" target="_self">编辑</a>';
     }
 </script>
