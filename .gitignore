@@ -38,3 +38,4 @@ writable/logs
 writable/session
 writable/uploads
 tests/*
+public/upload/files/
