@@ -69,7 +69,7 @@ class Feature extends AbstractAdmin
         if ($id > 0) {
             $s = $this->featureModel->getById($id);
         }
-        $this->adminView('feature-settings', $s, empty($s) ? '新增专题' : '编辑专题');
+        $this->adminView('feature-settings', $s, $id <= 0 ? '新增专题' : '编辑专题');
     }
 
 

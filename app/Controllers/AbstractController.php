@@ -59,7 +59,7 @@ class AbstractController extends BaseController
         $params['uriAdmin'] = '/admin';
         $params['uriUpload'] = $this->uriUpload;
         $params['title'] = $title;
-        $params = $params + $this->settings;
+        $params['siteName'] = $this->settings['siteName'];
 
         if ($page == 'login') {
             $this->renderView('admin', $page, $params);

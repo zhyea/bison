@@ -42,7 +42,7 @@ class Work extends AbstractAdmin
      */
     public function data()
     {
-        $params = $this->postParams();
+        $params = $this->postBody();
         $works = $this->workService->findWorks($params);
         $this->renderJson($works);
     }
