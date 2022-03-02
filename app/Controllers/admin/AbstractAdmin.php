@@ -181,7 +181,7 @@ class AbstractAdmin extends AbstractController
      * @param array $allowedExt
      * @return array 上传结果
      */
-    protected function doUpload(UploadedFile $file,
+    private function doUpload(UploadedFile $file,
                                 string $saveName,
                                 string $subPath = '',
                                 $allowedExt = array())
