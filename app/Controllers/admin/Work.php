@@ -3,18 +3,18 @@
 namespace App\Controllers\admin;
 
 
+use App\Models\AuthorModel;
 use App\Models\WorkModel;
 use App\Services\WorkService;
 use CodeIgniter\HTTP\RedirectResponse;
-use ReflectionException;
 
 
 class Work extends AbstractAdmin
 {
 
-
     private $workService;
     private $workModel;
+    private $authorModel;
 
 
     /**
@@ -25,6 +25,7 @@ class Work extends AbstractAdmin
         parent::__construct();
         $this->workService = new WorkService();
         $this->workModel = new WorkModel();
+        $this->authorModel = new AuthorModel();
     }
 
 
@@ -65,21 +66,20 @@ class Work extends AbstractAdmin
      * 删除封面
      * @param $id int 专题ID
      * @return RedirectResponse
-     * @throws ReflectionException
      */
     public function deleteCover(int $id)
     {
         $w = $this->workModel->getById($id);
-
+        $data = array('id' => $id);
         if (!empty($w) && !empty($w['cover'])) {
             $path = $w['cover'];
             if (!empty($path) && !(strstr($path, 'default/nocover.png'))) {
                 $this->deleteUploadedFile($path);
             }
-            $w['cover'] = '';
+            $data['cover'] = '';
+            $this->workModel->updateById($data);
         }
 
-        $this->workModel->update($w);
         $this->alertSuccess('删除封面成功');
         return $this->redirect('admin/work/settings/' . $id);
     }
@@ -106,32 +106,43 @@ class Work extends AbstractAdmin
      */
     public function maintain(): RedirectResponse
     {
-        $data = $this->postBody();
+        $formerCover = $this->postParam('formerCover');
         $cover = $this->upload('cover');
+        $id = $this->postParam('id');
+        $name = $this->postParam('name');
+        $authorId = $this->postParam('authorId');
+        $author = $this->postParam('author');
+        $country = $this->postParam('country');
+        $categoryId = $this->postParam('categoryId');
+        $brief = $this->postParam('brief');
+
+        $data = array();
         if ($cover[0]) {
-            if (!empty($data['former_cover'])) {
-                $formerCover = $data['former_cover'];
+            if (!empty($formerCover)) {
                 if (strcmp($formerCover, 'default/nocover.png') != 0) {
-                    $this->deleteUploadedFile($data['former_cover']);
+                    $this->deleteUploadedFile($formerCover);
                 }
             }
             $data['cover'] = $cover[1];
         }
-        if (empty($data['cover']) && empty($data['former_cover'])) {
+        if (empty($data['cover']) && empty($formerCover)) {
             $data['cover'] = 'default/nocover.png';
         }
-        $data = array_key_rm('cat', $data);
-        $data = array_key_rm('author', $data);
-        $data = array_key_rm('country', $data);
-        $data = array_key_rm('former_cover', $data);
+        $authorId = $this->authorModel->maintain($authorId, $author, $country);
+
+        $data['id'] = $id;
+        $data['author_id'] = $authorId;
+        $data['category_id'] = $categoryId;
+        $data['name'] = $name;
+        $data['brief'] = $brief;
 
         $this->workModel->insertOrUpdate($data);
         $this->alertSuccess('维护作品信息成功');
 
-        if (empty($data['id'])) {
+        if (empty($id)) {
             return $this->redirect('admin/work/list');
         } else {
-            return $this->redirect('admin/work/settings/' . $data['id']);
+            return $this->redirect('admin/work/settings/' . $id);
         }
     }
 

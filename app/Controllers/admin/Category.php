@@ -117,7 +117,7 @@ class Category extends AbstractAdmin
      */
     public function suggest()
     {
-        $keywords = $_GET['key'];
+        $keywords = $this->getParam('key');
         $keywords = empty($keywords) ? '' : $keywords;
         $data = $this->model->suggest($keywords);
         $this->renderJson(array('key' => $keywords, 'value' => $data));

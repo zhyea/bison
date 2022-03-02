@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">封面</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<input type="hidden" name="former_cover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
+				<input type="hidden" name="formerCover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
                 <?php if (!empty($cover)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
 						<p class="lmt"><img src="<?= $uriUpload . '/' . $cover ?>"
@@ -35,7 +35,7 @@
 			<div class="form-label col-md-2 col-xs-12">作者</div>
 			<div class="form-input col-md-7 col-xs-8">
 				<div class="input-group">
-					<input type="hidden" name="author_id" id="authorId"
+					<input type="hidden" name="authorId" id="authorId"
 					       value="<?= (empty($author_id) ? '' : $author_id) ?>"/>
 					<input type="text" class="form-control" name="author" value="<?= (empty($author) ? '' : $author) ?>"
 					       id="authorSelector" required/>
@@ -59,7 +59,7 @@
 			<div class="form-label col-md-2 col-xs-12">分类</div>
 			<div class="form-input col-md-10 col-xs-12">
 				<div class="input-group">
-					<input type="hidden" name="category_id" id="categoryId"
+					<input type="hidden" name="categoryId" id="categoryId"
 					       value="<?= (empty($category_id) ? 0 : $category_id) ?>"/>
 					<input type="text" name="cat" id="categorySelector" class="form-control"
 					       value="<?= (empty($cat) ? '' : $cat) ?>"
@@ -94,7 +94,7 @@
 </div>
 
 
-<?php include_once 'common/footer.php'; ?>
+<?php include_once 'common/boot-table.php'; ?>
 
 <script charset="utf-8" src="<?= $uriAdmin ?>/js/bootstrap-suggest.js"></script>
 <script>

@@ -89,7 +89,7 @@ class VolumeModel extends BaseModel
      */
     public function deleteByWork(int $workId)
     {
-        return $this->delete(array('work_id' => $workId));
+        return $this->where('work_id', $workId)->delete();
     }
 
 }

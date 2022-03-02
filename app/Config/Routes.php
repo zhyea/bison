@@ -71,6 +71,7 @@ $routes->get('admin/category/settings/(:num)', 'Category::settings/$1/0');
 $routes->post('admin/category/maintain', 'Category::maintain');
 $routes->post('admin/category/delete', 'Category::delete');
 $routes->post('admin/category/change-order/(:num)', 'Category::changeOrder/$1');
+$routes->get('admin/category/suggest', 'Category::suggest');
 $routes->get('admin/author/list', 'Author::list');
 $routes->post('admin/author/data', 'Author::data');
 $routes->get('admin/author/settings', 'Author::settings/0');
@@ -78,6 +79,7 @@ $routes->get('admin/author/settings/(:num)', 'Author::settings/$1');
 $routes->post('admin/author/maintain', 'Author::maintain');
 $routes->get('admin/author/delete/(:num)', 'Author::delete/$1');
 $routes->get('admin/author/works/(:num)', 'Author::works/$1');
+$routes->get('admin/author/suggest', 'Author::suggest');
 $routes->post('admin/work/author/(:num)', 'Work::author/$1');
 $routes->get('admin/feature/list', 'Feature::list');
 $routes->get('admin/feature/data', 'Feature::data');
@@ -93,6 +95,17 @@ $routes->post('admin/work/data', 'Work::data');
 $routes->get('admin/work/settings/(:num)', 'Work::settings/$1');
 $routes->get('admin/work/settings', 'Work::settings/0');
 $routes->post('admin/work/maintain', 'Work::maintain');
+$routes->get('admin/work/delete/cover/(:num)', 'Work::deleteCover/$1');
+$routes->post('admin/work/delete', 'Work::delete');
+$routes->get('admin/chapter/all/(:num)', 'Chapter::all/$1');
+$routes->get('admin/chapter/all/(:num)/(:num)', 'Chapter::all/$1/$2');
+$routes->get('admin/chapter/(:num)', 'Chapter::edit/$1/0');
+$routes->get('admin/chapter/edit/(:num)/(:num)', 'Chapter::edit/$1/$2');
+$routes->get('admin/chapter/edit/(:num)', 'Chapter::edit/$1/0');
+$routes->post('admin/chapter/maintain', 'Chapter::maintain');
+$routes->get('admin/chapter/delete/(:num)/(:num)/(:num)', 'Chapter::delete/$1/$2/$3');
+$routes->get('admin/chapter/delete-all/(:num)', 'Chapter::deleteAll/$1');
+$routes->get('admin/volume/suggest/(:num)', 'Volume::suggest/$1');
 
 /*
  * --------------------------------------------------------------------
