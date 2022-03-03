@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers\admin;
 
 
@@ -31,9 +32,10 @@ class Sitemap extends AbstractAdmin
      */
     public function gen()
     {
-        $this->sitemapService->genSitemap();
+        $path = FCPATH . '/sitemap.xml';
+        $this->sitemapService->genSitemap($path);
         $this->alertSuccess("生成网站地图成功");
-        $this->redirect('/admin/sitemap');
+        return $this->redirect('/admin/sitemap');
     }
 
 }

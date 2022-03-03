@@ -32,8 +32,9 @@
         </tr>
         </thead>
     </table>
-
 </div>
+
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
     function nameFormatter(value, row, index) {

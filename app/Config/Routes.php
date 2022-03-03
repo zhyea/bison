@@ -54,7 +54,13 @@ $routes->get('admin/nav/list/(:num)', 'Navigator::list/$1/0');
 $routes->get('admin/nav/list/(:num)/(:num)', 'Navigator::list/$1/$2');
 $routes->get('admin/nav/settings/(:num)', 'Navigator::settings/$1');
 $routes->get('admin/nav/settings/(:num)/(:num)', 'Navigator::settings/$1/$2');
+$routes->post('admin/nav/maintain', 'Navigator::maintain');
 $routes->post('admin/nav/candidates', 'Navigator::candidates');
+$routes->get('admin/nav/data/(:num)', 'Navigator::data/$1');
+$routes->post('admin/nav/change-order/(:num)', 'Navigator::changeOrder/$1');
+$routes->post('admin/nav/delete', 'Navigator::delete');
+$routes->get('admin/sitemap', 'Sitemap::index');
+$routes->get('admin/sitemap/gen', 'Sitemap::gen');
 // 内容管理
 $routes->get('admin/user/list', 'User::list');
 $routes->get('admin/user/data', 'User::data');

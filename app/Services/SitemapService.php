@@ -19,6 +19,7 @@ class SitemapService
 
     public function __construct()
     {
+        helper('io');
         $this->categoryModel = new CategoryModel();
         $this->featureModel = new FeatureModel();
         $this->authorModel = new AuthorModel();
@@ -26,9 +27,8 @@ class SitemapService
     }
 
 
-    public function genSitemap()
+    public function genSitemap($path)
     {
-        $path = _ROOT_DIR_ . DIRECTORY_SEPARATOR . 'sitemap.xml';
         del_file($path);
         $urls = $this->urls();
 

@@ -37,6 +37,7 @@
     </table>
 </div>
 
+<?php include_once 'common/boot-table.php'; ?>
 
 <script>
 
@@ -45,7 +46,6 @@
     $table.bootstrapTable({
         url: "<?=$siteUrl?>/admin/nav/data/<?=$id?>"
     });
-
 
     // 删除按钮事件
     $("#btnDelete").on("click", function () {

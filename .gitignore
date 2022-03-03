@@ -39,3 +39,4 @@ writable/session
 writable/uploads
 tests/*
 public/upload/files/
+/public/sitemap.xml

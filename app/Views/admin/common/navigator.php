@@ -31,7 +31,6 @@
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/settings">网站设置</a></li>
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/spt/list">脚本设置</a></li>
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/nav/list">导航设置</a></li>
-                        <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/cache">缓存管理</a></li>
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/sitemap">网站地图</a></li>
                     </ul>
                 </li>

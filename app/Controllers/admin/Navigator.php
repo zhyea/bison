@@ -12,7 +12,6 @@ class Navigator extends AbstractAdmin
 
     private $model;
     private $navService;
-    private $cacheService;
 
     /**
      * constructor.
@@ -78,11 +77,9 @@ class Navigator extends AbstractAdmin
     public function maintain()
     {
         $cat = $this->postParams();
-
         $this->model->insertOrUpdate($cat);
-        $this->cacheService->clean();
 
-        $this->redirect('admin/nav/list');
+        return $this->redirect('admin/nav/list');
     }
 
 
@@ -95,7 +92,6 @@ class Navigator extends AbstractAdmin
         foreach ($ids as $id) {
             $this->model->deleteRecursively($id);
         }
-        $this->cacheService->clean();
         echo true;
     }
 
@@ -107,7 +103,6 @@ class Navigator extends AbstractAdmin
     public function changeOrder(int $id)
     {
         $step = $this->postBody();
-        $this->cacheService->clean();
         echo $this->model->changeOrder($id, $step);
     }
 
