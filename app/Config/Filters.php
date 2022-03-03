@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Filters\AuthFilter;
+use App\Filters\Throttle;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -18,11 +20,13 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
+        'csrf' => CSRF::class,
+        'toolbar' => DebugToolbar::class,
+        'honeypot' => Honeypot::class,
+        'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'throttle' => Throttle::class,
+        'auth' => AuthFilter::class,
     ];
 
     /**
@@ -53,7 +57,9 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $methods = [];
+    public $methods = [
+        'get' => ['csrf', 'throttle'],
+    ];
 
     /**
      * List of filter aliases that should run on any
@@ -64,5 +70,7 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'auth' => ['before' => ['admin/*']]
+    ];
 }

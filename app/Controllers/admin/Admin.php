@@ -3,7 +3,6 @@
 namespace App\Controllers\admin;
 
 
-use App\Controllers\AbstractController;
 use App\Services\UserService;
 use CodeIgniter\HTTP\RedirectResponse;
 

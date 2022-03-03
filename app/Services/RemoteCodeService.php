@@ -16,7 +16,11 @@ class RemoteCodeService extends BaseService
     }
 
 
-    public function set($user)
+    /**
+     * 生成并保存远程码
+     * @param array $user 用户信息
+     */
+    public function set(array $user)
     {
         if (empty($user)) {
             return;
@@ -41,7 +45,12 @@ class RemoteCodeService extends BaseService
     }
 
 
-    public function getLatest($user)
+    /**
+     * 获取最新的远程码
+     * @param array $user session中的用户信息
+     * @return array|string[] 远程码
+     */
+    public function getLatest(array $user)
     {
         if (empty($user)) {
             return array('code' => '未知错误', 'expire_time' => '无法确定');
