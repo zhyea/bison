@@ -7,7 +7,6 @@ use App\Services\SettingService;
 use CodeIgniter\HTTP\RedirectResponse;
 use Config\App;
 use Config\Custom;
-use function PHPUnit\Framework\isEmpty;
 
 class AbstractController extends BaseController
 {

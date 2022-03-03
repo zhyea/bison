@@ -16,9 +16,8 @@ class RemoteCodeService extends BaseService
     }
 
 
-    public function set()
+    public function set($user)
     {
-        $user = from_session('user');
         if (empty($user)) {
             return;
         }
@@ -42,9 +41,8 @@ class RemoteCodeService extends BaseService
     }
 
 
-    public function getLatest()
+    public function getLatest($user)
     {
-        $user = from_session('user');
         if (empty($user)) {
             return array('code' => '未知错误', 'expire_time' => '无法确定');
         }

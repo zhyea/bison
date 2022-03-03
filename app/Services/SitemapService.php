@@ -39,7 +39,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 </urlset>
 XML;
-
         $xml = simplexml_load_string($str);
 
         foreach ($urls as $record) {
@@ -151,6 +150,4 @@ XML;
             array_push($result, $array);
         }
     }
-
-
 }
