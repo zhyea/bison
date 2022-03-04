@@ -14,15 +14,23 @@ use CodeIgniter\HTTP\ResponseInterface;
 class Throttle implements FilterInterface
 {
 
+    private $throttler;
+
+    /**
+     * Throttle constructor.
+     */
+    public function __construct()
+    {
+        $this->throttler = service('throttler');
+    }
+
 
     public function before(RequestInterface $request, $arguments = null)
     {
-        /*$throttler = Services::throttler();
-
         // 在整个站点上将IP地址限制为每秒不超过20个请求
-        if ($throttler->check($request->getIPAddress(), 60, SECOND) === false) {
-            return Services::response()->setStatusCode(429);
-        }*/
+        if ($this->throttler->check($request->getIPAddress(), 60, SECOND) === false) {
+            return service('response')->setStatusCode(429);
+        }
     }
 
     //--------------------------------------------------------------------

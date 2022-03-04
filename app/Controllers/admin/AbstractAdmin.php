@@ -5,6 +5,7 @@ namespace App\Controllers\admin;
 
 
 use App\Controllers\AbstractController;
+use App\Services\SessionService;
 use CodeIgniter\Files\File;
 use CodeIgniter\HTTP\Files\UploadedFile;
 
@@ -20,7 +21,7 @@ class AbstractAdmin extends AbstractController
     {
         helper('string');
         $this->req = service('request');
-        $this->session = session();
+        $this->session = new SessionService();
         $this->pathUpload = FCPATH . 'upload/';
 
         parent::__construct();
@@ -80,9 +81,6 @@ class AbstractAdmin extends AbstractController
     }
 
 
-
-
-
     /**
      * 从session中取值
      * @param string $key session key
@@ -91,8 +89,7 @@ class AbstractAdmin extends AbstractController
      */
     protected function sessionOf(string $key, $defaultVal = '')
     {
-        $val = $this->session->get($key);
-        return empty($val) ? $defaultVal : $val;
+        return $this->session->valueOf($key, $defaultVal);
     }
 
 
@@ -112,7 +109,7 @@ class AbstractAdmin extends AbstractController
      */
     protected function rmSession(string $key)
     {
-        $this->session->remove($key);
+        $this->session->rm($key);
     }
 
 
@@ -182,9 +179,9 @@ class AbstractAdmin extends AbstractController
      * @return array 上传结果
      */
     private function doUpload(UploadedFile $file,
-                                string $saveName,
-                                string $subPath = '',
-                                $allowedExt = array())
+                              string $saveName,
+                              string $subPath = '',
+                              $allowedExt = array())
     {
         if (!$file->isValid()) {
             return array(false, $file->getErrorString());

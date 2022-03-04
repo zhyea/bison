@@ -109,7 +109,7 @@ class Cache extends BaseConfig
      *
      * @var string
      */
-    public $reservedCharacters = '{}()/\@:';
+    public $reservedCharacters = '{}()/\@';
 
     /**
      * --------------------------------------------------------------------------

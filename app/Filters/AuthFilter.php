@@ -5,6 +5,7 @@ namespace App\Filters;
 
 
 use App\Services\RemoteCodeService;
+use App\Services\SessionService;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -22,7 +23,7 @@ class AuthFilter implements FilterInterface
     public function __construct()
     {
         helper('string');
-        $this->session = session();
+        $this->session = new SessionService();
         $this->rcService = new RemoteCodeService();
     }
 
@@ -30,13 +31,13 @@ class AuthFilter implements FilterInterface
     {
         $path = $request->getPath();
         if (!str_start_with($path, 'admin')) {
-            return;
+            return null;
         }
         $r = $this->checkAuth($request);
         if (null == $r) {
-            return;
+            return null;
         }
-        redirect($r);
+        return redirect()->to($r);
         // TODO: Implement before() method.
     }
 
@@ -49,14 +50,9 @@ class AuthFilter implements FilterInterface
 
     private function checkAuth(RequestInterface $request)
     {
-        $failedCount = $this->session->get('failed');
-        if (empty($failedCount)) {
-            $failedCount = 0;
-        }
+        $failedCount = $this->session->valueOf('failed', 0);
 
-        $user = $this->session->get('user');
         $code = header('Remote-Code');
-
         if (!empty($code)) {
             if ($failedCount > 20) {
                 error_code(403, 'retry too many times');
@@ -68,14 +64,16 @@ class AuthFilter implements FilterInterface
             }
             return null;
         }
+
+        $user = $this->session->valueOf('user', null);
         if (empty($user)) {
             return 'login';
         }
 
-        $lastLog = $this->session->get('lastLog');
+        $lastLog = $this->session->valueOf('lastLog', 0);
         $diff = (time() - $lastLog) / 60 / 60;
         if ($diff > 1) {
-            $this->session->remove('user');
+            $this->session->rm('user');
             return 'login';
         }
         $this->session->set('lastLog', time());
