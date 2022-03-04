@@ -105,7 +105,7 @@ class Front extends AbstractController
         if (empty($work)) {
             return $this->goHome();
         }
-        //$this->workService->addSn($workId);
+        $this->workService->addSn($workId);
         $vols = $this->chapterService->volumes($workId);
         $relates = $this->workService->relate($workId, $work['author_id']);
         $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];

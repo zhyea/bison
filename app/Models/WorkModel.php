@@ -227,7 +227,8 @@ class WorkModel extends BaseModel
         try {
             return $this->protect(false)
                 ->set('sn', 'sn+1', false)
-                ->update($workId);
+                ->where('id', $workId)
+                ->update();
         } catch (ReflectionException $e) {
             return false;
         }
