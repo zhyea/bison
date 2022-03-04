@@ -14,5 +14,7 @@ class Custom extends BaseConfig
 
     public $theme = 'sunny';
 
+    public $suffix = '.html';
+
 
 }

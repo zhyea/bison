@@ -6,6 +6,7 @@ use App\Services\AuthorService;
 use App\Services\ChapterService;
 use App\Services\SettingService;
 use App\Services\WorkService;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Front extends AbstractController
 {
@@ -46,14 +47,16 @@ class Front extends AbstractController
      * 进入分类页
      * @param $alias string 分类别名
      * @param $page int 页码数
+     * @return RedirectResponse
      */
     public function category(string $alias, int $page = 1)
     {
         $data = $this->workService->findWithCat($alias, $page);
         if (empty($data)) {
-            error_404_page();
+            return $this->goHome();
         }
-        $this->themeView('category', $data, $data['_title']);
+        $this->themeView('category', $data, $data['title']);
+        die();
     }
 
 
@@ -61,14 +64,16 @@ class Front extends AbstractController
      * 进入专题页
      * @param $alias string 专题别名
      * @param $page int 页码数
+     * @return RedirectResponse
      */
     public function feature(string $alias, int $page = 1)
     {
         $data = $this->workService->findWithFeature($alias, $page);
         if (empty($data)) {
-            error_404_page();
+            return $this->goHome();
         }
-        $this->themeView('feature', $data, $data['_title']);
+        $this->themeView('feature', $data, $data['title']);
+        die();
     }
 
 
@@ -76,28 +81,31 @@ class Front extends AbstractController
      * 进入作家专题页
      * @param $id int 作家id
      * @param $page int 页码数
+     * @return RedirectResponse
      */
     public function author(int $id, int $page = 1)
     {
         $data = $this->workService->findWithAuthor($id, $page);
         if (empty($data)) {
-            error_404_page();
+            return $this->goHome();
         }
-        $this->themeView('author', $data, $data['_title']);
+        $this->themeView('author', $data, $data['title']);
+        die();
     }
 
 
     /**
      * 获取作品信息
      * @param $workId int 作品ID
+     * @return RedirectResponse
      */
     public function work(int $workId)
     {
         $work = $this->workService->getWork($workId);
         if (empty($work)) {
-            error_404_page();
+            return $this->goHome();
         }
-        $this->workService->addSn($workId);
+        //$this->workService->addSn($workId);
         $vols = $this->chapterService->volumes($workId);
         $relates = $this->workService->relate($workId, $work['author_id']);
         $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];
@@ -105,20 +113,23 @@ class Front extends AbstractController
             'vols' => $vols, 'relates' => $relates,
             'keywords' => $keywords,
             'description' => $work['brief']), $work['name']);
+        die();
     }
 
 
     /**
      * 获取章节信息
      * @param $chapterId int 章节ID
+     * @return RedirectResponse
      */
     public function chapter(int $chapterId)
     {
         $chapter = $this->chapterService->getChapter($chapterId);
         if (empty($chapter)) {
-            error_404_page();
+            return $this->goHome();
         }
-        $this->themeView('chapter', $chapter, $chapter['_title']);
+        $this->themeView('chapter', $chapter, $chapter['title']);
+        die();
     }
 
 
@@ -129,6 +140,16 @@ class Front extends AbstractController
     {
         $authors = $this->authorService->all();
         $this->themeView('authors', array('all' => $authors, 'description' => '作家信息集合'), '作家');
+    }
+
+
+    /**
+     * 回到首页
+     * @return RedirectResponse
+     */
+    private function goHome()
+    {
+        return $this->redirect('');
     }
 
 

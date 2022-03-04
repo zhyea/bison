@@ -34,6 +34,15 @@ $routes->setAutoRoute(true);
 $routes->setDefaultNamespace('App\Controllers\admin');
 // 前端
 $routes->get('/', 'Front::index', ['namespace' => 'App\Controllers']);
+$routes->get('/c/(:segment).html', 'Front::category/$1/1', ['namespace' => 'App\Controllers']);
+$routes->get('/c/(:segment)/(:num).html', 'Front::category/$1/$2', ['namespace' => 'App\Controllers']);
+$routes->get('/f/(:segment).html', 'Front::feature/$1/1', ['namespace' => 'App\Controllers']);
+$routes->get('/f/(:segment)/(:num).html', 'Front::feature/$1/$2', ['namespace' => 'App\Controllers']);
+$routes->get('/author/(:num).html', 'Front::author/$1/1', ['namespace' => 'App\Controllers']);
+$routes->get('/author/(:num)/(:num).html', 'Front::author/$1/$2', ['namespace' => 'App\Controllers']);
+$routes->get('/work/(:num).html', 'Front::work/$1', ['namespace' => 'App\Controllers']);
+$routes->get('/chapter/(:num).html', 'Front::chapter/$1', ['namespace' => 'App\Controllers']);
+$routes->get('/authors.html', 'Front::authors', ['namespace' => 'App\Controllers']);
 // 登录
 $routes->get('login', 'Admin::login');
 $routes->post('login/check', 'Admin::loginCheck');

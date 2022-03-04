@@ -26,14 +26,14 @@ class AbstractController extends BaseController
      */
     public function __construct()
     {
-        $customCfg = new Custom();
+        $bisonCfg = new Custom();
         $appConfig = new App();
         $this->settingService = new SettingService();
         $this->navService = new NavigatorService();
         $this->session = session();
 
         $this->settings = $this->settingService->findAll();
-        $this->theme = $customCfg->theme;
+        $this->theme = $bisonCfg->theme;
         $this->siteUrl = $appConfig->baseURL;
 
         $this->uriUpload = '/upload';
