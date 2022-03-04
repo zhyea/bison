@@ -28,7 +28,7 @@ class Throttle implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // 在整个站点上将IP地址限制为每秒不超过20个请求
-        if ($this->throttler->check($request->getIPAddress(), 60, SECOND) === false) {
+        if ($this->throttler->check($request->getIPAddress(), 20, SECOND) === false) {
             return service('response')->setStatusCode(429);
         }
     }
