@@ -20,7 +20,7 @@
                         if (!empty($w['brief'])) {
                             $txt = $w['brief'];
                             if (strlen($txt) > 120) {
-                                $txt = substr($txt, 0, 120);
+                                $txt = mb_substr($txt, 0, 240);
                             }
                             echo $txt;
                         }
