@@ -47,6 +47,7 @@ class WorkService extends BaseService
             }
         }
         $recommend = $this->workModel->findWithFeature('recommend');
+        $this->padCovers($recommend);
         return array('all' => $all, 'recommend' => $recommend);
     }
 
@@ -92,6 +93,7 @@ class WorkService extends BaseService
         if (!empty($cat)) {
             $work['cat'] = $cat['name'];
         }
+        $this->padCover($work);
         return $work;
     }
 
@@ -103,7 +105,9 @@ class WorkService extends BaseService
      */
     public function getWork(int $id): array
     {
-        return $this->workModel->getWork($id);
+        $w = $this->workModel->getWork($id);
+        $this->padCover($w);
+        return $w;
     }
 
 
@@ -127,6 +131,8 @@ class WorkService extends BaseService
         $total = $this->workModel->countWithCat($cat['id']);
         $total = ceil($total / $length);
         $recommend = $this->workModel->findWithFeature('recommend');
+        $this->padCovers($recommend);
+        $this->padCovers($works);
         return array('cat' => $cat,
             'keywords' => $cat['name'],
             'description' => $cat['remark'],
@@ -134,7 +140,7 @@ class WorkService extends BaseService
             'recommend' => $recommend,
             'page' => $page,
             'total' => $total,
-            '_title' => $cat['name']);
+            'title' => $cat['name']);
     }
 
 
@@ -155,6 +161,7 @@ class WorkService extends BaseService
         $length = 18;
         $offset = $length * ($page - 1);
         $rows = $this->workModel->findWithFeature($featureAlias, $sort, $order, $offset, $length);
+        $this->padCovers($rows);
         $total = $this->recordModel->countWithAlias($featureAlias);
         $total = ceil($total / $length);
         $data = array('feature' => $f,
@@ -163,7 +170,7 @@ class WorkService extends BaseService
             'works' => $rows,
             'page' => $page,
             'total' => $total,
-            '_title' => $f['name']);
+            'title' => $f['name']);
         if (!empty($f['background'])) {
             $data['background'] = $f['background'];
         }
@@ -202,7 +209,7 @@ class WorkService extends BaseService
             'works' => $rows,
             'page' => $page,
             'total' => $total,
-            '_title' => $author['name']);
+            'title' => $author['name']);
     }
 
 
@@ -294,6 +301,30 @@ class WorkService extends BaseService
     public function addSn(int $workId)
     {
         $this->workModel->addSn($workId);
+    }
+
+
+    /**
+     * 补充作品封面信息
+     * @param array $works 作品集合
+     */
+    private function padCovers(array &$works)
+    {
+        foreach ($works as &$w) {
+            $this->padCover($w);
+        }
+    }
+
+
+    /**
+     * 补充作品封面信息
+     * @param array $w 作品集合
+     */
+    private function padCover(array &$w)
+    {
+        if (empty($w['cover']) || $w['cover'] == 'nocover.png') {
+            $w['cover'] = 'default/nocover.png';
+        }
     }
 
 }

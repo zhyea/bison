@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use CodeIgniter\Database\BaseResult;
 use ReflectionException;
 
 class ChapterModel extends BaseModel
@@ -15,7 +16,7 @@ class ChapterModel extends BaseModel
      * @param int $workId 作品ID
      * @return array 章节信息
      */
-    public function findByWorkId(int $workId)
+    public function findByWorkId(int $workId): array
     {
         if ($workId <= 0) {
             return array();
@@ -33,7 +34,7 @@ class ChapterModel extends BaseModel
      * @param int $volId 分卷ID
      * @param string $chapterName 章节名称
      * @param string $content 章节内容
-     * @return mixed 操作结果
+     * @return BaseResult|false|int|object|string 操作结果
      */
     public function add(int $workId,
                         int $volId,
@@ -54,9 +55,9 @@ class ChapterModel extends BaseModel
     /**
      * 删除分卷下的全部章节
      * @param int $volId 分卷ID
-     * @return bool|string 是否删除成功
+     * @return bool 是否删除成功
      */
-    public function deleteByVol(int $volId)
+    public function deleteByVol(int $volId): bool
     {
         return $this->delete(array('volume_id' => $volId));
     }
@@ -67,7 +68,7 @@ class ChapterModel extends BaseModel
      * @param int $volId 章节ID
      * @return int 统计结果
      */
-    public function countByVol(int $volId)
+    public function countByVol(int $volId): int
     {
         return $this->countBy(array('volume_id' => $volId));
     }
@@ -78,7 +79,7 @@ class ChapterModel extends BaseModel
      * @param int $id 章节ID
      * @return array 章节信息
      */
-    public function getChapter(int $id)
+    public function getChapter(int $id): array
     {
         return $this->asArray()
             ->select(array('chapter.*', 'volume.name as volume_name'))
@@ -91,9 +92,9 @@ class ChapterModel extends BaseModel
     /**
      * 根据作品信息删除全部章节
      * @param int $workId 作品ID
-     * @return bool|string 是否删除成功
+     * @return bool 是否删除成功
      */
-    public function deleteByWork(int $workId)
+    public function deleteByWork(int $workId): bool
     {
         return $this->where('work_id', $workId)->delete();
     }

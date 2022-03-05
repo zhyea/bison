@@ -7,7 +7,8 @@
 			<h3><i class="glyphicon glyphicon-book"></i> 推荐内容</h3>
 		</div>
 		<div class="row recommend">
-            <?php for ($i = 0; $i < 6; $i++) {
+            <?php $len = min(6, count($recommend));
+            for ($i = 0; $i < $len; $i++) {
                 $r = $recommend[$i] ?>
 				<div class="item col-md-2 col-xs-2">
 					<div class="cover">

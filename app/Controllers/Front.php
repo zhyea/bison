@@ -49,7 +49,7 @@ class Front extends AbstractController
      * @param $page int 页码数
      * @return RedirectResponse
      */
-    public function category(string $alias, int $page = 1)
+    public function category(string $alias, int $page = 1): RedirectResponse
     {
         $data = $this->workService->findWithCat($alias, $page);
         if (empty($data)) {
@@ -66,7 +66,7 @@ class Front extends AbstractController
      * @param $page int 页码数
      * @return RedirectResponse
      */
-    public function feature(string $alias, int $page = 1)
+    public function feature(string $alias, int $page = 1): RedirectResponse
     {
         $data = $this->workService->findWithFeature($alias, $page);
         if (empty($data)) {
@@ -83,7 +83,7 @@ class Front extends AbstractController
      * @param $page int 页码数
      * @return RedirectResponse
      */
-    public function author(int $id, int $page = 1)
+    public function author(int $id, int $page = 1): RedirectResponse
     {
         $data = $this->workService->findWithAuthor($id, $page);
         if (empty($data)) {
@@ -99,7 +99,7 @@ class Front extends AbstractController
      * @param $workId int 作品ID
      * @return RedirectResponse
      */
-    public function work(int $workId)
+    public function work(int $workId): RedirectResponse
     {
         $work = $this->workService->getWork($workId);
         if (empty($work)) {
@@ -122,7 +122,7 @@ class Front extends AbstractController
      * @param $chapterId int 章节ID
      * @return RedirectResponse
      */
-    public function chapter(int $chapterId)
+    public function chapter(int $chapterId): RedirectResponse
     {
         $chapter = $this->chapterService->getChapter($chapterId);
         if (empty($chapter)) {
@@ -147,7 +147,7 @@ class Front extends AbstractController
      * 回到首页
      * @return RedirectResponse
      */
-    private function goHome()
+    private function goHome(): RedirectResponse
     {
         return $this->redirect('');
     }

@@ -32,7 +32,7 @@ class ChapterService extends BaseService
      * @param int $workId 作品ID
      * @return array 作品章节信息
      */
-    public function volumes(int $workId)
+    public function volumes(int $workId): array
     {
         $chapters = $this->chapterModel->findByWorkId($workId);
         if (empty($chapters)) {
@@ -73,7 +73,7 @@ class ChapterService extends BaseService
      * @param int $chapterId 章节ID
      * @return array 章节信息
      */
-    public function chapter(int $chapterId)
+    public function chapter(int $chapterId): array
     {
         $chapter = $this->chapterModel->getById($chapterId);
         if (empty($chapter)) {
@@ -87,21 +87,21 @@ class ChapterService extends BaseService
 
     /**
      * 获取章节信息
-     * @param int $chapter_id 章节信息
+     * @param int $chapterId 章节信息
      * @return array 章节信息
      */
-    public function getChapter(int $chapter_id)
+    public function getChapter(int $chapterId): array
     {
-        $chapter = $this->chapterModel->get($chapter_id);
+        $chapter = $this->chapter($chapterId);
         if (empty($chapter)) {
             return array();
         }
-        $work_id = $chapter['work_id'];
-        $work = $this->workModel->getWork($work_id);
+        $workId = $chapter['work_id'];
+        $work = $this->workModel->getWork($workId);
 
-        $last = $this->chapterModel->getLast($work_id, $chapter_id);
+        $last = $this->chapterModel->getLast($workId, $chapterId);
         $last = empty($last) ? null : $last['id'];
-        $next = $this->chapterModel->getNext($work_id, $chapter_id);
+        $next = $this->chapterModel->getNext($workId, $chapterId);
         $next = empty($next) ? null : $next['id'];
 
         $keywords = $work['name'] . ',' . $chapter['name'] . ',' . $work['author'];
@@ -110,7 +110,7 @@ class ChapterService extends BaseService
         $brief = strip_tags($brief);
 
         $title = $work['name'] . '-' . $chapter['name'];
-        return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next, '_title' => $title, 'keywords' => $keywords, 'description' => $brief);
+        return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next, 'title' => $title, 'keywords' => $keywords, 'description' => $brief);
     }
 
 
@@ -120,7 +120,7 @@ class ChapterService extends BaseService
      * @param string $volName 分卷名称
      * @return int 分卷ID
      */
-    public function getVolumeId(int $workId, string $volName)
+    public function getVolumeId(int $workId, string $volName): int
     {
         $vol = $this->volumeModel->getByWorkAndName($workId, $volName);
         if (!empty($vol)) {
