@@ -57,7 +57,7 @@ XML;
      * 获取全部的sitemap url
      * @return array sitemap url
      */
-    private function urls()
+    private function urls(): array
     {
         $urls = array();
         $this->genCategoryUrls($urls);

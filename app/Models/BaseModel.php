@@ -59,7 +59,8 @@ class BaseModel extends Model
             $db->where($k, $v);
         }
         $db->orderBy('id', 'desc');
-        return $db->first();
+        $r = $db->first();
+        return empty($r) ? array() : $r;
     }
 
 

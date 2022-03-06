@@ -119,6 +119,7 @@ $routes->get('admin/chapter/(:num)', 'Chapter::edit/$1/0');
 $routes->get('admin/chapter/edit/(:num)/(:num)', 'Chapter::edit/$1/$2');
 $routes->get('admin/chapter/edit/(:num)', 'Chapter::edit/$1/0');
 $routes->post('admin/chapter/maintain', 'Chapter::maintain');
+$routes->post('admin/chapter/upload', 'Chapter::uploadWork');
 $routes->get('admin/chapter/delete/(:num)/(:num)/(:num)', 'Chapter::delete/$1/$2/$3');
 $routes->get('admin/chapter/delete-all/(:num)', 'Chapter::deleteAll/$1');
 $routes->get('admin/volume/suggest/(:num)', 'Volume::suggest/$1');

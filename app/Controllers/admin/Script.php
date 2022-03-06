@@ -43,7 +43,7 @@ class Script extends AbstractAdmin
      * @param $id int 记录ID
      * @return RedirectResponse
      */
-    public function delete(int $id)
+    public function delete(int $id): RedirectResponse
     {
         if ($id > 6) {
             $this->model->deleteById($id);
@@ -57,7 +57,7 @@ class Script extends AbstractAdmin
      * @param $id int 记录ID
      * @return RedirectResponse
      */
-    public function edit(int $id = 0)
+    public function edit(int $id = 0): RedirectResponse
     {
         $s = array('id' => $id);
         if ($id > 0) {
@@ -74,7 +74,7 @@ class Script extends AbstractAdmin
     /**
      * 维护脚本信息
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
         $data = $this->postParams();
         $this->model->insertOrUpdate($data);

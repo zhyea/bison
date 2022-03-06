@@ -43,7 +43,7 @@ class Admin extends AbstractAdmin
      * 登录信息检查
      * @return RedirectResponse
      */
-    public function loginCheck()
+    public function loginCheck(): RedirectResponse
     {
         $err = $this->getParam('err');
         if (empty($err)) {

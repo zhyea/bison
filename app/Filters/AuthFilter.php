@@ -30,7 +30,10 @@ class AuthFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $path = $request->getPath();
-        if (!str_start_with($path, 'admin')) {
+        if (str_end_with($path, 'css') || str_end_with($path, 'js') || str_end_with($path, 'css.map')) {
+            return null;
+        }
+        if (!(str_start_with($path, 'admin') || str_start_with($path, 'adm'))) {
             return null;
         }
         $r = $this->checkAuth($request);
@@ -48,7 +51,7 @@ class AuthFilter implements FilterInterface
     }
 
 
-    private function checkAuth(RequestInterface $request)
+    private function checkAuth(RequestInterface $request): ?string
     {
         $failedCount = $this->session->valueOf('failed', 0);
 

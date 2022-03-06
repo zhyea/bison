@@ -27,7 +27,7 @@ class SettingService extends BaseService
      * 获取全部配置信息
      * @return array 全部配置信息
      */
-    public function findAll()
+    public function findAll(): array
     {
         $result = array();
         $arr = $this->settingModel->findFull();
@@ -51,7 +51,7 @@ class SettingService extends BaseService
      * 获取首页标题
      * @return string 首页标题
      */
-    public function homeTitle()
+    public function homeTitle(): string
     {
         return $this->settingModel->getByKey('home_title');
     }

@@ -11,7 +11,7 @@
 	</div>
 </div>
 
-<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="<?= $uriTheme ?>/js/bootstrap.min.js"></script>
 
 <!--统计代码-->
 <?php

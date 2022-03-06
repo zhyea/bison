@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use CodeIgniter\Database\BaseResult;
 use ReflectionException;
 
 class VolumeModel extends BaseModel
@@ -15,7 +16,7 @@ class VolumeModel extends BaseModel
      * @param int $workId 作品ID
      * @return array 分卷集合
      */
-    public function findByWorkId(int $workId)
+    public function findByWorkId(int $workId): array
     {
         if ($workId <= 0) {
             return array();
@@ -33,7 +34,7 @@ class VolumeModel extends BaseModel
      * @param string $keyword 关键字ID
      * @return array 查询结果
      */
-    public function suggest(int $workId, string $keyword)
+    public function suggest(int $workId, string $keyword): array
     {
         return $this->select(array('id', 'name'))
             ->where('work_id', $workId)
@@ -49,7 +50,7 @@ class VolumeModel extends BaseModel
      * @param string $name 分卷名称
      * @return array 分卷记录
      */
-    public function getByWorkAndName(int $workId, string $name)
+    public function getByWorkAndName(int $workId, string $name): array
     {
         return $this->getLatestByParams(array('work_id' => $workId, 'name' => $name));
     }
@@ -70,12 +71,12 @@ class VolumeModel extends BaseModel
      * 新增分卷
      * @param int $workId 作品ID
      * @param string $name 分卷名称
-     * @return mixed 是否新增成功
+     * @return BaseResult|false|int|object|string 是否新增成功
      */
     public function add(int $workId, string $name)
     {
         try {
-            return $this->insert(array('work_id' => $workId, 'name' => $name));
+            return $this->protect(false)->insert(array('work_id' => $workId, 'name' => $name));
         } catch (ReflectionException $e) {
             return false;
         }
@@ -85,7 +86,7 @@ class VolumeModel extends BaseModel
     /**
      * 根据作品ID执行删除
      * @param int $workId 作品ID
-     * @return bool|string 是否删除成功
+     * @return bool 是否删除成功
      */
     public function deleteByWork(int $workId)
     {

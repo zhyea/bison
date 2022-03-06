@@ -67,7 +67,7 @@ class Work extends AbstractAdmin
      * @param $id int 专题ID
      * @return RedirectResponse
      */
-    public function deleteCover(int $id)
+    public function deleteCover(int $id): RedirectResponse
     {
         $w = $this->workModel->getById($id);
         $data = array('id' => $id);

@@ -206,9 +206,9 @@ class ChapterService extends BaseService
      */
     public function upload(int $workId, string $file)
     {
-        $pattern = '/^第?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$/iu';
+        $pattern = '/^[第卷]?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$/iu';
         $arr = array("楔子", "引子", "引言", "前言", "序章", "序言", "序曲", "尾声", "终章", "后记", "序", "序幕", "跋", "附", "附言", "简介");
-        $file_path = _UPLOAD_PATH_ . '/' . $file;
+        $file_path = FCPATH . '/upload/' . $file;
         $f = file($file_path);
         $chapter_name = '';
         $vol_name = '';
@@ -220,7 +220,6 @@ class ChapterService extends BaseService
             if (empty($line)) {
                 continue;
             }
-
             if (in_array($line, $arr) || preg_match($pattern, $line)) {
                 if (empty($content) && !empty($chapter_name)) {
                     //处理存在两级章节的情形
@@ -239,6 +238,7 @@ class ChapterService extends BaseService
             }
         }
         $this->addChapter($workId, $vol_name, $chapter_name, $content);
+        helper('io');
         del_file($file_path);
     }
 

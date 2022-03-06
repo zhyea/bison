@@ -55,7 +55,7 @@ class AbstractAdmin extends AbstractController
      * @param string $key 请求key
      * @return UploadedFile 上传的文件
      */
-    protected function getFile(string $key)
+    protected function getFile(string $key): UploadedFile
     {
         return $this->req->getFile($key);
     }
@@ -162,7 +162,7 @@ class AbstractAdmin extends AbstractController
      * @param string $fileName 文件表单名
      * @return array 文件是否上传成功 / 失败原因 / 保存位置
      */
-    protected function upload(string $fileName)
+    protected function upload(string $fileName): array
     {
         $file = $this->getFile($fileName);
         $saveName = $file->getRandomName();
@@ -181,7 +181,7 @@ class AbstractAdmin extends AbstractController
     private function doUpload(UploadedFile $file,
                               string $saveName,
                               string $subPath = '',
-                              $allowedExt = array())
+                              array $allowedExt = array()): array
     {
         if (!$file->isValid()) {
             return array(false, $file->getErrorString());

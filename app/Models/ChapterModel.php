@@ -42,10 +42,11 @@ class ChapterModel extends BaseModel
                         string $content)
     {
         try {
-            return $this->insert(array('work_id' => $workId,
-                'volume_id' => $volId,
-                'name' => $chapterName,
-                'content' => $content));
+            return $this->protect(false)
+                ->insert(array('work_id' => $workId,
+                    'volume_id' => $volId,
+                    'name' => $chapterName,
+                    'content' => $content));
         } catch (ReflectionException $e) {
             return false;
         }

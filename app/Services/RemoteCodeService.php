@@ -50,7 +50,7 @@ class RemoteCodeService extends BaseService
      * @param array $user session中的用户信息
      * @return array|string[] 远程码
      */
-    public function getLatest(array $user)
+    public function getLatest(array $user): array
     {
         if (empty($user)) {
             return array('code' => '未知错误', 'expire_time' => '无法确定');
@@ -67,7 +67,7 @@ class RemoteCodeService extends BaseService
      * @param string $code 远程码
      * @return array|null 远程码对象
      */
-    public function validCode(string $code)
+    public function validCode(string $code): ?array
     {
         $rc = $this->rcModel->getByCode($code);
         if (empty($rc)) {

@@ -17,7 +17,7 @@ class UserModel extends BaseModel
      * @param $password string 密码
      * @return array 用户信息
      */
-    public function checkAndGet(string $username, string $password)
+    public function checkAndGet(string $username, string $password): array
     {
         return $this->getLatestByParams(array('username' => $username, 'password' => $password));
     }
@@ -28,7 +28,7 @@ class UserModel extends BaseModel
      * @param $username string 用户名
      * @return array 用户信息
      */
-    public function getByUsername(string $username)
+    public function getByUsername(string $username): array
     {
         return $this->getLatest('username', $username);
     }

@@ -29,7 +29,7 @@ class NavigatorService
      * @param $parent int 父ID
      * @return array 子元素数据
      */
-    public function listData(int $parent)
+    public function listData(int $parent): array
     {
         $children = $this->navModel->findByParent($parent);
         if (empty($children)) {
@@ -50,7 +50,7 @@ class NavigatorService
      * @param $parent int 分类父ID
      * @return array 获取备选父分类集合
      */
-    public function candidateParent(int $id, int $parent = 0)
+    public function candidateParent(int $id, int $parent = 0): array
     {
         $result = array();
         $all = $this->navModel->findAll();
@@ -71,7 +71,7 @@ class NavigatorService
      * 获取备选项
      * @return array 获取备选集合
      */
-    public function candidateTree()
+    public function candidateTree(): array
     {
         $categories = $this->categories();
         $features = $this->features();
@@ -83,7 +83,7 @@ class NavigatorService
      * 构建分类树
      * @return array 分类树节点
      */
-    private function categories()
+    private function categories(): array
     {
         $root = array('text' => '分类');
         $all = $this->catModel->findAll();
@@ -100,7 +100,7 @@ class NavigatorService
      * 构建专题树
      * @return array 专题树节点
      */
-    private function features()
+    private function features(): array
     {
         $root = array('text' => '专题');
         $all = $this->featureModel->findAll();
@@ -117,7 +117,7 @@ class NavigatorService
      * 自定义链接树
      * @return array 自定义链接树
      */
-    private function urls()
+    private function urls(): array
     {
         $root = array('text' => '自定义', 'id' => 0);
         $root['nodes'] = array(array('id' => 0, 'text' => '自定义链接', 'ext' => 'url', 'ext2' => 'custom'));
@@ -128,7 +128,7 @@ class NavigatorService
     /**
      * @return array 导航树
      */
-    public function navigator()
+    public function navigator(): array
     {
         $nav = array('id' => 0, 'children' => array());
         $all = $this->navModel->all();

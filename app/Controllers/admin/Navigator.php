@@ -5,6 +5,7 @@ namespace App\Controllers\admin;
 
 use App\Models\NavigatorModel;
 use App\Services\NavigatorService;
+use CodeIgniter\HTTP\RedirectResponse;
 
 
 class Navigator extends AbstractAdmin
@@ -29,7 +30,7 @@ class Navigator extends AbstractAdmin
      * @param $id int ID
      * @param $parent int 父ID
      */
-    public function list($id = 0, $parent = 0)
+    public function list(int $id = 0, int $parent = 0)
     {
         $nav = $this->model->getById($id);
         $title = '导航列表';
@@ -45,7 +46,7 @@ class Navigator extends AbstractAdmin
      * 获取父项数据
      * @param $parent int 父ID
      */
-    public function data($parent = 0)
+    public function data(int $parent = 0)
     {
         $data = $this->navService->listData($parent);
         $this->renderJson($data);
@@ -57,7 +58,7 @@ class Navigator extends AbstractAdmin
      * @param $id int ID
      * @param $parent int 父ID
      */
-    public function settings($parent = 0, $id = 0)
+    public function settings(int $parent = 0, int $id = 0)
     {
         $nav = $this->model->getById($id);
         $nav = empty($nav) ? array() : $nav;
@@ -74,7 +75,7 @@ class Navigator extends AbstractAdmin
     /**
      * 分类信息维护
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
         $cat = $this->postParams();
         $this->model->insertOrUpdate($cat);

@@ -8,7 +8,7 @@ if (!function_exists('real_path')) {
      * @param $path string
      * @return string
      */
-    function real_path(string $path)
+    function real_path(string $path): string
     {
         if (($_temp = realpath($path)) !== FALSE) {
             return $_temp . DIRECTORY_SEPARATOR;
@@ -31,7 +31,7 @@ if (!function_exists('append_child_path')) {
      * @param $child_path string child path
      * @return string
      */
-    function append_child_path(string $parent_dir, string $child_path)
+    function append_child_path(string $parent_dir, string $child_path): string
     {
         return $parent_dir . strtr(
                 trim($child_path, '/\\'),
@@ -51,7 +51,7 @@ if (!function_exists('get_files')) {
      * @param $recursive boolean  read recursively
      * @return array the files;
      */
-    function get_files(string $path, $recursive = false)
+    function get_files(string $path, bool $recursive = false): array
     {
         $result = array();
 
@@ -98,7 +98,7 @@ if (!function_exists('del_dir')) {
      * @param $dir string path of dir
      * @return bool
      */
-    function del_dir(string $dir)
+    function del_dir(string $dir): bool
     {
         $dh = opendir($dir);
         while ($file = readdir($dh)) {

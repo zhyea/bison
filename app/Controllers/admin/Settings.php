@@ -54,7 +54,7 @@ class Settings extends AbstractAdmin
      * 更新配置信息
      * @return RedirectResponse
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
         $name = $this->postParam('siteName');
         $homeTitle = $this->postParam('homeTitle');
@@ -91,7 +91,7 @@ class Settings extends AbstractAdmin
     /**
      * 删除Logo
      */
-    public function deleteLogo()
+    public function deleteLogo(): RedirectResponse
     {
         $this->cleanFile('logo');
         $this->alertSuccess('删除LOGO成功');
@@ -101,7 +101,7 @@ class Settings extends AbstractAdmin
     /**
      * 删除背景图
      */
-    public function deleteBg()
+    public function deleteBg(): RedirectResponse
     {
         $this->cleanFile('background');
         $this->alertSuccess('删除背景图成功');

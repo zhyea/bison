@@ -23,7 +23,7 @@ class UserService
      * @param string $password 密码
      * @return array 用户信息
      */
-    public function checkLogin(string $username, string $password)
+    public function checkLogin(string $username, string $password): array
     {
         $password = md5($password . $this->salt);
         return $this->userModel->checkAndGet($username, $password);
@@ -34,7 +34,7 @@ class UserService
      * 获取客户端IP
      * @return string 客户端IP
      */
-    private function clientIp()
+    private function clientIp(): string
     {
         $ip = getenv('HTTP_X_REAL_IP');
         if (empty($ip)) {

@@ -15,7 +15,7 @@ class AuthorService
     }
 
 
-    public function all()
+    public function all(): array
     {
         $authors = $this->authorModel->findAll();
         $result = array();

@@ -42,7 +42,7 @@ class Chapter extends AbstractAdmin
      * @param $chapterId int 章节ID
      * @return RedirectResponse
      */
-    public function edit(int $workId, int $chapterId = 0)
+    public function edit(int $workId, int $chapterId = 0): RedirectResponse
     {
         if (empty($workId)) {
             return $this->redirect('admin/work/list');
@@ -66,7 +66,7 @@ class Chapter extends AbstractAdmin
     /**
      * 维护章节数据
      */
-    public function maintain()
+    public function maintain(): RedirectResponse
     {
         $data = $this->postParams();
 
@@ -87,7 +87,7 @@ class Chapter extends AbstractAdmin
     /**
      * 上传作品
      */
-    public function uploadWork()
+    public function uploadWork(): RedirectResponse
     {
         $workId = $this->postParam('work_id');
         $r = $this->upload('myTxt');
@@ -106,7 +106,7 @@ class Chapter extends AbstractAdmin
      * @param $volId int 分卷ID
      * @return RedirectResponse
      */
-    public function deleteVol(int $workId, int $volId)
+    public function deleteVol(int $workId, int $volId): RedirectResponse
     {
         $this->chapterService->deleteVol($volId);
         $this->alertSuccess('删除成功');
@@ -121,7 +121,7 @@ class Chapter extends AbstractAdmin
      * @param $chapterId int 章节ID
      * @return RedirectResponse
      */
-    public function delete(int $workId, int $volId, int $chapterId)
+    public function delete(int $workId, int $volId, int $chapterId): RedirectResponse
     {
         $this->chapterService->deleteChapter($volId, $chapterId);
         $this->alertSuccess('删除成功');
@@ -134,7 +134,7 @@ class Chapter extends AbstractAdmin
      * @param $workId int 作品ID
      * @return RedirectResponse
      */
-    public function deleteAll(int $workId)
+    public function deleteAll(int $workId): RedirectResponse
     {
         $this->chapterService->deleteAll($workId);
         $this->alertSuccess('删除成功');

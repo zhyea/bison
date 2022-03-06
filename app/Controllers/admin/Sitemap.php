@@ -4,6 +4,7 @@ namespace App\Controllers\admin;
 
 
 use App\Services\SitemapService;
+use CodeIgniter\HTTP\RedirectResponse;
 
 
 class Sitemap extends AbstractAdmin
@@ -30,7 +31,7 @@ class Sitemap extends AbstractAdmin
     /**
      * 清理缓存
      */
-    public function gen()
+    public function gen(): RedirectResponse
     {
         $path = FCPATH . '/sitemap.xml';
         $this->sitemapService->genSitemap($path);
