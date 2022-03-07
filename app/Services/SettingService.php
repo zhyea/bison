@@ -53,7 +53,8 @@ class SettingService extends BaseService
      */
     public function homeTitle(): string
     {
-        return $this->settingModel->getByKey('home_title');
+        $r = $this->settingModel->getByKey('homeTitle');
+        return empty($r) ? '' : $r;
     }
 
 

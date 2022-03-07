@@ -156,13 +156,25 @@ body {
     line-height: 240%;
 }
 
-.popular .item a {
-    color: #000;
-}
-
 .popular .item:hover {
     color: #255625;
     background-color: #eee;
+}
+
+.popular .item .book {
+    width: 70%;
+    float: left;
+}
+
+.popular .item .book a {
+    display: block;
+    color: #000;
+}
+
+
+.popular .item .book a .tag {
+    font-size: 15px;
+    display: inline;
 }
 
 .popular .item .author {
@@ -170,11 +182,11 @@ body {
     z-index: 999;
     right: 0;
     padding-left: 6px;
-    background-color: #FFF;
+    background: transparent;
     float: right;
     color: #129151;
     font-size: 12px;
-    width: 96px;
+    width: 30%;
     overflow: hidden;
 }
 
