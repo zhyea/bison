@@ -5,7 +5,6 @@
   "homepage": "https://www.zhyea.com",
   "license": "GPG",
   "require": {
-    "php": "^7.3 || ^8.0",
     "codeigniter4/framework": "^4.0",
     "ext-mbstring": "*",
     "ext-iconv": "*",
@@ -13,9 +12,6 @@
     "ext-json": "*"
   },
   "require-dev": {
-    "fakerphp/faker": "^1.9",
-    "mikey179/vfsstream": "^1.6",
-    "phpunit/phpunit": "^9.1"
   },
   "suggest": {
     "ext-fileinfo": "Improves mime type detection for files"

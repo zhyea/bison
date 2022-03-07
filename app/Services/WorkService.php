@@ -201,6 +201,7 @@ class WorkService extends BaseService
         $length = 18;
         $offset = $length * ($page - 1);
         $rows = $this->workModel->findWithAuthor($authorId, $sort, $order, $offset, $length);
+        $this->padCovers($rows);
         $total = $this->workModel->countWithAuthor($authorId);
         $total = ceil($total / $length);
         return array('author' => $author,
