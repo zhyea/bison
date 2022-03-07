@@ -71,6 +71,7 @@ $routes->post('admin/nav/delete', 'Navigator::delete');
 $routes->get('admin/sitemap', 'Sitemap::index');
 $routes->get('admin/sitemap/gen', 'Sitemap::gen');
 $routes->get('admin/remote/gen', 'Remote::gen');
+$routes->get('admin/remote/add-chapter', 'Remote::addChapter');
 // 内容管理
 $routes->get('admin/user/list', 'User::list');
 $routes->get('admin/user/data', 'User::data');

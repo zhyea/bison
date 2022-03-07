@@ -54,10 +54,9 @@ class AuthFilter implements FilterInterface
     private function checkAuth(RequestInterface $request): ?string
     {
         $failedCount = $this->session->valueOf('failed', 0);
-
-        $code = header('Remote-Code');
+        $code = $request->getHeaderLine('Remote-Code');;
         if (!empty($code)) {
-            if ($failedCount > 20) {
+            if ($failedCount > 5) {
                 error_code(403, 'retry too many times');
             }
             $rc = $this->rcService->validCode($code);
