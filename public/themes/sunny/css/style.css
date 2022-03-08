@@ -113,6 +113,11 @@ body {
     background: #5FB878;
 }
 
+.recommend .item .cover {
+    position: relative;
+    padding: 0;
+}
+
 .recommend .item .cover,
 .recommend .item .remark,
 .recommend .item .shade {
@@ -122,9 +127,8 @@ body {
 
 .recommend .item .shade,
 .recommend .item .remark {
-    position: relative;
+    position: absolute;
     bottom: 12px;
-    z-index: 900;
     height: 27px;
     overflow: hidden;
     line-height: 2.5em;
@@ -133,6 +137,10 @@ body {
     opacity: 0.5;
     color: #000;
     font-weight: normal;
+}
+
+.recommend .item .shade {
+    z-index: 901;
 }
 
 .recommend .item .remark {
