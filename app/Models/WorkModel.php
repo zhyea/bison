@@ -152,7 +152,7 @@ class WorkModel extends BaseModel
      * @return array 作品列表
      */
     public function findWithFeature(string $featureAlias,
-                                    string $sort = 'w.id',
+                                    string $sort = 'r.sn',
                                     string $order = 'DESC',
                                     int $offset = 0,
                                     int $limit = 18): array

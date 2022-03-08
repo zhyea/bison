@@ -165,7 +165,7 @@ class Work extends AbstractAdmin
      */
     public function feature(string $featureAlias)
     {
-        $params = $this->postParams();
+        $params = $this->postBody();
         $works = $this->workService->findWithFeatureCon($featureAlias, $params);
         $this->renderJson($works);
     }

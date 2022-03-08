@@ -184,7 +184,7 @@ create table if not exists feature_record
     type       tinyint            default 1,
     feature_id int,
     work_id    int,
-    sn         int,
+    sn         int                default 0,
     op_time    timestamp not null default current_timestamp on update current_timestamp
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;

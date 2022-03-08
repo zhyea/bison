@@ -35,7 +35,7 @@
            data-click-to-select="true"
            data-toolbar="#featureRecordTableToolbar"
            data-url="<?= $siteUrl ?>/admin/work/feature/<?= $alias ?>"
-           data-sort-name="id"
+           data-sort-name="r.sn"
            data-sort-order="desc"
            data-method="post"
            data-side-pagination='server'
