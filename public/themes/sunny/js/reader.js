@@ -5,9 +5,9 @@ let system = {
 };
 //检测平台
 let p = navigator.platform;
-system.win = p.indexOf("Win") == 0;
-system.mac = p.indexOf("Mac") == 0;
-system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+system.win = p.indexOf("Win") === 0;
+system.mac = p.indexOf("Mac") === 0;
+system.x11 = (p === "X11") || (p.indexOf("Linux") === 0);
 
 //改变阅读背景、字体大小和颜色的javascript
 let ReadSet = {
@@ -19,23 +19,23 @@ let ReadSet = {
     fontColorValue: "#008000",
     fontSize: ["14px", "16px", "18px", "20px", "24px"],
     fontSizeName: ["很小", "较小", "中等", "较大", "很大"],
-    fontSizeValue: "16px",
+    fontSizeValue: "18px",
     contentId: "contentContainer",
     fontSizeId: "contentText",
     SetBackgroundColor: function (color) {
         //document.bgColor = color;
         document.getElementById(this.contentId).style.backgroundColor = color;
-        if (this.backgroundColorValue != color) this.SetCookies("backgroundColor", color);
+        if (this.backgroundColorValue !== color) this.SetCookies("backgroundColor", color);
         this.backgroundColorValue = color;
     },
     SetFontcolor: function (color) {
         document.getElementById(this.fontSizeId).style.color = color;
-        if (this.fontColorValue != color) this.SetCookies("fontColor", color);
+        if (this.fontColorValue !== color) this.SetCookies("fontColor", color);
         this.fontColorValue = color;
     },
     SetFontsize: function (size) {
         document.getElementById(this.fontSizeId).style.fontSize = size;
-        if (this.fontSizeValue != size) this.SetCookies("fontSize", size);
+        if (this.fontSizeValue !== size) this.SetCookies("fontSize", size);
         this.fontSizeValue = size;
     },
     LoadCSS: function () {
@@ -52,7 +52,6 @@ let ReadSet = {
         styleObj.innerHTML = style;
 
         document.getElementsByTagName('HEAD').item(0).appendChild(styleObj);
-
     },
 
     Show: function () {
@@ -86,11 +85,11 @@ let ReadSet = {
     ReadCookies: function (cookieName) {
         let theCookie = '' + document.cookie;
         let idx = theCookie.indexOf(cookieName);
-        if (idx == -1 || cookieName == '')
+        if (idx === -1 || cookieName === '')
             return '';
 
         let idx0 = theCookie.indexOf(';', idx);
-        if (idx0 == -1)
+        if (idx0 === -1)
             idx0 = theCookie.length;
         return unescape(theCookie.substring(idx + cookieName.length + 1, idx0));
     },

@@ -14,7 +14,7 @@
         </div>
         <div class="row popular">
             <?php foreach ($cat['works'] as $w) { ?>
-                <div class="item col-md-4 col-xs-12">
+                <div class="col-md-4 col-xs-12 item">
                     <span class="book">
                         <a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html" title="<?= $w['name'] ?>"><div class="tag">■</div> <?= $w['name'] ?></a>
                     </span>
