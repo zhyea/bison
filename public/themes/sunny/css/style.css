@@ -54,7 +54,7 @@ body {
 }
 
 .navbar-brand {
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .navbar {
@@ -72,9 +72,9 @@ body {
 }
 
 .notice {
-    height: 42px;
-    padding: 2px 0 0 16px;
-    line-height: 42px;
+    height: 51px;
+    padding: 0 0 0 16px;
+    line-height: 51px;
     border-bottom: 1px solid #ddd;
     overflow: hidden;
 }
