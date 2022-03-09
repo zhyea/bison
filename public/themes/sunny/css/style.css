@@ -180,7 +180,7 @@ body {
     width: 70%;
     float: left;
     overflow: hidden;
-    border-bottom: 1px dashed #666;
+    border-bottom: 1px dashed #129151;
 }
 
 .popular .item .book a {
@@ -202,7 +202,7 @@ body {
     color: #129151;
     width: 30%;
     overflow: hidden;
-    border-bottom: 1px dashed #666;
+    border-bottom: 1px dashed #129151;
 }
 
 .popular .item .author a {
@@ -491,7 +491,7 @@ body {
     margin: 0 -15px;
     padding: 0 0 0 12px;
     color: #129151;
-    border-bottom: 2px double #2b542c;
+    border-bottom: 2px double #129151;
 }
 
 .page-header a {
