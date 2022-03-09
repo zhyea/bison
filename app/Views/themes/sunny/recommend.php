@@ -1,9 +1,6 @@
 
 <?php if (!empty($recommend)) { ?>
 	<div id="recommend">
-		<div class="page-header">
-			<h3><i class="glyphicon glyphicon-book"></i> 推荐内容</h3>
-		</div>
 		<div class="row recommend">
             <?php $len = min(7, count($recommend));
             for ($i = 0; $i < $len; $i++) {
@@ -11,7 +8,7 @@
 				<div class="item ">
 					<div class="cover">
 						<a href="<?= $siteUrl ?>/work/<?= $r['id'] ?>.html">
-							<img src="<?= $uriUpload . '/' . $r['cover'] ?>" width="123px" height="176px"/>
+							<img src="<?= $uriUpload . '/' . $r['cover'] ?>" width="128px" height="176px"/>
 						</a>
 						<div class="remark"><a href="<?= $siteUrl ?>/work/<?= $r['id'] ?>.html"><?= $r['name'] ?></a></div>
 						<div class="shade"><a href="<?= $siteUrl ?>/work/<?= $r['id'] ?>.html"><?= $r['name'] ?></a></div>

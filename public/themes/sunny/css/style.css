@@ -122,7 +122,7 @@ body {
 .recommend .item .remark,
 .recommend .item .shade {
     margin: 0 auto;
-    width: 123px;
+    width: 128px;
 }
 
 .recommend .item .shade,
@@ -491,6 +491,7 @@ body {
     margin: 0 -15px;
     padding: 0 0 0 12px;
     color: #129151;
+    border-bottom: 2px double #2b542c;
 }
 
 .page-header a {
