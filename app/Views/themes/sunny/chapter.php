@@ -45,8 +45,7 @@
 				<a>没有了</a>
             <?php } ?>
 			
-			<span class="chapter-author">作者：<a
-						href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
+			<span class="chapter-author">作者：<a href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
 
@@ -91,21 +90,21 @@
 <script type="text/javascript">
 
     <?php if(!empty($last)){ ?>
-    let last_page = "<?=$siteUrl?>/chapter/<?=$last?>.html";
+    let lastPage = "<?=$siteUrl?>/chapter/<?=$last?>.html";
     <?php   }else{?>
-    let last_page = "<?= $siteUrl ?>/work/<?= $w['id'] ?>.html";
+    let lastPage = "<?= $siteUrl ?>/work/<?= $w['id'] ?>.html";
     <?php }?>
 
     <?php if(!empty($next)){ ?>
-    let next_page = "<?=$siteUrl?>/chapter/<?=$next?>.html";
+    let nextPage = "<?=$siteUrl?>/chapter/<?=$next?>.html";
     <?php   }else{?>
-    let next_page = "<?= $siteUrl ?>/work/<?= $w['id'] ?>.html";
+    let nextPage = "<?= $siteUrl ?>/work/<?= $w['id'] ?>.html";
     <?php }?>
 
     document.onkeydown = function (evt) {
         let e = window.event || evt;
-        if (e.keyCode == 37) location.href = last_page;
-        if (e.keyCode == 39) location.href = next_page;
+        if (e.keyCode === 37) location.href = lastPage;
+        if (e.keyCode === 39) location.href = nextPage;
     };
 
     backToTop();
