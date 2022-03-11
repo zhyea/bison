@@ -6,7 +6,7 @@
  */
 /* -------------------------------------- */
 h2, h3, h4, h5, h6 {
-    font-size: 16px;
+    font-size: 17px;
 }
 
 em {
@@ -455,7 +455,7 @@ body {
     margin: 0;
     padding: 24px 16px;
     min-height: 90px;
-    line-height: 180%;
+    line-height: 210%;
     border-bottom: 1px dotted #ddd;
 }
 
@@ -491,7 +491,7 @@ body {
 /* ------------------------------------  bootstrap  ------------------------------------ */
 
 .page-header {
-    margin: 0 -15px;
+    margin: 9px -15px 0 -15px;
     padding: 0 0 0 12px;
     color: #129151;
     border-bottom: 2px solid #129151;
