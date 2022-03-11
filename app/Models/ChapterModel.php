@@ -112,7 +112,7 @@ class ChapterModel extends BaseModel
         return $this->asArray()
             ->select('id')
             ->where('work_id', $workId)
-            ->where('id<' . $chapterId)
+            ->where('id<', $chapterId)
             ->orderBy('id', 'desc')
             ->first();
     }
@@ -129,8 +129,8 @@ class ChapterModel extends BaseModel
         return $this->asArray()
             ->select('id')
             ->where('work_id', $workId)
-            ->where('id<' . $chapterId)
-            ->orderBy('id', 'desc')
+            ->where('id>', $chapterId)
+            ->orderBy('id', 'asc')
             ->first();
     }
 
