@@ -1,5 +1,9 @@
 /* CSS Document */
-
+/**
+ * @theme: sunny
+ * @author: robin
+ * @url: www.chobit.org
+ */
 /* -------------------------------------- */
 h2, h3, h4, h5, h6 {
     font-size: 16px;
@@ -180,7 +184,7 @@ body {
     width: 70%;
     float: left;
     overflow: hidden;
-    border-bottom: 1px dashed #129151;
+    border: 0;
 }
 
 .popular .item .book a {
@@ -202,7 +206,6 @@ body {
     color: #129151;
     width: 30%;
     overflow: hidden;
-    border-bottom: 1px dashed #129151;
 }
 
 .popular .item .author a {
