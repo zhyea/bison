@@ -494,7 +494,7 @@ body {
     margin: 0 -15px;
     padding: 0 0 0 12px;
     color: #129151;
-    border-bottom: 2px double #129151;
+    border-bottom: 2px solid #129151;
 }
 
 .page-header a {
