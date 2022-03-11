@@ -24,7 +24,7 @@
 
 	<style>
         body {
-            background: <?=(empty($bg_color) ? '#F0F0F0' : $bg_color)?> <?=(empty($background) ? '' : 'url('.$uriUpload . '/'.$background.')')?> <?=(!empty($background) && !empty($bgRepeat) && 1==$bgRepeat ? 'repeat' : 'no-repeat')?>;
+            background: <?=(empty($bgColor) ? '#F0F0F0' : $bgColor)?> <?=(empty($background) ? '' : 'url('.$uriUpload . '/'.$background.')')?> <?=(!empty($background) && !empty($bgRepeat) && 1==$bgRepeat ? 'repeat' : 'no-repeat')?>;
 		<?=(!empty($background) && !empty($bg_repeat) && 2==$bg_repeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>
         }
 
