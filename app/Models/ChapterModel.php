@@ -60,7 +60,9 @@ class ChapterModel extends BaseModel
      */
     public function deleteByVol(int $volId): bool
     {
-        return $this->delete(array('volume_id' => $volId));
+        return $this->protect(false)
+            ->where('volume_id', $volId)
+            ->delete();
     }
 
 
