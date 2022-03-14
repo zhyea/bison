@@ -312,7 +312,7 @@ body {
 
 
 .work-header {
-    padding: 12px 15px 3px;
+    padding: 12px 15px 5px;
     border-bottom: 1px solid #e2e2e2;
 }
 
@@ -374,13 +374,13 @@ body {
 
 .work-body .volume {
     margin-top: 9px;
-    padding: 9px 12px 8px;
+    padding: 12px 12px 10px;
     background-color: #f1fee8;
     text-align: left;
     font: 16px Arial;
     color: #1d6300;
     border-bottom: 1px solid #e2e2e2;
-    border-top: 2px solid #129151;
+    border-top: 1px solid #129151;
 }
 
 .work-body .chapter {
@@ -433,7 +433,7 @@ body {
     position: relative;
     margin: 0;
     font-size: 12px;
-    line-height: 32px;
+    line-height: 42px;
     text-align: center;
     border-bottom: 1px dotted #ddd;
 }
@@ -467,7 +467,7 @@ body {
 /* -------------- foot -------------- */
 
 .footer {
-    margin: 0 0 12px 0;
+    margin: 36px 0 12px 0;
     border-top: 1px solid #ddd;
     padding: 21px 24px 0;
     min-height: 96px;
