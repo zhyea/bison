@@ -46,6 +46,7 @@ $routes->get('/authors.html', 'Front::authors', ['namespace' => 'App\Controllers
 // 登录
 $routes->get('login', 'Admin::login');
 $routes->post('login/check', 'Admin::loginCheck');
+$routes->get('logout', 'Admin::logout');
 // 系统设置
 $routes->get('adm', 'Admin::index');
 $routes->get('admin/console', 'Admin::index');

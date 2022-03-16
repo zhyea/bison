@@ -87,7 +87,10 @@ class Admin extends AbstractAdmin
     public function logout()
     {
         $this->rmSession('user');
-        $this->redirect('/login');
+        $this->rmSession('lastLog');
+        $this->rmSession('logCount');
+        $this->rmSession('firstLogin');
+        return $this->redirect('/login');
     }
 
 
