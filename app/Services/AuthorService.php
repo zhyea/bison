@@ -11,6 +11,8 @@ class AuthorService
 
     public function __construct()
     {
+        helper('pinyin');
+        helper('arr');
         $this->authorModel = new AuthorModel();
     }
 
