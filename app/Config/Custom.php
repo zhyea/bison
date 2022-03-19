@@ -12,7 +12,7 @@ class Custom extends BaseConfig
 
     public $path = '';
 
-    public $theme = 'sunny';
+    public $theme = 'deep';
 
     public $suffix = '.html';
 

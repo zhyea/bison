@@ -54,7 +54,8 @@ function nav_of($item, $ctx)
                                     <?php $children = $n['children'];
                                     foreach ($children as $c) { ?>
 										<li>
-											<a href="<?= nav_of($c, $siteUrl) ?>"><?= $c['name'] ?></a>
+											<a class="dropdown-item"
+											   href="<?= nav_of($c, $siteUrl) ?>"><?= $c['name'] ?></a>
 										</li>
                                     <?php } ?>
 								</ul>

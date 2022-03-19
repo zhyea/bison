@@ -24,12 +24,12 @@
 
 	<style>
         body {
-            background: <?=(empty($bgColor) ? '#F0F0F0' : $bgColor)?> <?=(empty($background) ? '' : 'url('.$uriUpload . '/'.$background.')')?> <?=(!empty($background) && !empty($bgRepeat) && 1==$bgRepeat ? 'repeat' : 'no-repeat')?>;
-		<?=(!empty($background) && !empty($bg_repeat) && 2==$bg_repeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>
+        <?=(empty($bgColor) ? '' : 'background-color:'.$bgColor.';')?>
+        <?=(empty($background) ? '' : 'background-image:url('.$uriUpload . '/'.$background.');')?>
+        <?=(!empty($background) && !empty($bgRepeat) && 1==$bgRepeat ? 'background-repeat:repeat;' : '')?>;
+		<?=(!empty($background) && !empty($bgRepeat) && 2==$bgRepeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>
         }
-
-        .header {
-        }
+        .header {}
 	</style>
 </head>
 <body>
