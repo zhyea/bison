@@ -39,7 +39,6 @@
 			<span class="chapter-author">作者：<a href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
-
         <?php if (!empty($chapter_top_ad)) { ?>
 			<div><?= $chapter_top_ad ?></div>
         <?php } ?>

@@ -56,6 +56,7 @@ class AbstractController extends BaseController
         }
         $params['siteUrl'] = $this->siteUrl;
         $params['uriAdmin'] = '/admin';
+        $params['uriStatic'] = '/static';
         $params['uriUpload'] = $this->uriUpload;
         $params['title'] = $title;
         $params['siteName'] = $this->settings['siteName'];
@@ -81,6 +82,7 @@ class AbstractController extends BaseController
     {
         $params = empty($params) ? array() : $params;
 
+        $params['uriStatic'] = '/static';
         $params['uriTheme'] = '/themes/' . $this->theme;
         $params['uriUpload'] = $this->uriUpload;
         $params['siteUrl'] = $this->siteUrl;
