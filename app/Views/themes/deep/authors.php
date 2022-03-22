@@ -2,7 +2,7 @@
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="<?=$site_url?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+		<li><a href="<?=$siteUrl?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 		<li class="active">全部作者</li>
 	</ol>
 </div>
@@ -16,7 +16,7 @@
 				</div>
                 <?php foreach ($value as $author) { ?>
 					<div class="col-md-3 col-xs-12 chapter">
-						<a href="<?=$site_url?>/author/<?= $author['id'] ?>.html"><?= $author['name'] ?></a>
+						<a href="<?=$siteUrl?>/author/<?= $author['id'] ?>.html"><?= $author['name'] ?></a>
 					</div>
                 <?php } ?>
 			</div>

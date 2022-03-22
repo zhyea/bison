@@ -1,5 +1,3 @@
-<?php
-?>
 
 <div class="container footer">
 	<div class="col-md-12 col-xs-12 copyright">
@@ -11,7 +9,7 @@
 	</div>
 </div>
 
-<script src="<?= $uriTheme ?>/js/bootstrap.min.js"></script>
+<script src="<?= $uriStatic ?>/js/bootstrap.min.js"></script>
 
 <!--统计代码-->
 <?php
