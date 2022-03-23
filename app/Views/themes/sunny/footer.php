@@ -11,7 +11,7 @@
 	</div>
 </div>
 
-<script src="<?= $uriTheme ?>/js/bootstrap.min.js"></script>
+<script src="<?= $uriStatic ?>/js/bootstrap.min.js"></script>
 
 <!--统计代码-->
 <?php

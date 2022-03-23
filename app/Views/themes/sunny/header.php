@@ -10,10 +10,10 @@
 	<link rel="icon" href="<?= $uriTheme ?>/imgs/favicon.ico">
 
 	<link rel="stylesheet" type="text/css"
-	      href="<?= $uriTheme ?>/css/bootstrap.min.css"/>
+	      href="<?= $uriStatic ?>/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?= $uriTheme ?>/css/style.css"/>
 
-	<script src="<?= $uriTheme ?>/js/jquery.min.js"></script>
+	<script src="<?= $uriStatic ?>/js/jquery.min.js"></script>
 	<script src="<?= $uriTheme ?>/js/custom.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
