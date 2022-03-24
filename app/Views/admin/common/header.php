@@ -8,11 +8,12 @@
 
     <link rel="icon" href="<?= $uriAdmin ?>/img/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="<?= $uriAdmin ?>/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?= $uriStatic ?>/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?= $uriAdmin ?>/css/bootstrap-table.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?= $uriAdmin ?>/css/style.css"/>
 
-    <script src="<?= $uriAdmin ?>/js/jquery.min.js"></script>
+    <script src="<?= $uriStatic ?>/js/jquery.min.js"></script>
+    <script src="<?= $uriStatic ?>/js/bootstrap.min.js"></script>
     <script src="<?= $uriAdmin ?>/js/custom-script.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,8 +21,6 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-	<script src="<?= $uriAdmin ?>/js/bootstrap.min.js"></script>
 </head>
 <body>
 

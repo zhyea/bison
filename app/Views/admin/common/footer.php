@@ -1,5 +1,4 @@
-<?php
-?>
+
 <div class="container footer">
 	<div class="col-md-12 col-xs-12 logo">
 		<a href="http://www.chobit.org">

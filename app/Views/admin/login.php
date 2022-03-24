@@ -11,12 +11,8 @@
 
     <link rel="icon" href="<?= $uriAdmin ?>/img/favicon.ico">
 
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?= $uriStatic ?>/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?= $uriStatic ?>/css/fontawesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?= $uriAdmin ?>/css/style.css"/>
 </head>
 
@@ -46,11 +42,9 @@
 
 </div> <!-- /container -->
 
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="<?= $uriStatic ?>/js/jquery.min.js"></script>
+<script src="<?= $uriStatic ?>/js/bootstrap.min.js"></script>
 <script src="<?= $uriAdmin ?>/js/custom-script.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/locale/bootstrap-table-zh-CN.min.js"></script>
 </body>
 </html>
 
