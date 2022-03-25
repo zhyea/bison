@@ -9,8 +9,7 @@
 
 	<link rel="icon" href="<?= $uriTheme ?>/imgs/favicon.ico">
 
-	<link rel="stylesheet" type="text/css"
-	      href="<?= $uriStatic ?>/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uriStatic ?>/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?= $uriTheme ?>/css/style.css"/>
 
 	<script src="<?= $uriStatic ?>/js/jquery.min.js"></script>
