@@ -5,3 +5,637 @@
  * @url: www.chobit.org
  */
 /* -------------------------------------- */
+h2, h3, h4, h5, h6 {
+    font-size: 17px;
+}
+
+em {
+    font-family: "仿宋", "宋体", "楷体", "Sans-serif", serif;
+    font-size: 1em;
+    font-style: normal;
+}
+
+body {
+    background: #010219;
+    font-size: 15px;
+}
+
+* {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+.wrapper {
+    max-width: 1020px;
+    width: 100%;
+    height: 100%;
+    color: #D1D1D1;
+    position: relative;
+    background: #1257B2;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 0 0 6px 6px rgba(180, 201, 239, .27);
+}
+
+.wrapper a:hover {
+    text-decoration: none;
+}
+
+.header, .navigator, .notice, .main, .footer {
+    width: 100%;
+}
+
+.clear {
+    clear: both;
+}
+
+/* -------------- head -------------- */
+.header {
+    min-height: 120px;
+}
+
+/* -------------- navigator -------------- */
+
+
+.navigator {
+    padding: 0;
+    background-color: #1257B2;
+}
+
+.navbar-brand {
+    font-size: 17px;
+    color: #D1D1D1 !important;
+}
+
+.navbar {
+    margin: 0;
+    background-color: #1257B2;
+    border: 0;
+    border-top: 1px solid #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.navbar-nav li:hover {
+    background-color: #0A3D7E !important;
+    color: #FFF;
+}
+
+.navbar-nav li a {
+    color: #D1D1D1 !important;
+}
+
+.navbar-nav li a:hover {
+    background-color: #1257B2 !important;
+    color: #FFF !important;
+}
+
+.navbar-nav .dropdown a:focus {
+    background-color: #1257B2 !important;
+}
+
+.navbar-nav .dropdown a:visited {
+    background-color: #1257B2 !important;
+}
+
+.navbar-nav .dropdown .dropdown-item {
+    background-color: #1257B2 !important;
+}
+
+.navbar-nav .dropdown .dropdown-menu {
+    background-color: #1257B2 !important;
+}
+
+.navbar-nav .dropdown .dropdown-menu:hover {
+    background-color: #0A3D7E !important;
+}
+
+.notice {
+    height: 51px;
+    padding: 0 0 0 16px;
+    line-height: 51px;
+    border-bottom: 1px solid #D1D1D1;
+    overflow: hidden;
+}
+
+.notice .breadcrumb {
+    display: inline;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.notice .breadcrumb > .active {
+    color: #FFF;
+}
+
+.notice a {
+    color: #D1D1D1;
+}
+
+.main {
+    min-height: 480px;
+}
+
+/* -------------- index -------------- */
+
+
+.recommend {
+    padding: 0;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.recommend .item {
+    display: block;
+    float: left;
+    width: 14.28%;
+    border: 0;
+    margin: 0;
+    padding: 12px 0 12px 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.recommend .item:hover {
+    background: #0A3D7E;
+}
+
+.recommend .item .cover {
+    position: relative;
+    padding: 0;
+}
+
+.recommend .item .cover,
+.recommend .item .remark,
+.recommend .item .shade {
+    margin: 0 auto;
+    width: 128px;
+}
+
+.recommend .item .shade,
+.recommend .item .remark {
+    position: absolute;
+    bottom: 0;
+    height: 27px;
+    overflow: hidden;
+    line-height: 2.5em;
+    font-size: 13px;
+    background-color: #1257B2;
+    opacity: 0.8;
+    font-weight: normal;
+}
+
+.recommend .item .shade {
+    z-index: 901;
+}
+
+.recommend .item .remark {
+    background: none;
+    z-index: 999;
+    opacity: 1;
+}
+
+.recommend .item .remark:hover {
+    background-color: #1D6BCF;
+}
+
+.recommend .item .remark a {
+    display: block;
+    color: #D1D1D1 !important;
+}
+
+.popular {
+    padding: 0;
+    border: 0;
+}
+
+.popular .item {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 0 0 10px;
+    border: 0;
+    color: #D1D1D1;
+    line-height: 300%;
+}
+
+.popular .item:hover {
+    color: #D1D1D1;
+    background-color: #0A3D7E;
+}
+
+.popular .item .book {
+    width: 65%;
+    float: left;
+    overflow: hidden;
+    border: 0;
+}
+
+.popular .item .book a {
+    display: block;
+    color: #D1D1D1;
+}
+
+.popular .item .book a .tag {
+    font-size: 15px;
+    display: inline;
+}
+
+.popular .item .author {
+    float: right;
+    right: 0;
+    padding-left: 5px;
+    background: transparent;
+    color: #DDD;
+    width: 35%;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.popular .item .author a {
+    display: block;
+    color: #D1D1D1;
+}
+
+.popular .item .author:hover {
+    color: #FFF;
+    background-color: #1D6BCF;
+}
+
+/* ------------------------------------ cat ------------------------------------ */
+
+.work-show {
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.work-show .work {
+    padding: 12px;
+    border-bottom: 1px solid #D1D1D1;
+    overflow: hidden;
+}
+
+.work-show .cover {
+    float: left;
+    width: 118px;
+    height: 156px;
+    overflow: hidden;
+}
+
+.work-show .brief {
+    padding: 0 0 0 8px;
+    margin-left: 110px;
+    height: 156px;
+    overflow: hidden;
+}
+
+.work-show .brief .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #D1D1D1;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+.work-show .brief .title a {
+    color: #D1D1D1;
+}
+
+.work-show .brief .title a:hover {
+    color: #FFF9E8;
+}
+
+.work-show .brief .author {
+    font-size: 12px;
+    line-height: 32px;
+}
+
+.work-show .brief .author a {
+    color: #AAA
+}
+
+.work-show .brief .author a:hover {
+    color: #FFF9E8;
+}
+
+.work-show .brief .intro {
+    line-height: 160%;
+    overflow: hidden;
+    letter-spacing: 1px;
+}
+
+.pagination {
+    padding: 12px 0;
+}
+
+.pagination a {
+    padding: 6px 8px;
+    margin: 2px;
+    line-height: 100%;
+    border: 1px solid #FFF9E8;
+    color: #FFF9E8;
+}
+
+.pagination a:hover {
+    text-decoration: none;
+    background-color: #D1D1D1;
+}
+
+.pagination .active {
+    text-decoration: none;
+    background-color: #0A3D7E;
+}
+
+
+/* ------------------------------------ work ------------------------------------ */
+.work-block {
+    margin: 0 -15px;
+}
+
+
+.work-header {
+    padding: 12px 15px 5px;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.work-header .title {
+    font-weight: bolder;
+    font-size: 19px;
+    color: #D9D9D9;
+}
+
+.work-header .author {
+    padding-left: 12px;
+}
+
+.work-header .author a {
+    color: #2e6da4;
+}
+
+.work-neck {
+    margin: 0;
+    padding: 12px 9px;
+    border-bottom: 1px solid #D1D1D1;
+    vertical-align: baseline;
+    height: auto;
+}
+
+.work-neck .cover {
+    float: left;
+    width: 125px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.work-neck .brief {
+    padding: 0;
+}
+
+.work-neck .brief .intro {
+    padding: 6px 0;
+    overflow: hidden;
+    height: 120px;
+    color: #D1D1D1;
+    line-height: 180%;
+    text-indent: 2em;
+}
+
+.work-neck .brief .relate {
+    height: 24px;
+    padding: 8px 16px 0 6px;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.work-neck .brief .relate a {
+    margin-right: 12px;
+    color: #2e6da4;
+}
+
+.work-body {
+    margin-top: 6px;
+    padding: 0 15px;
+}
+
+
+.work-body .volume {
+    margin-top: 9px;
+    padding: 12px 12px 10px;
+    background-color: #1257B2;
+    text-align: left;
+    font: 16px Arial;
+    color: #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.work-body .chapter {
+    padding: 6px 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 189%;
+}
+
+.work-body .chapter:hover {
+    background-color: #0A3D7E;
+}
+
+.work-body .chapter a {
+    display: block;
+    color: #D1D1D1;
+}
+
+.work-body .chapter a:hover {
+    color: #FFF;
+}
+
+/* ------------------------------------ chapter ------------------------------------ */
+.readerTools {
+    overflow: hidden;
+    margin: 0;
+    height: 36px;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+}
+
+
+#contentContainer {
+    margin: 0;
+    padding-bottom: 18px;
+}
+
+.chapter-name {
+    margin: 0;
+    padding: 9px 0 6px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 240%;
+    color: #D1D1D1;
+    text-align: center;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.chapter-nav {
+    position: relative;
+    margin: 0;
+    font-size: 12px;
+    line-height: 42px;
+    text-align: center;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.chapter-nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #D1D1D1;
+}
+
+.chapter-author {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    right: 9px;
+}
+
+.chapter-content {
+    margin: 0;
+    padding: 24px 16px;
+    color: #AAA;
+    font-size: 18px;
+    min-height: 90px;
+    line-height: 210%;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.chapter-content p {
+    text-indent: 2em;
+}
+
+/* -------------- foot -------------- */
+
+.footer {
+    margin: 0 0 12px 0;
+    border-top: 1px solid #D1D1D1;
+    padding: 21px 24px 0;
+    min-height: 96px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.footer .copyright {
+    margin-top: 9px;
+    width: 100%;
+    line-height: 180%;
+    color: #D1D1D1;
+    font-size: 15px;
+}
+
+
+.footer .copyright a, .footer .copyright a:hover {
+    color: #D1D1D1;
+    text-decoration: none;
+}
+
+
+/* ------------------------------------  bootstrap  ------------------------------------ */
+
+.page-header {
+    margin: 9px -15px 0 -15px;
+    padding: 0 0 0 12px;
+    color: #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.page-header a {
+    color: #D1D1D1;
+    text-decoration: none;
+}
+
+
+/* ------------------------------------ multi device ------------------------------------ */
+@media screen and (min-width: 870px) {
+    .content {
+        border-right: 1px solid #CCC;
+        padding-right: 6px;
+    }
+
+    .chapter-author {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .header {
+        display: none;
+    }
+
+    #recommend {
+        display: none;
+    }
+
+    #floatPanel {
+        display: none;
+    }
+
+    .chapter-author {
+        display: none;
+    }
+
+    .readerTools {
+        display: none;
+    }
+}
+
+
+@media (min-width: 600px) {
+
+    /* ------------------------------ 上下移动按钮 ------------------------------ */
+    #floatPanel .ctrlPanel {
+        width: 36px;
+        height: 62px;
+        background: #0A3D7E url(../imgs/float-panel-bg.png) no-repeat left top;
+        border: solid 1px #FFF;
+        margin-left: 510px;
+        position: fixed;
+        _position: absolute;
+        bottom: 76px;
+        left: 50%;
+        overflow: hidden;
+        z-index: 10000;
+    }
+
+    #floatPanel .ctrlPanel .arrow {
+        height: 29px;
+        line-height: 28px;
+        display: block;
+        margin: 1px auto;
+    }
+
+    #floatPanel .ctrlPanel .arrow span {
+        display: none;
+    }
+
+    #floatPanel .ctrlPanel .arrow:hover {
+        background: #0A3D7E;
+    }
+
+    #floatPanel .ctrlPanel .arrow:hover span {
+        display: block
+    }
+
+    #floatPanel .ctrlPanel a {
+        text-decoration: none;
+        width: 34px;
+        font-size: 12px;
+        color: #D1D1D1;
+        letter-spacing: 1px;
+        text-align: center;
+        overflow: hidden;
+    }
+}

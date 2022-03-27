@@ -10,7 +10,7 @@ class Custom extends BaseConfig
 {
 
 
-    public $theme = 'deep';
+    public $theme = 'blue';
 
 
 }
