@@ -16,7 +16,7 @@ em {
 }
 
 body {
-    background: #010219;
+    background: #1257B2;
     font-size: 15px;
 }
 
@@ -35,7 +35,7 @@ body {
     background: #1257B2;
     margin: 0 auto;
     padding: 0;
-    box-shadow: 0 0 6px 6px rgba(180, 201, 239, .27);
+    border: 1px solid #D1D1D1;
 }
 
 .wrapper a:hover {
@@ -369,7 +369,7 @@ body {
 }
 
 .work-header .author a {
-    color: #2e6da4;
+    color: #D1D1D1;
 }
 
 .work-neck {
@@ -409,7 +409,7 @@ body {
 
 .work-neck .brief .relate a {
     margin-right: 12px;
-    color: #2e6da4;
+    color: #D1D1D1;
 }
 
 .work-body {

@@ -4,8 +4,6 @@
 
 <div class="container main">
 
-    <?php include_once 'recommend.php'; ?>
-
     <?php foreach ($all as $cat) { ?>
         <div class="page-header">
             <h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
