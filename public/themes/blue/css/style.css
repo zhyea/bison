@@ -544,7 +544,7 @@ body {
     margin: 9px -15px 0 -15px;
     padding: 0 0 0 12px;
     color: #D1D1D1;
-    border-bottom: 1px solid #D1D1D1;
+    border-bottom: 1px dashed #D1D1D1;
 }
 
 .page-header a {
