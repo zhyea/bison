@@ -115,9 +115,10 @@ class WorkService extends BaseService
      * 获取分类作品信息
      * @param string $catSlug 分类缩略名
      * @param int $page 页码
+     * @param int $length 页面长度
      * @return array 结果
      */
-    public function findWithCat(string $catSlug, int $page): array
+    public function findWithCat(string $catSlug, int $page, int $length = 18): array
     {
         $cat = $this->catModel->getBySlug($catSlug);
         if (empty($cat)) {
@@ -125,7 +126,6 @@ class WorkService extends BaseService
         }
         $sort = 'id';
         $order = 'desc';
-        $length = 18;
         $offset = $length * ($page - 1);
         $works = $this->workModel->findWithCat($cat['id'], $sort, $order, $offset, $length);
         $total = $this->workModel->countWithCat($cat['id']);
@@ -148,9 +148,10 @@ class WorkService extends BaseService
      * 分页获取专题作品信息
      * @param string $featureAlias 专题别名
      * @param int $page 页数
+     * @param int $length 页面长度
      * @return array 作者作品信息
      */
-    public function findWithFeature(string $featureAlias, int $page): array
+    public function findWithFeature(string $featureAlias, int $page, int $length = 18): array
     {
         $f = $this->featureModel->getByAlias($featureAlias);
         if (empty($f)) {
@@ -158,7 +159,6 @@ class WorkService extends BaseService
         }
         $sort = 'id';
         $order = 'desc';
-        $length = 18;
         $offset = $length * ($page - 1);
         $rows = $this->workModel->findWithFeature($featureAlias, $sort, $order, $offset, $length);
         $this->padCovers($rows);
@@ -188,9 +188,10 @@ class WorkService extends BaseService
      * 分页获取作者作品信息
      * @param int $authorId 作者ID
      * @param int $page 页数
+     * @param int $length 页面长度
      * @return array 作者作品信息
      */
-    public function findWithAuthor(int $authorId, int $page): array
+    public function findWithAuthor(int $authorId, int $page, int $length = 18): array
     {
         $author = $this->authorModel->getById($authorId);
         if (empty($author)) {
@@ -198,7 +199,6 @@ class WorkService extends BaseService
         }
         $sort = 'id';
         $order = 'desc';
-        $length = 18;
         $offset = $length * ($page - 1);
         $rows = $this->workModel->findWithAuthor($authorId, $sort, $order, $offset, $length);
         $this->padCovers($rows);

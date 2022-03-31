@@ -7,6 +7,7 @@ use App\Services\ChapterService;
 use App\Services\SettingService;
 use App\Services\WorkService;
 use CodeIgniter\HTTP\RedirectResponse;
+use Config\Custom;
 
 class Front extends AbstractController
 {
@@ -16,7 +17,7 @@ class Front extends AbstractController
     private $chapterService;
     private $authorService;
     private $settingService;
-
+    private $pageLen;
 
     /**
      * constructor.
@@ -24,6 +25,8 @@ class Front extends AbstractController
     public function __construct()
     {
         parent::__construct();
+        $customCfg = new Custom();
+        $this->pageLen = $customCfg->pageLength;
         $this->workService = new WorkService();
         $this->chapterService = new ChapterService();
         $this->authorService = new AuthorService();
@@ -51,7 +54,7 @@ class Front extends AbstractController
      */
     public function category(string $alias, int $page = 1): RedirectResponse
     {
-        $data = $this->workService->findWithCat($alias, $page);
+        $data = $this->workService->findWithCat($alias, $page, $this->pageLen);
         if (empty($data)) {
             return $this->goHome();
         }
@@ -68,7 +71,7 @@ class Front extends AbstractController
      */
     public function feature(string $alias, int $page = 1): RedirectResponse
     {
-        $data = $this->workService->findWithFeature($alias, $page);
+        $data = $this->workService->findWithFeature($alias, $page, $this->pageLen);
         if (empty($data)) {
             return $this->goHome();
         }
@@ -85,7 +88,7 @@ class Front extends AbstractController
      */
     public function author(int $id, int $page = 1): RedirectResponse
     {
-        $data = $this->workService->findWithAuthor($id, $page);
+        $data = $this->workService->findWithAuthor($id, $page, $this->pageLen);
         if (empty($data)) {
             return $this->goHome();
         }
