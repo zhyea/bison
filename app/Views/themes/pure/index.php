@@ -2,8 +2,11 @@
     <i class="glyphicon glyphicon-volume-up" aria-hidden="true"></i> <?= $notice ?>
 </div>
 
-<div class="container main">
+<div class="container gallery">
+    <?php include_once 'recommend.php'; ?>
+</div>
 
+<div class="container main">
     <?php foreach ($all as $cat) { ?>
         <div class="page-header">
             <h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">

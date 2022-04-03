@@ -5,11 +5,12 @@
 			<li><?= empty($cat) ? '不存在' : $cat['name'] ?></li>
 		</ol>
 	</div>
+
+	<div class="container gallery">
+        <?php include_once 'recommend.php'; ?>
+	</div>
 	
 	<div class="container main">
-
-        <?php include_once 'recommend.php'; ?>
-
         <?php if (!empty($cat)) { ?>
 			<div class="page-header">
 				<h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
@@ -21,7 +22,7 @@
             <?php include_once 'work-show.php'; ?>
 
 			<div class="pagination">
-				<a>共 <?= $total ?> 部</a>
+				<a>共 <?= $total ?> 页</a>
                 <?php for ($i = 1; $i <= $total; $i++) { ?>
 					<a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>/<?= $i ?>.html"
 					   class="<?= ($page == $i ? 'active' : '') ?>"><?= $i ?></a>

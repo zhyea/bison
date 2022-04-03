@@ -1,5 +1,7 @@
 
 
+<script charset="utf-8" src="<?= $uriTheme ?>/js/reader.js" type="text/javascript"></script>
+
 <div class="container notice">
 	<ol class="breadcrumb">
 		<li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
@@ -15,6 +17,13 @@
 </div>
 
 <div class="main">
+	<div class="row readerTools">
+		<script type="text/javascript">
+            if (system.win || system.mac || system.xll) {
+                readerSet();
+            }
+		</script>
+	</div>
 	
 	<div class="row" id="contentContainer">
 		
@@ -39,6 +48,7 @@
 			<span class="chapter-author">作者：<a href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
+
         <?php if (!empty($chapter_top_ad)) { ?>
 			<div><?= $chapter_top_ad ?></div>
         <?php } ?>
@@ -61,6 +71,11 @@
 				<a>没有了</a>
             <?php } ?>
 		</div>
+		
+		
+		<script type="text/javascript">
+            window.addEventListener('load', LoadReadSet, false);
+		</script>
 
         <?php if (!empty($chapter_bottom_ad)) { ?>
 			<div><?= $chapter_bottom_ad ?></div>
