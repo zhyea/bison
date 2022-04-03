@@ -426,7 +426,8 @@ a:hover {
 .readerTools {
     overflow: hidden;
     margin: 0;
-    height: 36px;
+    padding-top: 10px;
+    height: 48px;
     border-bottom: 1px solid #ddd;
     font-size: 12px;
 }
