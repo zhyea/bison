@@ -393,12 +393,10 @@ a:hover {
 .work-body .volume {
     margin-top: 9px;
     padding: 12px 12px 10px;
-    background-color: #f1fee8;
     text-align: left;
     font: 16px Arial;
     color: #1d6300;
-    border-bottom: 1px solid #e2e2e2;
-    border-top: 1px solid #129151;
+    border-bottom: 1px solid #129151;
 }
 
 .work-body .chapter {
@@ -496,6 +494,7 @@ a:hover {
 }
 
 .footer .copyright {
+    margin-top: 9px;
     width: 100%;
     line-height: 180%;
     color: #8F989C;
