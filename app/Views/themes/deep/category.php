@@ -21,7 +21,7 @@
             <?php include_once 'work-show.php'; ?>
 
 			<div class="pagination">
-				<a>共 <?= $total ?> 部</a>
+				<a>共 <?= $total ?> 页</a>
                 <?php for ($i = 1; $i <= $total; $i++) { ?>
 					<a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>/<?= $i ?>.html"
 					   class="<?= ($page == $i ? 'active' : '') ?>"><?= $i ?></a>
