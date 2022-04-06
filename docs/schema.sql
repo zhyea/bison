@@ -190,6 +190,19 @@ create table if not exists feature_record
   DEFAULT CHARSET = utf8mb4;
 
 
+-- comment
+create table if not exists comment
+(
+    id         int       not null auto_increment primary key,
+    work_id    int,
+    chapter_id int,
+    content    varchar(128),
+    heat       int                default 0,
+    op_time    timestamp not null default current_timestamp on update current_timestamp
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
+
+
 -- remote code
 create table if not exists remote_code
 (
