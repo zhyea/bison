@@ -197,6 +197,7 @@ create table if not exists comment
     work_id    int,
     chapter_id int,
     content    varchar(128),
+    name       varchar(32),
     heat       int                default 0,
     op_time    timestamp not null default current_timestamp on update current_timestamp
 ) ENGINE = MyISAM
