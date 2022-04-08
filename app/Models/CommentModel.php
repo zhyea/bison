@@ -20,6 +20,8 @@ class CommentModel extends BaseModel
         $this->asArray()
             ->where('work_id', $workId)
             ->where('chapter_id', $chapterId)
+            ->orderBy('heat', 'desc')
+            ->orderBy('id', 'desc')
             ->findAll($limit, $offset);
     }
 

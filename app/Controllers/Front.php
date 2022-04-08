@@ -112,6 +112,7 @@ class Front extends AbstractController
         $vols = $this->chapterService->volumes($workId);
         $relates = $this->workService->relate($workId, $work['author_id']);
         $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];
+
         $this->themeView('work', array('w' => $work,
             'vols' => $vols, 'relates' => $relates,
             'keywords' => $keywords,
