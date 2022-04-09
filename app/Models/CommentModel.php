@@ -12,17 +12,19 @@ class CommentModel extends BaseModel
      * 分页查询作品评论信息
      * @param int $workId 作品ID
      * @param int $chapterId 章节ID
-     * @param int $offset 偏移量
-     * @param int $limit 页面长度
+     * @param int $pageNum 偏移量
+     * @param int $pageSize 页面长度
      */
-    public function findByWorkAndChapter(int $workId, int $chapterId, int $offset = 0, int $limit = 18)
+    public function findByWorkAndChapter(int $workId, int $chapterId, int $pageNum = 0, int $pageSize = 36): array
     {
-        $this->asArray()
+
+        $offset = ($pageNum - 1) * $pageSize;
+        return $this->asArray()
             ->where('work_id', $workId)
             ->where('chapter_id', $chapterId)
             ->orderBy('heat', 'desc')
             ->orderBy('id', 'desc')
-            ->findAll($limit, $offset);
+            ->findAll($pageSize, $offset);
     }
 
 

@@ -9,8 +9,6 @@
 	</div>
 </div>
 
-<script src="<?= $uriStatic ?>/js/bootstrap.min.js"></script>
-
 <!--统计代码-->
 <?php
 if (!empty($statistic)) {

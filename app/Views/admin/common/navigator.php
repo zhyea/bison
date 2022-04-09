@@ -68,8 +68,10 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?= $siteUrl ?>">
-                        <i class="glyphicon glyphicon-home"></i> <?= empty($siteName) ? 'Test' : $siteName ?></a>
+                <li>
+	                <a href="<?= $siteUrl ?>" target="_blank">
+                        <i class="glyphicon glyphicon-home"></i> <?= empty($siteName) ? 'Test' : $siteName ?>
+	                </a>
                 </li>
                 <li><a href="<?= $siteUrl ?>/logout"><span class="glyphicon glyphicon-off"></span> 登出</a>
                 </li>

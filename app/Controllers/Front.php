@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Services\AuthorService;
 use App\Services\ChapterService;
+use App\Services\CommentService;
 use App\Services\SettingService;
 use App\Services\WorkService;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -18,6 +19,7 @@ class Front extends AbstractController
     private $authorService;
     private $settingService;
     private $pageLen;
+    private $commentService;
 
     /**
      * constructor.
@@ -31,6 +33,7 @@ class Front extends AbstractController
         $this->chapterService = new ChapterService();
         $this->authorService = new AuthorService();
         $this->settingService = new SettingService();
+        $this->commentService = new CommentService();
     }
 
 
@@ -111,12 +114,14 @@ class Front extends AbstractController
         $this->workService->addSn($workId);
         $vols = $this->chapterService->volumes($workId);
         $relates = $this->workService->relate($workId, $work['author_id']);
+        $comments = $this->commentService->findWorkComments($workId);
         $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];
 
         $this->themeView('work', array('w' => $work,
             'vols' => $vols, 'relates' => $relates,
             'keywords' => $keywords,
-            'description' => $work['brief']), $work['name']);
+            'description' => $work['brief'],
+            'comments' => $comments,), $work['name']);
         die();
     }
 
@@ -132,6 +137,8 @@ class Front extends AbstractController
         if (empty($chapter)) {
             return $this->goHome();
         }
+        $comments = $this->commentService->findChapterComments($chapter['workId'], $chapterId);
+        $chapter['comments'] = $comments;
         $this->themeView('chapter', $chapter, $chapter['title']);
         die();
     }
@@ -144,6 +151,12 @@ class Front extends AbstractController
     {
         $authors = $this->authorService->all();
         $this->themeView('authors', array('all' => $authors, 'description' => '作家信息集合'), '作家');
+    }
+
+
+    public function addComment()
+    {
+        // TODO 添加评论前需要限制评论数量
     }
 
 
