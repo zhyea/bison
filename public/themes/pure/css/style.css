@@ -528,6 +528,7 @@ a:hover {
     border: 1px solid #888;
     margin: 0;
     line-height: 100%;
+    outline: none;
 }
 
 .comment-form input, .comment-form button {
@@ -542,7 +543,7 @@ a:hover {
     text-align: right;
 }
 
-.comment-form .comment-sub .btn{
+.comment-form .comment-sub .btn {
     width: 90px;
 }
 
