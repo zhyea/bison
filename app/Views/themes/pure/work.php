@@ -50,9 +50,8 @@
     <?php if (!empty($volume_bottom_ad)) { ?>
 		<div><?= $volume_bottom_ad ?></div>
     <?php } ?>
-    <?php if (!empty($third_party_comments)) { ?>
-		<div><?= $third_party_comments ?></div>
-    <?php } ?>
+
+    <?php include_once 'comment.php'; ?>
 </div>
 
 <script type="text/javascript">

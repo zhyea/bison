@@ -508,6 +508,48 @@ a:hover {
 }
 
 
+/* -------------- comment -------------- */
+
+
+.comment-form {
+    display: block;
+    background-color: #85D87B;
+    margin: 36px 0 0 0;
+    padding: 36px 3px 16px;
+}
+
+.comment-form .comment-user, .comment-form .comment-content, .comment-form .comment-sub {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-form textarea, .comment-form input {
+    width: 100%;
+    border: 1px solid #888;
+    margin: 0;
+    line-height: 100%;
+}
+
+.comment-form input, .comment-form button {
+    height: 36px
+}
+
+.comment-form .comment-user {
+    display: inline;
+}
+
+.comment-form .comment-sub {
+    text-align: right;
+}
+
+.comment-form .comment-sub .btn{
+    width: 90px;
+}
+
+.comment-form .comment-user input {
+    width: 90%;
+}
+
 /* ------------------------------------  bootstrap  ------------------------------------ */
 
 .page-header {
