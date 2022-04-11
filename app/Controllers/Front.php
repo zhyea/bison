@@ -154,8 +154,12 @@ class Front extends AbstractController
     }
 
 
+    /**
+     * 添加评论信息
+     */
     public function addComment()
     {
+        $ip = $this->request->getIPAddress();
         // TODO 添加评论前需要限制评论数量
     }
 

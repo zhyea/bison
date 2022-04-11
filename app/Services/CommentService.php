@@ -46,4 +46,15 @@ class CommentService
         return $this->commentModel->findByWorkAndChapter($workId, $chapterId, $pageNum, $pageSize);
     }
 
+
+    /**
+     * 根据IP查询最新的评论信息
+     * @param string $ip 请求IP
+     * @return array
+     */
+    public function getByIp(string $ip): array
+    {
+        return $this->commentModel->getLatestByParams(array('ip' => $ip));
+    }
+
 }
