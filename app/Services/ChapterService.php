@@ -110,10 +110,9 @@ class ChapterService extends BaseService
         $brief = strip_tags($brief);
 
         $title = $work['name'] . '-' . $chapter['name'];
-        return array('w' => $work, 'chp' => $chapter,
-            'last' => $last, 'next' => $next,
-            'title' => $title,
-            'keywords' => $keywords, 'description' => $brief, 'workId' => $workId);
+        return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next,
+            'title' => $title, 'keywords' => $keywords, 'description' => $brief,
+            'workId' => $workId, 'chapterId' => $chapterId);
     }
 
 

@@ -119,9 +119,9 @@ class Front extends AbstractController
 
         $this->themeView('work', array('w' => $work,
             'vols' => $vols, 'relates' => $relates,
-            'keywords' => $keywords,
-            'description' => $work['brief'],
-            'comments' => $comments,), $work['name']);
+            'keywords' => $keywords, 'description' => $work['brief'],
+            'comments' => $comments, 'workId' => $workId, 'chapterId' => 0),
+            $work['name']);
         die();
     }
 

@@ -57,4 +57,15 @@ class CommentService
         return $this->commentModel->getLatestByParams(array('ip' => $ip));
     }
 
+
+    /**
+     * 新增评论
+     * @param array $data 评论信息
+     * @return bool 是否新增成功
+     */
+    public function add(array $data): bool
+    {
+        return $this->commentModel->insertSilent($data);
+    }
+
 }
