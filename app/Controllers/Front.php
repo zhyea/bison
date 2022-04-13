@@ -115,12 +115,12 @@ class Front extends AbstractController
         $vols = $this->chapterService->volumes($workId);
         $relates = $this->workService->relate($workId, $work['author_id']);
         $comments = $this->commentService->findWorkComments($workId);
+        $sign = $this->commentService->signOf($workId, 0);
         $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];
 
         $this->themeView('work', array('w' => $work,
-            'vols' => $vols, 'relates' => $relates,
-            'keywords' => $keywords, 'description' => $work['brief'],
-            'comments' => $comments, 'workId' => $workId, 'chapterId' => 0),
+            'vols' => $vols, 'relates' => $relates, 'keywords' => $keywords, 'description' => $work['brief'],
+            'comments' => $comments, 'workId' => $workId, 'chapterId' => 0, 'sign' => $sign,),
             $work['name']);
         die();
     }
@@ -137,8 +137,6 @@ class Front extends AbstractController
         if (empty($chapter)) {
             return $this->goHome();
         }
-        $comments = $this->commentService->findChapterComments($chapter['workId'], $chapterId);
-        $chapter['comments'] = $comments;
         $this->themeView('chapter', $chapter, $chapter['title']);
         die();
     }

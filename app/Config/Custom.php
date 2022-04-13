@@ -14,4 +14,6 @@ class Custom extends BaseConfig
 
     public $pageLength = 18;
 
+    public $commentSalt = '两只烤鸭往北走';
+
 }

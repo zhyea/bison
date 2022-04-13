@@ -8,7 +8,7 @@
             <label for="nickname">昵称</label>
             <input type="hidden" name="work_id" value="0">
             <input type="hidden" name="chapter_id" value="0">
-            <input type="hidden" name="seq" value="0">
+            <input type="hidden" name="sign" value="0">
         </div>
         <div class="col-md-2 col-xs-12 comment-sub">
             <button type="submit" class="btn">发布</button>

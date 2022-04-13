@@ -15,6 +15,7 @@ class ChapterService extends BaseService
     private $workModel;
     private $volumeModel;
     private $chapterModel;
+    private $commentService;
 
     /**
      * ChapterService constructor.
@@ -24,6 +25,7 @@ class ChapterService extends BaseService
         $this->workModel = new WorkModel();
         $this->volumeModel = new VolumeModel();
         $this->chapterModel = new ChapterModel();
+        $this->commentService = new CommentService();
     }
 
 
@@ -109,10 +111,13 @@ class ChapterService extends BaseService
         $brief = empty($chapter['content']) ? '' : (strlen($chapter['content']) > 550 ? substr($chapter['content'], 0, 512) : $chapter['content']);
         $brief = strip_tags($brief);
 
+        $comments = $this->commentService->findChapterComments($workId, $chapterId);
+        $sign = $this->commentService->signOf($workId, $chapterId);
+
         $title = $work['name'] . '-' . $chapter['name'];
         return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next,
             'title' => $title, 'keywords' => $keywords, 'description' => $brief,
-            'workId' => $workId, 'chapterId' => $chapterId);
+            'workId' => $workId, 'chapterId' => $chapterId, 'sign' => $sign, 'comments' => $comments);
     }
 
 

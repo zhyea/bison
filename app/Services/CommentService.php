@@ -5,11 +5,14 @@ namespace App\Services;
 
 
 use App\Models\CommentModel;
+use Config\Custom;
 
 class CommentService
 {
 
     private $commentModel;
+
+    private $customConfig;
 
     /**
      * CommentService constructor.
@@ -17,6 +20,7 @@ class CommentService
     public function __construct()
     {
         $this->commentModel = new CommentModel();
+        $this->customConfig = new Custom();
     }
 
 
@@ -65,7 +69,41 @@ class CommentService
      */
     public function add(array $data): bool
     {
+        $workId = $data['work_id'];
+        $chapterId = $data['chapter_id'];
+        $sign = $data['sign'];
+        $r = $this->checkSign($workId, $chapterId, $sign);
+        if (!$r) {
+            return false;
+        }
         return $this->commentModel->insertSilent($data);
+    }
+
+
+    /**
+     * 检查评论签名
+     * @param int $workId 作品ID
+     * @param int $chapterId 章节ID
+     * @param string $sign 评论签名
+     * @return bool 签名是否准确
+     */
+    public function checkSign(int $workId, int $chapterId, string $sign): bool
+    {
+        $s = $this->signOf($workId, $chapterId);
+        return strcmp($sign, $s) == 0;
+    }
+
+
+    /**
+     * 创建评论签名
+     * @param int $workId 作品ID
+     * @param int $chapterId 章节ID
+     * @return string 签名
+     */
+    public function signOf(int $workId, int $chapterId): string
+    {
+        $str = $workId . ':' . $this->customConfig->commentSalt . ':' . $chapterId;
+        return md5($str);
     }
 
 }
