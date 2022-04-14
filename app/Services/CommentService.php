@@ -52,13 +52,19 @@ class CommentService
 
 
     /**
-     * 根据IP查询最新的评论信息
+     * 根据IP查询检查最近的评论信息
      * @param string $ip 请求IP
-     * @return array
+     * @return bool 是否频繁
      */
-    public function getByIp(string $ip): array
+    public function checkByIp(string $ip): boolean
     {
-        return $this->commentModel->getLatestByParams(array('ip' => $ip));
+        $cm = $this->commentModel->getLatestByParams(array('ip' => $ip));
+        $opTime = strtotime($cm['op_time']);
+        $now = strtotime(date("y-m-d h:i:s"));
+        if ($now - $opTime < 30) {
+            return false;
+        }
+        return true;
     }
 
 
@@ -72,6 +78,7 @@ class CommentService
         $workId = $data['work_id'];
         $chapterId = $data['chapter_id'];
         $sign = $data['sign'];
+        array_key_rm('sign', $data);
         $r = $this->checkSign($workId, $chapterId, $sign);
         if (!$r) {
             return false;

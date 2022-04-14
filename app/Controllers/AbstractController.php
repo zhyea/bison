@@ -118,6 +118,14 @@ class AbstractController extends BaseController
         //exit();
     }
 
+    /**
+     * 获取POST请求中的全部内容
+     * @return array 请求中的全部内容
+     */
+    protected function postParams(): array
+    {
+        return $this->request->getRawInput();
+    }
 
     /**
      * 执行跳转

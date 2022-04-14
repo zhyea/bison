@@ -185,7 +185,8 @@ create table if not exists feature_record
     feature_id int,
     work_id    int,
     sn         int                default 0,
-    op_time    timestamp not null default current_timestamp on update current_timestamp
+    op_time    timestamp not null default current_timestamp on update current_timestamp,
+    key idx_feature(feature_id)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
@@ -200,7 +201,8 @@ create table if not exists comment
     name       varchar(32),
     ip         varchar(64),
     heat       int                default 0,
-    op_time    timestamp not null default current_timestamp on update current_timestamp
+    op_time    timestamp not null default current_timestamp on update current_timestamp,
+    key idx_ip(ip)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 

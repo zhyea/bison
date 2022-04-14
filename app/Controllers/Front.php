@@ -157,8 +157,18 @@ class Front extends AbstractController
      */
     public function addComment()
     {
+        $data = $this->postParams();
+        $workId = $data['work_id'];
+        $chapterId = $data['chapter_id'];
+        if (0 == $workId) {
+            return $this->goToWork($workId, $chapterId);
+        }
         $ip = $this->request->getIPAddress();
-        // TODO 添加评论前需要限制评论数量
+        if (!$this->commentService->checkByIp($ip)) {
+            return $this->goToWork($workId, $chapterId);
+        }
+        $this->commentService->add($data);
+        return $this->goToWork($workId, $chapterId);
     }
 
 
@@ -171,5 +181,19 @@ class Front extends AbstractController
         return $this->redirect('');
     }
 
+
+    /**
+     * 跳转到作品页
+     * @param int $workId 作品ID
+     * @param int $chapterId 章节ID
+     * @return RedirectResponse
+     */
+    private function goToWork(int $workId, int $chapterId): RedirectResponse
+    {
+        if (0 < $chapterId) {
+            return $this->redirect('/chapter/' . $chapterId . '.html');
+        }
+        return $this->redirect('/work/' . $workId . 'html');
+    }
 
 }
