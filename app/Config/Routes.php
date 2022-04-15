@@ -43,6 +43,7 @@ $routes->get('/author/(:num)/(:num).html', 'Front::author/$1/$2', ['namespace' =
 $routes->get('/work/(:num).html', 'Front::work/$1', ['namespace' => 'App\Controllers']);
 $routes->get('/chapter/(:num).html', 'Front::chapter/$1', ['namespace' => 'App\Controllers']);
 $routes->get('/authors.html', 'Front::authors', ['namespace' => 'App\Controllers']);
+$routes->post('/add-comment', 'Front::addComment', ['namespace' => 'App\Controllers']);
 // 登录
 $routes->get('login', 'Admin::login');
 $routes->post('login/check', 'Admin::loginCheck');

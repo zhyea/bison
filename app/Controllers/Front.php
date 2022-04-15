@@ -158,15 +158,17 @@ class Front extends AbstractController
     public function addComment()
     {
         $data = $this->postParams();
+        echo json_encode($data);
         $workId = $data['work_id'];
         $chapterId = $data['chapter_id'];
-        if (0 == $workId) {
+        if (0 == $workId || empty($data['name'] || empty($data['content']))) {
             return $this->goToWork($workId, $chapterId);
         }
         $ip = $this->request->getIPAddress();
         if (!$this->commentService->checkByIp($ip)) {
             return $this->goToWork($workId, $chapterId);
         }
+        $data['ip'] = $ip;
         $this->commentService->add($data);
         return $this->goToWork($workId, $chapterId);
     }
@@ -193,7 +195,7 @@ class Front extends AbstractController
         if (0 < $chapterId) {
             return $this->redirect('/chapter/' . $chapterId . '.html');
         }
-        return $this->redirect('/work/' . $workId . 'html');
+        return $this->redirect('/work/' . $workId . '.html');
     }
 
 }

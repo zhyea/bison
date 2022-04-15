@@ -56,9 +56,12 @@ class CommentService
      * @param string $ip 请求IP
      * @return bool 是否频繁
      */
-    public function checkByIp(string $ip): boolean
+    public function checkByIp(string $ip): bool
     {
         $cm = $this->commentModel->getLatestByParams(array('ip' => $ip));
+        if (empty($cm)) {
+            return true;
+        }
         $opTime = strtotime($cm['op_time']);
         $now = strtotime(date("y-m-d h:i:s"));
         if ($now - $opTime < 30) {
@@ -78,7 +81,7 @@ class CommentService
         $workId = $data['work_id'];
         $chapterId = $data['chapter_id'];
         $sign = $data['sign'];
-        array_key_rm('sign', $data);
+        $data = array_key_rm('sign', $data);
         $r = $this->checkSign($workId, $chapterId, $sign);
         if (!$r) {
             return false;

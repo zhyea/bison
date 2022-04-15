@@ -20,6 +20,7 @@ class AbstractController extends BaseController
     private $siteUrl;
 
     protected $uriUpload;
+    protected $req;
 
     /**
      * constructor.
@@ -35,6 +36,7 @@ class AbstractController extends BaseController
         $this->settings = $this->settingService->findAll();
         $this->theme = $bisonCfg->theme;
         $this->siteUrl = $appConfig->baseURL;
+        $this->req = service('request');
 
         $this->uriUpload = '/upload';
     }
@@ -124,7 +126,11 @@ class AbstractController extends BaseController
      */
     protected function postParams(): array
     {
-        return $this->request->getRawInput();
+        $data = $this->req->getRawInput();
+        if (empty($data)) {
+            $data = $_POST;
+        }
+        return $data;
     }
 
     /**
