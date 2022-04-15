@@ -23,7 +23,7 @@ class AbstractController extends BaseController
     protected $req;
 
     /**
-     * constructor.
+     * constructor
      */
     public function __construct()
     {

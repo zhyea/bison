@@ -13,14 +13,12 @@ class AbstractAdmin extends AbstractController
 {
 
 
-    protected $req;
     protected $session;
     private $pathUpload;
 
     public function __construct()
     {
         helper('string');
-        $this->req = service('request');
         $this->session = new SessionService();
         $this->pathUpload = FCPATH . 'upload/';
 
@@ -58,16 +56,6 @@ class AbstractAdmin extends AbstractController
     protected function getFile(string $key): UploadedFile
     {
         return $this->req->getFile($key);
-    }
-
-
-    /**
-     * 获取POST请求中的全部内容
-     * @return array 请求中的全部内容
-     */
-    protected function postParams(): array
-    {
-        return $this->req->getRawInput();
     }
 
 
