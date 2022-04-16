@@ -551,6 +551,48 @@ a:hover {
     width: 80%;
 }
 
+.comments {
+    margin: 0;
+    padding: 10px 6px;
+    border-top: 1px solid #D9D9D9;
+}
+
+.comments .comment-user {
+    display: block;
+    width: 36px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.comments .comment-user .comment-icon {
+    margin: 0;
+    padding: 0;
+    border-radius: 50% !important;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #DDD;
+    overflow: hidden;
+}
+
+.comments .comment-content, .comments .comment-name {
+    text-align: left;
+    margin-left: 42px;
+}
+
+.comments .comment-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.comments .comment-content {
+    padding: 16px;
+    background-color: #A5F89B;
+    border-radius: 7px !important;
+    font-size: 14px;
+    line-height: 180%;
+}
+
 /* ------------------------------------  bootstrap  ------------------------------------ */
 
 .page-header {
