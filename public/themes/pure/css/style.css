@@ -587,10 +587,15 @@ a:hover {
 
 .comments .comment-content {
     padding: 16px;
-    background-color: #A5F89B;
     border-radius: 7px !important;
+    background-color: #A5F89B;
     font-size: 14px;
     line-height: 180%;
+}
+
+.comments .comment-content:hover {
+    background-color: #FFF;
+    border: 1px solid #D9D9D9;
 }
 
 /* ------------------------------------  bootstrap  ------------------------------------ */
