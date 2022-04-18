@@ -8,6 +8,7 @@ use App\Controllers\AbstractController;
 use App\Services\SessionService;
 use CodeIgniter\Files\File;
 use CodeIgniter\HTTP\Files\UploadedFile;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class AbstractAdmin extends AbstractController
 {
@@ -205,5 +206,15 @@ class AbstractAdmin extends AbstractController
                 unlink($f->getRealPath());
             }
         }
+    }
+
+
+    /**
+     * 跳转到后台首页
+     * @return RedirectResponse
+     */
+    protected function goToConsole(): RedirectResponse
+    {
+        return $this->redirect('admin/console');
     }
 }

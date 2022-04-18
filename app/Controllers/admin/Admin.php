@@ -3,6 +3,7 @@
 namespace App\Controllers\admin;
 
 
+use App\Services\CommentService;
 use App\Services\UserService;
 use CodeIgniter\HTTP\RedirectResponse;
 
@@ -10,6 +11,7 @@ class Admin extends AbstractAdmin
 {
 
     private $userService;
+    private $commentService;
 
     /**
      * AdminController constructor.
@@ -18,6 +20,7 @@ class Admin extends AbstractAdmin
     {
         parent::__construct();
         $this->userService = new UserService();
+        $this->commentService = new CommentService();
     }
 
 
@@ -26,7 +29,8 @@ class Admin extends AbstractAdmin
      */
     public function index()
     {
-        $this->adminView('index', array(), '后台首页');
+        $comments = $this->commentService->findToApprove();
+        $this->adminView('index', array('comments' => $comments), '后台首页');
     }
 
 

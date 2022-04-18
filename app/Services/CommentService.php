@@ -52,6 +52,38 @@ class CommentService
 
 
     /**
+     * 查找待审批评论
+     * @return array 待审批评论
+     */
+    public function findToApprove(): array
+    {
+        return $this->commentModel->findToApprove();
+    }
+
+
+    /**
+     * 删除评论
+     * @param int $id 评论ID
+     * @return bool 是否完成
+     */
+    public function delete(int $id): bool
+    {
+        return $this->commentModel->deleteById($id);
+    }
+
+
+    /**
+     * 审批通过评论
+     * @param int $id 评论ID
+     * @return bool 是否完成
+     */
+    public function approve(int $id): bool
+    {
+        return $this->commentModel->approve($id);
+    }
+
+
+    /**
      * 根据IP查询检查最近的评论信息
      * @param string $ip 请求IP
      * @return bool 是否频繁
@@ -82,6 +114,7 @@ class CommentService
         $chapterId = $data['chapter_id'];
         $sign = $data['sign'];
         $data = array_key_rm('sign', $data);
+        $data['status'] = 1;
         $r = $this->checkSign($workId, $chapterId, $sign);
         if (!$r) {
             return false;

@@ -14,18 +14,41 @@ class CommentModel extends BaseModel
      * @param int $chapterId 章节ID
      * @param int $pageNum 偏移量
      * @param int $pageSize 页面长度
+     * @return array 评论信息
      */
     public function findByWorkAndChapter(int $workId, int $chapterId, int $pageNum = 0, int $pageSize = 36): array
     {
-
         $offset = ($pageNum - 1) * $pageSize;
         return $this->asArray()
             ->where('work_id', $workId)
             ->where('chapter_id', $chapterId)
+            ->where('status', 0)
             ->orderBy('heat', 'desc')
             ->orderBy('id', 'desc')
             ->findAll($pageSize, $offset);
     }
 
 
+    /**
+     * 查找待审批评论
+     * @return array 评论集合
+     */
+    public function findToApprove()
+    {
+        return $this->asArray()
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->findAll(36, 0);
+    }
+
+
+    /**
+     * 执行评论审批
+     * @param int $id 评论ID
+     * @return bool
+     */
+    public function approve(int $id): bool
+    {
+        return $this->updateById(array('id' => $id, 'status' => 0));
+    }
 }
