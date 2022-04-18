@@ -155,10 +155,9 @@ class Front extends AbstractController
     /**
      * 添加评论信息
      */
-    public function addComment()
+    public function addComment(): RedirectResponse
     {
         $data = $this->postParams();
-        echo json_encode($data);
         $workId = $data['work_id'];
         $chapterId = $data['chapter_id'];
         if (0 == $workId || empty($data['name'] || empty($data['content']))) {
