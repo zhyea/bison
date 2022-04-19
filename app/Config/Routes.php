@@ -132,6 +132,10 @@ $routes->get('admin/chapter/delete/(:num)/(:num)/(:num)', 'Chapter::delete/$1/$2
 $routes->get('admin/chapter/delete-vol/(:num)/(:num)', 'Chapter::deleteVol/$1/$2');
 $routes->get('admin/chapter/delete-all/(:num)', 'Chapter::deleteAll/$1');
 $routes->get('admin/volume/suggest/(:num)', 'Volume::suggest/$1');
+// 评论管理
+$routes->get('admin/comment/delete/(:num)', 'Comment::delete/$1');
+$routes->get('admin/comment/approve/(:num)', 'Comment::approve/$1');
+
 
 /*
  * --------------------------------------------------------------------
