@@ -74,14 +74,13 @@ class Admin extends AbstractAdmin
         $password = $this->postParam('password');
 
         $user = $this->userService->checkLogin($username, $password);
-        if (!empty($user)) {
-            $this->setSession('lastLog', time());
-            $this->setSession('user', $user);
-            return $this->redirect('/admin/console');
-        } else {
+        if (empty($user)) {
             $this->alertDanger('用户名或密码错误');
             return $this->redirect('/login?err=1');
         }
+        $this->setSession('lastLog', time());
+        $this->setSession('user', $user);
+        return $this->redirect('/admin/console');
     }
 
 
