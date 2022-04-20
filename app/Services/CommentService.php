@@ -4,14 +4,17 @@
 namespace App\Services;
 
 
+use App\Models\ChapterModel;
 use App\Models\CommentModel;
+use App\Models\WorkModel;
 use Config\Custom;
 
 class CommentService
 {
 
     private $commentModel;
-
+    private $chapterModel;
+    private $workModel;
     private $customConfig;
 
     /**
@@ -20,6 +23,8 @@ class CommentService
     public function __construct()
     {
         $this->commentModel = new CommentModel();
+        $this->chapterModel = new ChapterModel();
+        $this->workModel = new WorkModel();
         $this->customConfig = new Custom();
     }
 
@@ -57,7 +62,17 @@ class CommentService
      */
     public function findToApprove(): array
     {
-        return $this->commentModel->findToApprove();
+        $comments = $this->commentModel->findToApprove();
+        foreach ($comments as &$cm) {
+            $chapterId = $cm['chapter_id'];
+            if (0 != $chapterId) {
+                $chapter = $this->chapterModel->getById($chapterId);
+                $cm['chapter_name'] = $chapter['name'];
+            }
+            $workId = $cm['work_id'];
+            $work = $this->workModel->getById($workId);
+            $cm['work_name'] = $work['name'];
+        }
     }
 
 
