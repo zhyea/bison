@@ -126,7 +126,7 @@ class CommentService
     public function add(array $data): bool
     {
         $data['name'] = strip_tags(mb_substr($data['name'], 0, 12));
-        $data['content'] = strip_tags(mb_substr($data['content'], 0, 96));
+        $data['content'] = strip_tags(mb_substr($data['content'], 0, 128));
         $workId = $data['work_id'];
         $chapterId = $data['chapter_id'];
         $sign = $data['sign'];
