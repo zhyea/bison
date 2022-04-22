@@ -63,6 +63,9 @@ class CommentService
     public function findToApprove(): array
     {
         $comments = $this->commentModel->findToApprove();
+        if (empty($comments)) {
+            return array();
+        }
         foreach ($comments as &$cm) {
             $chapterId = $cm['chapter_id'];
             if (0 != $chapterId) {
@@ -73,6 +76,7 @@ class CommentService
             $work = $this->workModel->getById($workId);
             $cm['work_name'] = $work['name'];
         }
+        return $comments;
     }
 
 

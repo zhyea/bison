@@ -293,6 +293,66 @@ input[readonly], .form-control[readonly] {
     padding: 10px 5px;
 }
 
+/* ------------------comment------------------ */
+.comment-list {
+    background-color: #FFF;
+    margin-top: 48px;
+    padding: 12px;
+}
+
+.comment-list .comment {
+    border-top: 1px solid #D9D9D9;
+    margin: 18px 0;
+    padding: 12px 0;
+}
+
+.comment-list .comment-user {
+    display: block;
+    width: 36px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.comment-list .comment-user .comment-icon {
+    margin: 0;
+    padding: 0;
+    border-radius: 50% !important;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #DDD;
+    overflow: hidden;
+}
+
+.comment-list .comment-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.comment-list .comment-work {
+    display: block;
+    float: right;
+    font-size: 12px;
+    padding-right: 12px;
+}
+
+.comment-list .comment-content {
+    margin-left: 39px;
+    padding: 16px;
+    border: 1px solid #D9D9D9;
+    border-radius: 7px !important;
+    background-color: #A5F89B;
+    font-size: 14px;
+    line-height: 180%;
+}
+
+
+.comment-list .comment-content .comment-operate {
+    float: right;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
 /* ------------------table------------------ */
 .bootstrap-table .fixed-table-container {
     padding: 30px !important;
