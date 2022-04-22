@@ -26,7 +26,6 @@
 							<a href="/admin/comment/delete/<?= $c['id'] ?>"><i class="glyphicon glyphicon-ban-circle"></i></a>
 						</div>
 					</div>
-
 				</div>
             <?php } ?>
 		</div>
