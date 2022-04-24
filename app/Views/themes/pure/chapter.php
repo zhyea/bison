@@ -1,5 +1,3 @@
-
-
 <script charset="utf-8" src="<?= $uriTheme ?>/js/reader.js" type="text/javascript"></script>
 
 <div class="container notice">
@@ -45,7 +43,8 @@
 				<a>没有了</a>
             <?php } ?>
 			
-			<span class="chapter-author">作者：<a href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
+			<span class="chapter-author">作者：<a
+						href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
 
@@ -80,10 +79,9 @@
         <?php if (!empty($chapter_bottom_ad)) { ?>
 			<div><?= $chapter_bottom_ad ?></div>
         <?php } ?>
-        <?php if (!empty($third_party_comments)) { ?>
-			<div><?= $third_party_comments ?></div>
-        <?php } ?>
 	</div>
+
+    <?php include_once 'comment.php'; ?>
 
 </div>
 
