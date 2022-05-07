@@ -26,6 +26,10 @@ body {
     border-radius: 0 !important;
 }
 
+a {
+    text-decoration: none;
+}
+
 a:hover {
     color: #8F989C;
     text-decoration: none;
@@ -67,15 +71,25 @@ a:hover {
 }
 
 .navbar-brand {
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .navbar {
     margin: 0;
-    background-color: #FFF;
+    padding: 0;
+    background-color: #f8f8f8 !important;
     border: 0;
     border-top: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
+    line-height: 240%;
+}
+
+.navbar .container-fluid {
+    padding: 0 24px;
+}
+
+.navbar-nav li {
+    padding: 0 9px;
 }
 
 .navbar-nav li:hover {
@@ -86,6 +100,22 @@ a:hover {
 .navbar-nav li a:hover {
     background-color: #2b542c !important;
     color: #FFF !important;
+}
+
+.dropdown-menu {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background-color: #f8f8f8 !important;
+}
+
+.dropdown-item, .nav-item {
+    font-size: 15px;
+}
+
+.nav-item:hover, .dropdown-item:hover, .nav-item a:hover {
+    background-color: #2b542c;
+    color: #FFFFFF !important;
 }
 
 .notice {
