@@ -132,7 +132,6 @@ a:hover {
 }
 
 .notice .breadcrumb {
-    display: inline;
     background-color: transparent;
     padding: 0;
     margin: 0;
@@ -157,7 +156,7 @@ a:hover {
 .recommend .item {
     display: block;
     float: left;
-    width: 14.28%;
+    width: 145px;
     border: 0;
     margin: 0;
     padding: 12px 0 12px 0;
@@ -508,7 +507,7 @@ a:hover {
 /* -------------- foot -------------- */
 
 .footer {
-    margin: 0 0 12px 0;
+    margin-bottom: 12px;
     border-top: 1px solid #ddd;
     padding: 21px 24px 0;
     min-height: 96px;
@@ -624,7 +623,7 @@ a:hover {
 /* ------------------------------------  bootstrap  ------------------------------------ */
 
 .page-header {
-    margin: 9px -15px 0 -15px;
+    margin: 9px -12px 0 -12px;
     padding: 0 0 0 12px;
     color: #129151;
     border-bottom: 1px solid #129151;
@@ -637,47 +636,18 @@ a:hover {
 
 
 /* ------------------------------------ multi device ------------------------------------ */
-@media screen and (min-width: 870px) {
-    .content {
-        border-right: 1px solid #CCC;
-        padding-right: 6px;
-    }
 
-    .chapter-author {
+@media screen and (min-width: 560px) {
+    .header, .gallery, #floatPanel, .chapter-author, .readerTools {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 720px) {
+
+    .header, .gallery, #floatPanel {
         display: block;
     }
-}
-
-@media screen and (max-width: 870px) {
-    .wrapper {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 560px) {
-    .header {
-        display: none;
-    }
-
-    .gallery {
-        display: none;
-    }
-
-    #floatPanel {
-        display: none;
-    }
-
-    .chapter-author {
-        display: none;
-    }
-
-    .readerTools {
-        display: none;
-    }
-}
-
-
-@media (min-width: 600px) {
 
     /* ------------------------------ 上下移动按钮 ------------------------------ */
     #floatPanel .ctrlPanel {
@@ -723,3 +693,17 @@ a:hover {
         overflow: hidden;
     }
 }
+
+
+@media screen and (min-width: 870px) {
+    .header, .gallery, #floatPanel, .chapter-author, .readerTools {
+        display: block;
+    }
+
+    .content {
+        border-right: 1px solid #CCC;
+        padding-right: 6px;
+    }
+}
+
+

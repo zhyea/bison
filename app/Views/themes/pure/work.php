@@ -1,9 +1,13 @@
 <div class="container notice">
-	<ol class="breadcrumb">
-		<li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
-		<li><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
-		<li class="active"><?= $w['name'] ?></li>
-	</ol>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="<?= $siteUrl ?>/">首页</a>
+			</li>
+			<li class="breadcrumb-item"><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
+			<li class="breadcrumb-item active"><?= $w['name'] ?></li>
+		</ol>
+	</nav>
 </div>
 
 <div class="main">
