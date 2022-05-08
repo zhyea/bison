@@ -23,8 +23,3 @@
         <?php } ?>
 	</div>
 </div>
-
-
-<script type="text/javascript">
-    backToTop();
-</script>

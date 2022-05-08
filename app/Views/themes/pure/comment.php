@@ -4,7 +4,7 @@
 			<textarea name="content" rows="6" required></textarea>
 		</div>
 		<div class="col-md-10 col-xs-12 comment-user">
-			<input type="text" name="name" id="nickname" required autofocus/>
+			<input type="text" name="name" id="nickname" required/>
 			<label for="nickname">昵称</label>
 			<input type="hidden" name="work_id" value="<?= $workId ?>">
 			<input type="hidden" name="chapter_id" value="<?= $chapterId ?>">

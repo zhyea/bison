@@ -14,6 +14,7 @@
 
 	<script src="<?= $uriTheme ?>/js/custom.js"></script>
 	<script src="<?= $uriTheme ?>/js/bootstrap.min.js"></script>
+	<script src="<?= $uriStatic ?>/js/jquery.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -23,12 +24,12 @@
 
 	<style>
         body {
-        <?=(empty($bgColor) ? '' : 'background-color:'.$bgColor.';')?>
-        <?=(empty($background) ? '' : 'background-image:url('.$uriUpload . '/'.$background.');')?>
-        <?=(!empty($background) && !empty($bgRepeat) && 1==$bgRepeat ? 'background-repeat:repeat;' : '')?>;
+		<?=(empty($bgColor) ? '' : 'background-color:'.$bgColor.';')?><?=(empty($background) ? '' : 'background-image:url('.$uriUpload . '/'.$background.');')?><?=(!empty($background) && !empty($bgRepeat) && 1==$bgRepeat ? 'background-repeat:repeat;' : '')?>
 		<?=(!empty($background) && !empty($bgRepeat) && 2==$bgRepeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>
         }
-        .header {}
+
+        .header {
+        }
 	</style>
 </head>
 <body>

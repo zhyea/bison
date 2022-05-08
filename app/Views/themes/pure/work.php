@@ -53,7 +53,3 @@
 
     <?php include_once 'comment.php'; ?>
 </div>
-
-<script type="text/javascript">
-    backToTop();
-</script>

@@ -86,7 +86,6 @@
 </div>
 
 <script type="text/javascript">
-
     <?php if(!empty($last)){ ?>
     let lastPage = "<?=$siteUrl?>/chapter/<?=$last?>.html";
     <?php   }else{?>
@@ -104,6 +103,4 @@
         if (e.keyCode === 37) location.href = lastPage;
         if (e.keyCode === 39) location.href = nextPage;
     };
-
-    backToTop();
 </script>

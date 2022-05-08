@@ -74,6 +74,10 @@ a:hover {
     font-size: 16px;
 }
 
+.navbar-brand img {
+    margin-bottom: 3px;
+}
+
 .navbar {
     margin: 0;
     padding: 0;
@@ -171,43 +175,32 @@ a:hover {
 }
 
 .recommend .item .cover,
-.recommend .item .remark,
-.recommend .item .shade {
+.recommend .item .remark {
     margin: 0 auto;
     width: 128px;
 }
 
-.recommend .item .shade,
 .recommend .item .remark {
     position: absolute;
+    z-index: 999;
     bottom: 0;
     height: 27px;
     overflow: hidden;
-    line-height: 2.5em;
+    line-height: 200%;
     font-size: 13px;
-    background-color: #255625;
-    opacity: 0.5;
-    color: #000;
-    font-weight: normal;
+    background-color: #18391A;
+    opacity: 0.6;
+    color: #FFF;
 }
 
-.recommend .item .shade {
-    z-index: 901;
-}
 
-.recommend .item .remark {
-    background: none;
-    z-index: 999;
+.recommend .item:hover .remark {
     opacity: 1;
-}
-
-.recommend .item .remark:hover {
-    background-color: #d9edf7;
 }
 
 .recommend .item .remark a {
     display: block;
-    color: #000 !important;
+    color: #FFF !important;
 }
 
 .popular {
