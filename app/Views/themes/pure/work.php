@@ -1,4 +1,4 @@
-<div class="container notice">
+<div class="notice">
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
@@ -19,7 +19,7 @@
 	
 	<div class="work-neck row">
 		<div class="cover">
-			<img src="<?= $uriUpload . '/' . $w['cover'] ?>" width="116px" height="150px"
+			<img src="<?= $uriUpload . '/' . $w['cover'] ?>" width="115px" height="150px"
 			     alt="<?= $w['name'] ?>" title="<?= $w['name'] ?>"/>
 		</div>
 		
@@ -34,6 +34,7 @@
 				</div>
             <?php } ?>
 		</div>
+		<div class="clear"></div>
 	</div>
 	
 	<div class="work-body">
@@ -43,7 +44,7 @@
 					<i class="glyphicon glyphicon-bookmark"></i> <?= $vol['name'] ?>
 				</div>
                 <?php foreach ($vol['chapters'] as $chp) { ?>
-					<div class="col-md-4 col-xs-12 chapter">
+					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 chapter">
 						<a href="<?= $siteUrl ?>/chapter/<?= $chp['id'] ?>.html"><?= $chp['name'] ?></a>
 					</div>
                 <?php } ?>

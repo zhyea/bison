@@ -58,6 +58,11 @@ a:hover {
     clear: both;
 }
 
+.container {
+    margin: 0 auto;
+    padding: 0;
+}
+
 /* -------------- head -------------- */
 .header {
     min-height: 120px;
@@ -92,20 +97,6 @@ a:hover {
     padding: 0 24px;
 }
 
-.navbar-nav li {
-    padding: 0 9px;
-}
-
-.navbar-nav li:hover {
-    background-color: #2b542c;
-    color: #FFF;
-}
-
-.navbar-nav li a:hover {
-    background-color: #2b542c !important;
-    color: #FFF !important;
-}
-
 .dropdown-menu {
     margin: 0;
     padding: 0;
@@ -117,7 +108,7 @@ a:hover {
     font-size: 15px;
 }
 
-.nav-item:hover, .dropdown-item:hover, .nav-item a:hover {
+.nav-item a:hover {
     background-color: #2b542c;
     color: #FFFFFF !important;
 }
@@ -150,14 +141,16 @@ a:hover {
 
 
 .recommend {
+    margin: 0;
     padding: 0;
+    height: 200px;
+    overflow: hidden;
 }
 
 .recommend .item {
     display: block;
     float: left;
     width: 145px;
-    border: 0;
     margin: 0;
     padding: 12px 0 12px 0;
     text-align: center;
@@ -169,20 +162,20 @@ a:hover {
 }
 
 .recommend .item .cover {
+    margin: 0 auto;
     position: relative;
     padding: 0;
+    width: 128px;
+    border: 1px solid #d3d3d3;
 }
 
-.recommend .item .cover,
+
 .recommend .item .remark {
     margin: 0 auto;
-    width: 128px;
-}
-
-.recommend .item .remark {
     position: absolute;
     z-index: 999;
     bottom: 0;
+    width: 126px;
     height: 27px;
     overflow: hidden;
     line-height: 200%;
@@ -203,6 +196,7 @@ a:hover {
 }
 
 .popular {
+    margin: 0;
     padding: 0;
 }
 
@@ -367,6 +361,7 @@ a:hover {
 }
 
 .work-neck {
+    display: block;
     margin: 0;
     padding: 12px 9px;
     border-bottom: 1px solid #e2e2e2;
@@ -376,6 +371,8 @@ a:hover {
 
 .work-neck .cover {
     float: left;
+    margin: 0;
+    padding: 0;
     width: 125px;
     height: 150px;
     overflow: hidden;
@@ -383,9 +380,11 @@ a:hover {
 
 .work-neck .brief {
     padding: 0;
+    width: 100%;
 }
 
 .work-neck .brief .intro {
+    margin: 0;
     padding: 6px 0;
     overflow: hidden;
     height: 120px;
@@ -443,6 +442,11 @@ a:hover {
 }
 
 /* ------------------------------------ chapter ------------------------------------ */
+.chapter .row {
+    display: block;
+}
+
+
 .readerTools {
     overflow: hidden;
     margin: 0;
@@ -485,11 +489,15 @@ a:hover {
 }
 
 .chapter-author {
-    display: none;
+    display: block;
+    width: 25%;
+    float: right;
+    overflow: hidden;
+    text-align: right;
     position: absolute;
     z-index: 999;
     top: 0;
-    right: 9px;
+    right: 0;
 }
 
 .chapter-content {
@@ -574,6 +582,7 @@ a:hover {
 }
 
 .comments {
+    display: block;
     margin: 0;
     padding: 10px 6px;
     border-top: 1px solid #D9D9D9;
@@ -623,7 +632,7 @@ a:hover {
 /* ------------------------------------  bootstrap  ------------------------------------ */
 
 .page-header {
-    margin: 9px -12px 0 -12px;
+    margin: 9px 0 0 0;
     padding: 0 0 0 12px;
     color: #129151;
     border-bottom: 1px solid #129151;
@@ -637,6 +646,12 @@ a:hover {
 
 /* ------------------------------------ multi device ------------------------------------ */
 
+@media screen {
+    .header, .gallery, #floatPanel, .chapter-author, .readerTools {
+        display: none;
+    }
+}
+
 @media screen and (min-width: 560px) {
     .header, .gallery, #floatPanel, .chapter-author, .readerTools {
         display: none;
@@ -645,7 +660,7 @@ a:hover {
 
 @media screen and (min-width: 720px) {
 
-    .header, .gallery, #floatPanel {
+    .header, .gallery, .chapter-author, #floatPanel {
         display: block;
     }
 
@@ -696,7 +711,7 @@ a:hover {
 
 
 @media screen and (min-width: 870px) {
-    .header, .gallery, #floatPanel, .chapter-author, .readerTools {
+    .header, .gallery, #floatPanel .readerTools, .chapter-author {
         display: block;
     }
 

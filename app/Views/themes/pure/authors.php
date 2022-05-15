@@ -1,6 +1,6 @@
 
 
-<div class="container notice">
+<div class="notice">
 	<ol class="breadcrumb">
 		<li><a href="<?=$siteUrl?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 		<li class="active">全部作者</li>

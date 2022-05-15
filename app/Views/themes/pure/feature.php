@@ -1,4 +1,4 @@
-<div class="container notice">
+<div class="notice">
 	<ol class="breadcrumb">
 		<li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 		<li>专题</li>
@@ -6,7 +6,7 @@
 	</ol>
 </div>
 
-<div class="container main">
+<div class="main">
 	<div class="work-block">
 		<div class="work-header">
 			<span class="title"><?= $feature['name'] ?></span>

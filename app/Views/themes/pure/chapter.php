@@ -1,20 +1,22 @@
 <script charset="utf-8" src="<?= $uriTheme ?>/js/reader.js" type="text/javascript"></script>
 
-<div class="container notice">
+<div class="notice">
+	<nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
-		<li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
-		<li><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
-		<li><a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html#vol_$<?= $chp['volume_id'] ?>"><?= $w['name'] ?></a></li>
+		<li class="breadcrumb-item"><a href="<?= $siteUrl ?>">首页</a></li>
+		<li class="breadcrumb-item"><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
+		<li class="breadcrumb-item"><a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html#vol_$<?= $chp['volume_id'] ?>"><?= $w['name'] ?></a></li>
         <?php if (!empty($chp['volume_id']) && $chp['volume_id'] > 0) { ?>
-			<li>
+			<li class="breadcrumb-item">
 				<a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html#vol_<?= $chp['volume_id'] ?>"><?= $chp['volume'] ?></a>
 			</li>
         <?php } ?>
-		<li class="active"><?= $chp['name'] ?></li>
+		<li class="breadcrumb-item active"><?= $chp['name'] ?></li>
 	</ol>
+	</nav>
 </div>
 
-<div class="main">
+<div class="main chapter">
 	<div class="row readerTools">
 		<script type="text/javascript">
             if (system.win || system.mac || system.xll) {
@@ -43,8 +45,7 @@
 				<a>没有了</a>
             <?php } ?>
 			
-			<span class="chapter-author">作者：<a
-						href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
+			<span class="chapter-author">作者：<a href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
 

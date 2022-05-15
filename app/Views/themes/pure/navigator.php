@@ -10,7 +10,7 @@ function nav_of($item, $ctx)
 ?>
 
 
-<div class="container header">
+<div class="header">
     <?php if (empty($logo)) { ?>
 		<a>&nbsp;</a>
     <?php } else { ?>
@@ -18,7 +18,7 @@ function nav_of($item, $ctx)
 			<img src="<?= $uriUpload . '/' . $logo ?>" width="100%" height="100%"/></a>
     <?php } ?>
 </div>
-<div class="container navigator">
+<div class="navigator">
 	<nav class="navbar navbar-expand-md navbar-light bg-light">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="<?= $siteUrl ?>">

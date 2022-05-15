@@ -1,12 +1,12 @@
-<div class="container notice">
+<div class="notice">
     <i class="glyphicon glyphicon-volume-up" aria-hidden="true"></i> <?= $notice ?>
 </div>
 
-<div class="container gallery">
+<div class="gallery">
     <?php include_once 'recommend.php'; ?>
 </div>
 
-<div class="container main">
+<div class="main">
     <?php foreach ($all as $cat) { ?>
         <div class="page-header">
             <h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
@@ -15,7 +15,7 @@
         </div>
         <div class="row popular">
             <?php foreach ($cat['works'] as $w) { ?>
-                <div class="col-md-4 col-xs-12 item">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 item">
                     <span class="book">
                         <a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html" title="<?= $w['name'] ?>"><div class="tag">■</div> <?= $w['name'] ?></a>
                     </span>

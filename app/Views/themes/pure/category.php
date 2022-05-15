@@ -1,16 +1,16 @@
 
-	<div class="container notice">
+	<div class="notice">
 		<ol class="breadcrumb">
 			<li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 			<li><?= empty($cat) ? '不存在' : $cat['name'] ?></li>
 		</ol>
 	</div>
 
-	<div class="container gallery">
+	<div class="gallery">
         <?php include_once 'recommend.php'; ?>
 	</div>
 	
-	<div class="container main">
+	<div class="main">
         <?php if (!empty($cat)) { ?>
 			<div class="page-header">
 				<h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
