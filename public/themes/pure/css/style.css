@@ -63,6 +63,7 @@ a:hover {
     padding: 0;
 }
 
+
 /* -------------- head -------------- */
 .header {
     min-height: 120px;
@@ -361,6 +362,7 @@ a:hover {
 }
 
 .work-neck {
+    position: relative;
     display: block;
     margin: 0;
     padding: 12px 9px;
@@ -373,19 +375,22 @@ a:hover {
     float: left;
     margin: 0;
     padding: 0;
-    width: 125px;
+    position: absolute;
+    left: 9px;
+    z-index: 999;
+    width: 118px;
     height: 150px;
     overflow: hidden;
+    border: 1px solid #d1d1d1;
 }
 
 .work-neck .brief {
     padding: 0;
-    width: 100%;
 }
 
 .work-neck .brief .intro {
     margin: 0;
-    padding: 6px 0;
+    padding: 6px 0 0 125px;
     overflow: hidden;
     height: 120px;
     color: #737383;
@@ -395,7 +400,7 @@ a:hover {
 
 .work-neck .brief .relate {
     height: 24px;
-    padding: 8px 16px 0 6px;
+    padding: 8px 16px 0 125px;
     overflow: hidden;
     font-size: 12px;
 }

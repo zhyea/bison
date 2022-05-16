@@ -13,8 +13,9 @@
 <div class="main">
 	<div class="work-header">
 		<span class="title"><?= $w['name'] ?></span>
-		<span class="author">作者：<a
-					href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
+		<span class="author">
+			作者：<a href="<?= $siteUrl ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a>
+		</span>
 	</div>
 	
 	<div class="work-neck row">
@@ -22,7 +23,7 @@
 			<img src="<?= $uriUpload . '/' . $w['cover'] ?>" width="115px" height="150px"
 			     alt="<?= $w['name'] ?>" title="<?= $w['name'] ?>"/>
 		</div>
-		
+
 		<div class="brief">
 			<div class="intro"><?= str_replace("/n", '<br>', $w['brief']) ?></div>
             <?php if (!empty($relates)) { ?>
