@@ -6,7 +6,7 @@
 </div>
 
 <div class="footer">
-	<div class="col-md-12 col-xs-12 copyright">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 copyright">
         <?php
         if (!empty($bottom_text)) {
             echo $bottom_text;

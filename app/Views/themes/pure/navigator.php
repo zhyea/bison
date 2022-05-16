@@ -6,7 +6,6 @@ function nav_of($item, $ctx)
     }
     return $ctx . $item['url'];
 }
-
 ?>
 
 
@@ -48,14 +47,12 @@ function nav_of($item, $ctx)
 									<ul aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
                                         <?php $children = $n['children'];
                                         foreach ($children as $c) { ?>
-											<li><a class="dropdown-item"
-											       href="<?= nav_of($c, $siteUrl) ?>"><?= $c['name'] ?></a></li>
+											<li><a class="dropdown-item" href="<?= nav_of($c, $siteUrl) ?>"><?= $c['name'] ?></a></li>
                                         <?php } ?>
 									</ul>
 								</li>
                             <?php } else { ?>
-								<li class="nav-item"><a class="nav-link"
-								                        href="<?= nav_of($n, $siteUrl) ?>"><?= $n['name'] ?></a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= nav_of($n, $siteUrl) ?>"><?= $n['name'] ?></a></li>
                             <?php }
                         }
                     } ?>

@@ -259,6 +259,7 @@ a:hover {
 
 .work-show {
     padding: 0;
+    margin: 0;
     vertical-align: baseline;
 }
 
@@ -273,6 +274,7 @@ a:hover {
     width: 118px;
     height: 156px;
     overflow: hidden;
+    border: 1px solid #d1d1d1;
 }
 
 .work-show .brief {
@@ -545,12 +547,15 @@ a:hover {
 
 /* -------------- comment -------------- */
 
-
 .comment-form {
     display: block;
     background-color: #85D87B;
     margin: 36px 0 0 0;
     padding: 36px 3px 16px;
+}
+
+.comment-form form {
+    padding: 0;
 }
 
 .comment-form .comment-user, .comment-form .comment-content, .comment-form .comment-sub {
@@ -575,6 +580,8 @@ a:hover {
 }
 
 .comment-form .comment-sub {
+    float: right;
+    width: 48px;
     text-align: right;
 }
 

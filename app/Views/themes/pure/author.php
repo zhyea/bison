@@ -1,9 +1,11 @@
 <div class="notice">
-    <ol class="breadcrumb">
-        <li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
-        <li>作家</li>
-        <li class="active"><?= $author['name'] ?></li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/">首页</a></li>
+            <li class="breadcrumb-item">作家</li>
+            <li class="breadcrumb-item active"><?= $author['name'] ?></li>
+        </ol>
+    </nav>
 </div>
 
 <div class="main">
