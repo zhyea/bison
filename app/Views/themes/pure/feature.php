@@ -11,7 +11,9 @@
 <div class="main">
     <div class="work-block">
         <div class="work-header">
-            <span class="title"><?= $feature['name'] ?></span>
+            <span class="title">
+                <?php iconTitle('book', '#255625', $feature['name']); ?>
+            </span>
         </div>
         <div class="row work-neck">
             <?= empty($feature['brief']) ? '无专题信息，待完善' : $feature['brief'] ?>

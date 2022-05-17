@@ -63,6 +63,12 @@ a:hover {
     padding: 0;
 }
 
+.bi-icon {
+    width: 21px;
+    height: 21px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+}
 
 /* -------------- head -------------- */
 .header {
@@ -344,7 +350,7 @@ a:hover {
 
 /* ------------------------------------ work ------------------------------------ */
 .work-block {
-    margin: 0 -15px;
+    margin: 0;
 }
 
 
@@ -644,10 +650,12 @@ a:hover {
 /* ------------------------------------  bootstrap  ------------------------------------ */
 
 .page-header {
+    height: 36px;
     margin: 9px 0 0 0;
-    padding: 0 0 0 12px;
+    padding: 6px 0 0 12px;
     color: #129151;
     border-bottom: 1px solid #129151;
+    vertical-align: baseline;
 }
 
 .page-header a {

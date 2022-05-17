@@ -14,8 +14,9 @@
 <div class="main">
     <?php if (!empty($cat)) { ?>
         <div class="page-header">
-            <h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
-                    <i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?>
+            <h3>
+                <a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
+                    <?php iconTitle('book', '#255625', $cat['name']); ?>
                 </a>
             </h3>
         </div>

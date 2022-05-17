@@ -1,7 +1,7 @@
 <div class="notice">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/">首页</a></li>
+            <li class="breadcrumb-item"><?php iconSvg('folder', '#337ab7'); ?> <a href="<?= $siteUrl ?>/">首页</a></li>
             <li class="breadcrumb-item">作家</li>
             <li class="breadcrumb-item active"><?= $author['name'] ?></li>
         </ol>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="page-header">
-        <h3><i class="glyphicon glyphicon-book"></i>&nbsp;作品列表</h3>
+        <h3><?php iconTitle('book', '#255625', '作品列表'); ?></h3>
     </div>
 
     <?php include_once 'work-show.php'; ?>

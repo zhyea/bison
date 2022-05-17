@@ -37,3 +37,6 @@
 
 
 <?php include_once 'navigator.php'; ?>
+
+<?php include_once 'functions.php'; ?>
+
