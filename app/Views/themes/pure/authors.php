@@ -1,7 +1,7 @@
 <div class="notice">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/">首页</a></li>
+            <li class="breadcrumb-item"><?php iconSvg('folder', '#337ab7'); ?><a href="<?= $siteUrl ?>/">首页</a></li>
             <li class="breadcrumb-item active">全部作者</li>
         </ol>
     </nav>

@@ -1,5 +1,5 @@
 <div class="notice">
-    <i class="glyphicon glyphicon-volume-up" aria-hidden="true"></i> <?= $notice ?>
+    <?php iconSvg('horn', '#000000'); ?> <?= $notice ?>
 </div>
 
 <div class="gallery">

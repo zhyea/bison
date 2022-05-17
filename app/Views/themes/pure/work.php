@@ -1,7 +1,7 @@
 <div class="notice">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/">首页</a></li>
+            <li class="breadcrumb-item"><?php iconSvg('folder', '#337ab7'); ?><a href="<?= $siteUrl ?>/">首页</a></li>
             <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
             <li class="breadcrumb-item active"><?= $w['name'] ?></li>
         </ol>
@@ -26,7 +26,7 @@
             <div class="intro"><?= str_replace("/n", '<br>', $w['brief']) ?></div>
             <?php if (!empty($relates)) { ?>
                 <div class="relate">
-                    <i class="glyphicon glyphicon-tags"></i> <?= $w['author'] ?>作品：
+                    <?php iconSvg('tags', '#000000'); ?> <?= $w['author'] ?>作品：
                     <?php foreach ($relates as $r) { ?>
                         <a href="<?= $siteUrl ?>/work/<?= $r['id'] ?>.html"><?= $r['name'] ?></a>
                     <?php } ?>
@@ -40,7 +40,7 @@
         <?php foreach ($vols as $vol) { ?>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 volume" id="vol_<?= $vol['id'] ?>">
-                    <i class="glyphicon glyphicon-bookmark"></i> <?= $vol['name'] ?>
+                    <?php iconSvg('bookmark', '#255625'); ?> <?= $vol['name'] ?>
                 </div>
                 <?php foreach ($vol['chapters'] as $chp) { ?>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 chapter">

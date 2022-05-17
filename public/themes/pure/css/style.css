@@ -77,6 +77,9 @@ a:hover {
 
 /* -------------- navigator -------------- */
 
+.container-fluid {
+    padding: 0 16px !important;
+}
 
 .navigator {
     padding: 0;
@@ -411,6 +414,11 @@ a:hover {
     padding: 8px 16px 0 125px;
     overflow: hidden;
     font-size: 12px;
+}
+
+.work-neck .brief .icon-tags {
+    width: 16px;
+    height: 16px;
 }
 
 .work-neck .brief .relate a {

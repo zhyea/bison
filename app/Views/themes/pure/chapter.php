@@ -3,7 +3,7 @@
 <div class="notice">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= $siteUrl ?>">首页</a></li>
+            <li class="breadcrumb-item"><?php iconSvg('folder', '#337ab7'); ?><a href="<?= $siteUrl ?>">首页</a></li>
             <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
             <li class="breadcrumb-item"><a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html#vol_$<?= $chp['volume_id'] ?>"><?= $w['name'] ?></a></li>
             <?php if (!empty($chp['volume_id']) && $chp['volume_id'] > 0) { ?>
