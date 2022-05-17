@@ -17,7 +17,7 @@
 </div>
 
 <div class="main chapter">
-    <div class="row readerTools">
+    <div class="readerTools">
         <script type="text/javascript">
             if (system.win || system.mac || system.xll) {
                 readerSet();

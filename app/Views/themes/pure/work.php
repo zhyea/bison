@@ -24,14 +24,14 @@
 
         <div class="brief">
             <div class="intro"><?= str_replace("/n", '<br>', $w['brief']) ?></div>
-            <?php if (!empty($relates)) { ?>
-                <div class="relate">
+            <div class="relate">
+                <?php if (!empty($relates)) { ?>
                     <?php iconSvg('tags', '#000000'); ?> <?= $w['author'] ?>作品：
                     <?php foreach ($relates as $r) { ?>
                         <a href="<?= $siteUrl ?>/work/<?= $r['id'] ?>.html"><?= $r['name'] ?></a>
                     <?php } ?>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
         <div class="clear"></div>
     </div>
