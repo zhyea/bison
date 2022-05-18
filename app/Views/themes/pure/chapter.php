@@ -86,6 +86,8 @@
 
 </div>
 
+<?php include_once 'scroll-button.php'; ?>
+
 <script type="text/javascript">
     <?php if(!empty($last)){ ?>
     let lastPage = "<?=$siteUrl?>/chapter/<?=$last?>.html";

@@ -265,6 +265,11 @@ a:hover {
 }
 
 /* ------------------------------------ cat ------------------------------------ */
+.icon-book {
+    margin-left: 3px;
+    width: 21px;
+    height: 21px;
+}
 
 .work-show {
     padding: 0;
@@ -329,7 +334,7 @@ a:hover {
 }
 
 .pagination {
-    padding: 12px 0;
+    padding: 16px 6px;
 }
 
 .pagination a {
@@ -674,13 +679,7 @@ a:hover {
 
 /* ------------------------------------ multi device ------------------------------------ */
 
-@media screen {
-    .header, .gallery, #floatPanel, .chapter-author, .readerTools {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 560px) {
+@media screen and (min-width: 160px) {
     .header, .gallery, #floatPanel, .chapter-author, .readerTools {
         display: none;
     }
@@ -688,7 +687,7 @@ a:hover {
 
 @media screen and (min-width: 720px) {
 
-    .header, .gallery, .chapter-author, #floatPanel {
+    .header, .gallery, .chapter-author, #floatPanel, .readerTools {
         display: block;
     }
 
@@ -739,7 +738,7 @@ a:hover {
 
 
 @media screen and (min-width: 870px) {
-    .header, .gallery, #floatPanel .readerTools, .chapter-author {
+    .header, .gallery, #floatPanel, .readerTools, .chapter-author {
         display: block;
     }
 
