@@ -1,7 +1,12 @@
 # bison
-a cms powered by codeigniter4
+
+基于codeigniter4开发的CMS网站系统。
 
 
-## 开发计划
+目前提供了四种主题
 
-1. 添加评论脏词库
+* deep ： 深色主题
+* blue ： 科幻蓝
+* pure ： 简白
+* sunny： 白率线条
+
