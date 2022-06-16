@@ -10,7 +10,7 @@ class Custom extends BaseConfig
 {
 
 
-    public $theme = 'pure';
+    public $theme = 'deep';
 
     public $pageLength = 18;
 

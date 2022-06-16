@@ -35,7 +35,6 @@ body {
     background: #1E293B;
     margin: 0 auto;
     padding: 0;
-    box-shadow: 0 0 6px 6px rgba(180, 201, 239, .27);
 }
 
 .wrapper a:hover {
