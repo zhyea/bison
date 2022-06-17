@@ -11,7 +11,7 @@
             <input type="hidden" name="sign" value="<?= $sign ?>">
         </div>
         <div class="comment-sub">
-            <button type="submit" class="btn-success">发布</button>
+            <button type="submit" class="btn-secondary">发布</button>
         </div>
     </form>
 </div>

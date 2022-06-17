@@ -8,5 +8,5 @@
 * deep ： 深色主题
 * blue ： 科幻蓝
 * pure ： 简白
-* sunny： 白率线条
+* sunny： 白色线条
 

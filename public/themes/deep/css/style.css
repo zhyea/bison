@@ -141,13 +141,15 @@ body {
 
 .recommend {
     padding: 0;
+    height: 200px;
+    overflow: hidden;
     border-bottom: 2px solid #283344;
 }
 
 .recommend .item {
     display: block;
     float: left;
-    width: 14.28%;
+    width: 145px;
     border: 0;
     margin: 0;
     padding: 12px 0 12px 0;
@@ -162,6 +164,8 @@ body {
 .recommend .item .cover {
     position: relative;
     padding: 0;
+    width: 128px;
+    border: 1px solid #283344;
 }
 
 .recommend .item .cover,
@@ -173,8 +177,10 @@ body {
 
 .recommend .item .shade,
 .recommend .item .remark {
+    margin: 0 auto;
     position: absolute;
     bottom: 0;
+    width: 128px;
     height: 27px;
     overflow: hidden;
     line-height: 2.5em;
@@ -533,6 +539,106 @@ body {
 .footer .copyright a, .footer .copyright a:hover {
     color: #D1D1D1;
     text-decoration: none;
+}
+
+
+/* -------------- comment -------------- */
+
+.comment-form {
+    display: block;
+    background-color: #1E293B;
+    margin: 36px 0 0 0;
+    padding: 36px 3px 16px;
+}
+
+.comment-form form {
+    padding: 0;
+    color: #222;
+}
+
+.comment-form .comment-user, .comment-form .comment-content, .comment-form .comment-sub {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-form textarea, .comment-form input {
+    width: 100%;
+    border: 1px solid #888;
+    margin: 0;
+    line-height: 100%;
+    outline: none;
+}
+
+.comment-form input, .comment-form button {
+    height: 36px
+}
+
+.comment-form .comment-user {
+    display: inline;
+}
+
+.comment-form .comment-sub {
+    float: right;
+    width: 48px;
+    text-align: right;
+}
+
+.comment-form .comment-sub .btn {
+    width: 90px;
+}
+
+.comment-form .comment-user input {
+    width: 80%;
+}
+
+.comments {
+    display: block;
+    margin: 0;
+    padding: 10px 6px;
+    border-top: 1px solid #D9D9D9;
+}
+
+.comments .comment-user {
+    display: block;
+    width: 36px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.comments .comment-user .comment-icon {
+    margin: 0;
+    padding: 0;
+    border-radius: 50% !important;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #283344;
+    overflow: hidden;
+}
+
+.comments .comment-content, .comments .comment-name {
+    text-align: left;
+    margin-left: 42px;
+}
+
+.comments .comment-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.comments .comment-content {
+    padding: 16px;
+    border: 1px solid #283344;
+    border-radius: 7px !important;
+    background-color: #1E293B;
+    font-size: 14px;
+    line-height: 180%;
+}
+
+.comments .comment-content:hover {
+    background-color: #FFF;
+    border: 1px solid #D9D9D9;
+    color: #000;
 }
 
 
