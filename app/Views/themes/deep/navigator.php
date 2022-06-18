@@ -33,7 +33,8 @@ function nav_of($item, $ctx)
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="<?= $siteUrl ?>">
-				<i class="glyphicon glyphicon-home"></i> <?= $siteName ?>
+                <?php iconSvg('house', '#D1D1D1'); ?>
+				<span class="site-title"><?= $siteName ?></span>
 				<span class="sr-only">(current)</span>
 			</a>
 		</div>

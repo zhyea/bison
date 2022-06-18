@@ -49,6 +49,14 @@ body {
     clear: both;
 }
 
+.bi-icon {
+    width: 17px;
+    height: 17px;
+    margin-right: 3px;
+    margin-bottom: 2px;
+}
+
+
 /* -------------- head -------------- */
 .header {
     min-height: 120px;
@@ -63,8 +71,25 @@ body {
 }
 
 .navbar-brand {
+    display: block;
     font-size: 17px;
     color: #D1D1D1 !important;
+    padding-bottom: 6px;
+}
+
+.navbar-brand .icon-house {
+    width: 32px;
+    height: 32px;
+    margin: -8px 0 0;
+    padding: 0;
+}
+
+.navbar-brand .site-title {
+    display: block;
+    float: right;
+    padding-top: 1px;
+    padding-left: 7px;
+    height: 100%;
 }
 
 .navbar {

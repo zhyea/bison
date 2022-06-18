@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<?php include_once 'functions.php'; ?>
 <html>
 <head>
 	<title><?= empty($title) ? 'A Buffalo Site!' : $title ?> </title>
