@@ -1,7 +1,7 @@
 
 	<div class="container notice">
 		<ol class="breadcrumb">
-			<li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+			<li><a href="<?= $siteUrl ?>/"><?php iconTitle('folder', '#D1D1D1', '首页') ?></a></li>
 			<li><?= empty($cat) ? '不存在' : $cat['name'] ?></li>
 		</ol>
 	</div>
@@ -13,7 +13,7 @@
         <?php if (!empty($cat)) { ?>
 			<div class="page-header">
 				<h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
-						<i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?>
+                        <?php iconTitle('book', '#D1D1D1', $cat['name']) ?>
 					</a>
 				</h3>
 			</div>

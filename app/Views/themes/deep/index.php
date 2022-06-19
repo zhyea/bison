@@ -1,5 +1,5 @@
 <div class="container notice">
-    <i class="glyphicon glyphicon-volume-up" aria-hidden="true"></i> <?= $notice ?>
+    <?php iconSvg('horn', '#D1D1D1') ?> <?= $notice ?>
 </div>
 
 <div class="container main">
@@ -9,7 +9,7 @@
     <?php foreach ($all as $cat) { ?>
         <div class="page-header">
             <h3><a href="<?= $siteUrl ?>/c/<?= $cat['slug'] ?>.html">
-                    <i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?></a>
+		            <?php iconTitle('book', '#D1D1D1', $cat['name']) ?></a>
             </h3>
         </div>
         <div class="row popular">

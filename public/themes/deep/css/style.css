@@ -50,10 +50,10 @@ body {
 }
 
 .bi-icon {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     margin-right: 3px;
-    margin-bottom: 2px;
+    margin-bottom: -2px;
 }
 
 
@@ -80,7 +80,7 @@ body {
 .navbar-brand .icon-house {
     width: 32px;
     height: 32px;
-    margin: -8px 0 0;
+    margin: -8px 0 0 -5px;
     padding: 0;
 }
 
@@ -147,6 +147,10 @@ body {
     background-color: transparent;
     padding: 0;
     margin: 0;
+}
+
+.notice .breadcrumb .icon-folder {
+    margin-bottom: -2px;
 }
 
 .notice .breadcrumb > .active {

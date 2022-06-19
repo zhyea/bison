@@ -1,6 +1,6 @@
 <div class="container notice">
     <ol class="breadcrumb">
-        <li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+        <li><a href="<?= $siteUrl ?>/"><?php iconTitle('folder', '#D1D1D1', '首页') ?></a></li>
         <li><a href="<?= $siteUrl ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
         <li><a href="<?= $siteUrl ?>/work/<?= $w['id'] ?>.html#vol_$<?= $chp['volume_id'] ?>"><?= $w['name'] ?></a></li>
         <?php if (!empty($chp['volume_id']) && $chp['volume_id'] > 0) { ?>

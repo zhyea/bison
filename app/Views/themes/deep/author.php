@@ -1,6 +1,6 @@
 <div class="container notice">
     <ol class="breadcrumb">
-        <li><a href="<?= $siteUrl ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+        <li><a href="<?= $siteUrl ?>/"><?php iconTitle('folder', '#D1D1D1', '首页') ?></a></li>
         <li>作家</li>
         <li class="active"><?= $author['name'] ?></li>
     </ol>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="page-header">
-        <h3><i class="glyphicon glyphicon-book"></i>&nbsp;作品列表</h3>
+        <h3><?php iconTitle('book', '#D1D1D1', '作品列表') ?></h3>
     </div>
 
     <?php include_once 'work-show.php'; ?>

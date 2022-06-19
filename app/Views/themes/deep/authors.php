@@ -2,7 +2,7 @@
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="<?=$siteUrl?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+		<li><a href="<?=$siteUrl?>/"><?php iconTitle('folder', '#D1D1D1', '首页') ?></a></li>
 		<li class="active">全部作者</li>
 	</ol>
 </div>
@@ -12,7 +12,7 @@
         <?php foreach ($all as $key => $value) { ?>
 			<div class="row">
 				<div class="col-md-12 col-xs-12 volume">
-					<i class="glyphicon glyphicon-bookmark"></i> <?= $key ?>
+                    <?php iconTitle('bookmark', '#D1D1D1', $key) ?>
 				</div>
                 <?php foreach ($value as $author) { ?>
 					<div class="col-md-3 col-xs-12 chapter">
