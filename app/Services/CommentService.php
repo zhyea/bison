@@ -81,6 +81,21 @@ class CommentService
 
 
     /**
+     * 分页查询评论信息
+     * @param int $pageNum 页码
+     * @param int $pageSize 页面规模
+     * @return array 查询结果
+     */
+    public function findInPage(int $pageNum = 1, int $pageSize = 36): array
+    {
+        $result = $this->commentModel->findInPage($pageNum, $pageSize);
+        $total = $this->commentModel->countBy(array());
+        $totalPage = ($total % $pageSize == 0 ? $total / $pageSize : $total / $pageSize + 1);
+        return array('data' => $result, 'total' => $totalPage, 'page' => $pageNum);
+    }
+
+
+    /**
      * 删除评论
      * @param int $id 评论ID
      * @return bool 是否完成

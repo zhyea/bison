@@ -30,6 +30,21 @@ class CommentModel extends BaseModel
 
 
     /**
+     * 分页查询评论信息
+     * @param int $pageNum
+     * @param int $pageSize
+     * @return array
+     */
+    public function findInPage(int $pageNum = 0, int $pageSize = 36): array
+    {
+        $offset = ($pageNum - 1) * $pageSize;
+        return $this->asArray()
+            ->orderBy('id', 'desc')
+            ->findAll($pageSize, $offset);
+    }
+
+
+    /**
      * 查找待审批评论
      * @return array 评论集合
      */

@@ -9,7 +9,7 @@ function iconSvg(string $iconName, string $color)
 {
     ?>
     <svg class="bi-icon icon-<?= $iconName ?>" fill="<?= $color ?>">
-        <use xlink:href="/static/imgs/symbols.svg#<?= $iconName ?>"/>
+        <use xlink:href="/themes/pure/imgs/symbols.svg#<?= $iconName ?>"/>
     </svg>
     <?php
 }
@@ -25,7 +25,7 @@ function iconTitle(string $iconName, string $color, string $title)
 {
     ?>
     <svg class="bi-icon icon-<?= $iconName ?>" fill="<?= $color ?>">
-        <use xlink:href="/static/imgs/symbols.svg#<?= $iconName ?>"/>
+        <use xlink:href="/themes/pure/imgs/symbols.svg#<?= $iconName ?>"/>
     </svg>
     <?= $title ?>
     <?php
