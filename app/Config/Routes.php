@@ -135,6 +135,7 @@ $routes->get('admin/volume/suggest/(:num)', 'Volume::suggest/$1');
 // 评论管理
 $routes->get('admin/comment/delete/(:num)', 'Comment::delete/$1');
 $routes->get('admin/comment/approve/(:num)', 'Comment::approve/$1');
+$routes->get('admin/comment/list/(:num)', 'Comment::list/$1');
 
 
 /*

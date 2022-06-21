@@ -49,6 +49,7 @@
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/work/list">作品管理</a></li>
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/category/list">分类管理</a></li>
                         <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/user/list">用户管理</a></li>
+                        <li class="navbar-child-item"><a href="<?= $siteUrl ?>/admin/comment/list/1">评论管理</a></li>
                     </ul>
                 </li>
 
@@ -69,9 +70,9 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-	                <a href="<?= $siteUrl ?>" target="_blank">
+                    <a href="<?= $siteUrl ?>" target="_blank">
                         <i class="glyphicon glyphicon-home"></i> <?= empty($siteName) ? 'Test' : $siteName ?>
-	                </a>
+                    </a>
                 </li>
                 <li><a href="<?= $siteUrl ?>/logout"><span class="glyphicon glyphicon-off"></span> 登出</a>
                 </li>

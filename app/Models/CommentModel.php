@@ -35,8 +35,9 @@ class CommentModel extends BaseModel
      * @param int $pageSize
      * @return array
      */
-    public function findInPage(int $pageNum = 0, int $pageSize = 36): array
+    public function findInPage(int $pageNum = 1, int $pageSize = 36): array
     {
+        $pageNum = (0 >= $pageNum ? 1 : $pageNum);
         $offset = ($pageNum - 1) * $pageSize;
         return $this->asArray()
             ->orderBy('id', 'desc')

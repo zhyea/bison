@@ -1,3 +1,7 @@
+<?php
+include_once 'functions.php';
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>

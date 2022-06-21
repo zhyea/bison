@@ -48,4 +48,16 @@ class Comment extends AbstractAdmin
     }
 
 
+    /**
+     * 分页获取评论信息
+     * @param int $pageNo 页码
+     * @param int $pageSize 页面长度
+     */
+    public function list(int $pageNo = 1, int $pageSize = 36)
+    {
+        $data = $this->commentService->findInPage($pageNo, $pageSize);
+        $this->adminView('comments', $data, '评论管理');
+    }
+
+
 }

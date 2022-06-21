@@ -66,16 +66,7 @@ class CommentService
         if (empty($comments)) {
             return array();
         }
-        foreach ($comments as &$cm) {
-            $chapterId = $cm['chapter_id'];
-            if (0 != $chapterId) {
-                $chapter = $this->chapterModel->getById($chapterId);
-                $cm['chapter_name'] = $chapter['name'];
-            }
-            $workId = $cm['work_id'];
-            $work = $this->workModel->getById($workId);
-            $cm['work_name'] = $work['name'];
-        }
+        $this->padComments($comments);
         return $comments;
     }
 
@@ -88,10 +79,31 @@ class CommentService
      */
     public function findInPage(int $pageNum = 1, int $pageSize = 36): array
     {
+        $pageSize = ($pageSize <= 0 ? 36 : $pageSize);
         $result = $this->commentModel->findInPage($pageNum, $pageSize);
+        $this->padComments($result);
         $total = $this->commentModel->countBy(array());
         $totalPage = ($total % $pageSize == 0 ? $total / $pageSize : $total / $pageSize + 1);
-        return array('data' => $result, 'total' => $totalPage, 'page' => $pageNum);
+        return array('comments' => $result, 'total' => floor($totalPage), 'page' => $pageNum);
+    }
+
+
+    /**
+     * 填补评论信息
+     * @param array $comments 评论集合
+     */
+    private function padComments(array &$comments)
+    {
+        foreach ($comments as &$cm) {
+            $chapterId = $cm['chapter_id'];
+            if (0 != $chapterId) {
+                $chapter = $this->chapterModel->getById($chapterId);
+                $cm['chapter_name'] = $chapter['name'];
+            }
+            $workId = $cm['work_id'];
+            $work = $this->workModel->getById($workId);
+            $cm['work_name'] = $work['name'];
+        }
     }
 
 
