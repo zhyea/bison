@@ -4,6 +4,10 @@
 
 <div class="container main">
 
+    <div class="page-header">
+        <h3><i class="glyphicon glyphicon-list-alt"></i> 评论管理</h3>
+    </div>
+
     <?php if (!empty($comments)) { ?>
 		<div class="comment-list">
             <?php foreach ($comments as $c) { ?>
