@@ -25,7 +25,7 @@ class Comment extends AbstractAdmin
 
 
     /**
-     * 删除评论
+     * 删除评论,
      * @param int $id 评论ID
      * @return RedirectResponse
      */
@@ -33,6 +33,18 @@ class Comment extends AbstractAdmin
     {
         $this->commentService->delete($id);
         return $this->goToConsole();
+    }
+
+
+    /**
+     * 删除评论并跳回评论管理页
+     * @param int $id 评论ID
+     * @param int $pageNo 评论页码
+     */
+    public function delete2(int $id, int $pageNo)
+    {
+        $this->commentService->delete($id);
+        $this->list($pageNo);
     }
 
 
